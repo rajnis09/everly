@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/custom_button.dart';
+import '../../widgets/custom_circular_button.dart';
 import 'form_validator.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -118,7 +118,11 @@ class _SignUpFormState extends State<SignUpForm> {
                               _isNetworkCall = true;
                             });
                             _formKey.currentState.save();
-                            await Future.delayed(Duration(milliseconds: 1000));
+
+                            // Delay to mock as network call
+                            await Future.delayed(Duration(milliseconds: 100));
+
+                            // Dialog box to display Form data we recieved
                             showDialog(
                                 context: context,
                                 builder: (context) {

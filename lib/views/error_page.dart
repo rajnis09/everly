@@ -8,6 +8,7 @@ class ErrorPage extends StatelessWidget {
         child: Text(
           'Oops!! Some error occured',
           textScaleFactor: 1.5,
+          style: TextStyle(color: const Color(0xFFF57C00)),
         ),
       ),
     );

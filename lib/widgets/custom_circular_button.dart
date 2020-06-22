@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatelessWidget {
+class CustomCicularButton extends StatelessWidget {
   final double height;
   final Color backgroundColor, splashColor;
   final Function onPressed;
   final Widget child;
 
-  final double width;
-
-  const CustomButton({
+  const CustomCicularButton({
     Key key,
     @required this.height,
-    this.width,
     this.backgroundColor = const Color(0xFFF57C00),
     @required this.onPressed,
     this.splashColor = Colors.white30,
@@ -21,14 +18,11 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
-      width: width ?? 200,
+      height: height ?? 50.0,
       child: MaterialButton(
+        shape: CircleBorder(),
         splashColor: splashColor,
         onPressed: onPressed,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
         color: backgroundColor,
         elevation: 5.0,
         child: Center(
@@ -38,3 +32,10 @@ class CustomButton extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+

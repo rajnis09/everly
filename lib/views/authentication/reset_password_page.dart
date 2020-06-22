@@ -1,4 +1,8 @@
+import 'package:everly/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/forms/form_validator.dart';
+import '../../widgets/logo_widget.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   @override
@@ -6,49 +10,35 @@ class ResetPasswordPage extends StatefulWidget {
 }
 
 class _ResetPasswordPageState extends State<ResetPasswordPage> {
-  GlobalKey<FormState> _formGlobalKey;
-
-  // Regular Expression for Phone Number
-  RegExp _regExpForNumber;
-
-  // Regular Expression for Email
-  RegExp _regExpForMail;
-
-  @override
-  void initState() {
-    _formGlobalKey = GlobalKey<FormState>();
-    _regExpForNumber = RegExp(r"[6-9]\d{9}");
-    _regExpForMail = RegExp(
-        r'(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))');
-    super.initState();
-  }
-
-  String _validateInput(String input) {
-    if ((!_regExpForNumber.hasMatch(input) || input.length != 10) &&
-        !_regExpForMail.hasMatch(input)) {
-      return "Please provide valid email or number";
-    }
-    return null;
-  }
-
-  void _saveForm() {
-    var isValid = _formGlobalKey.currentState.validate();
-    if (!isValid) return;
-
-    _formGlobalKey.currentState.save();
-
-    // Operation to be performed if the inputs are valid
-  }
+  String _email, _phoneNumber;
+  bool _autoValidate = false, _isNetworkCall = false;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context);
+    final size = MediaQuery.of(context).size;
+
+    // TODO: for@sanjeev Change the UIlook
+    // Check for all todo in the file
+    // You can change button styling
+    // or anything to look the same like the other pages
+    // After then all depends on you that what best you can do with th UI
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Container(
+                margin: EdgeInsets.all(kToolbarHeight - 25),
+                height: size.height * 0.20,
+                alignment: Alignment.center,
+                child: LogoWidget(
+                  size: size.width * 0.4,
+                ),
+              ),
               const FittedBox(
                 child: const Text(
                   'Forgot Password?',
@@ -62,44 +52,72 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 height: 20,
               ),
               Container(
-                width: mediaQuery.size.width <= 400
-                    ? mediaQuery.size.width * 0.7
-                    : mediaQuery.size.width * 0.6,
+                width: size.width <= 400 ? size.width * 0.7 : size.width * 0.6,
                 child: Form(
-                  key: _formGlobalKey,
+                  key: _formKey,
+                  autovalidate: _autoValidate,
                   child: TextFormField(
                     decoration: InputDecoration(
-                      labelText: 'Enter email or phone',
+                      labelText: 'Phone Number',
                     ),
-                    validator: (input) => _validateInput(input),
+                    validator: validator.validateNumber,
+                    onSaved: (val) => _phoneNumber = val,
                   ),
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              FlatButton(
-                onPressed: _saveForm,
-                child: const Text(
-                  'Reset Password',
-                  style: const TextStyle(fontSize: 16),
-                ),
-                color: Theme.of(context).primaryColor,
-                textColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(7.0),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 30),
-                child: Text(
-                  'Show some text saying "mail has been sent / OTP sent"',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey[600],
-                  ),
-                ),
-              )
+              _isNetworkCall
+                  ? Container(
+                      height: size.height * 0.05,
+                      alignment: Alignment.center,
+                      child: CircularProgressIndicator(),
+                    )
+                  : CustomButton(
+                      height: size.height * 0.05,
+                      child: const Text(
+                        'Reset Password',
+                        style:
+                            const TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                      onPressed: () async {
+                        FocusScope.of(context).unfocus();
+
+                        if (_formKey.currentState.validate()) {
+                          setState(() {
+                            _isNetworkCall = true;
+                          });
+                          _formKey.currentState.save();
+
+                          // Delay to mock as network call
+                          await Future.delayed(Duration(milliseconds: 1000));
+
+                          // Dialog box to display mock network response
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text('Notification'),
+                                  content: Text(
+                                      'An OTP is sent to $_phoneNumber if it is registered with us'),
+                                );
+                              });
+
+                          setState(() {
+                            _isNetworkCall = false;
+                          });
+                        } else {
+                          setState(() {
+                            _autoValidate = true;
+                          });
+                        }
+                      },
+                    ),
+
+              // TODO: implement reset password with phone number
+              // You can either replace the FormField or
+              // use a dialog box
             ],
           ),
         ),

@@ -13,6 +13,10 @@ void main() {
   runApp(MyApp());
 }
 
+// TODO: for @rajnish
+// implement a full class where all type of customized themes like text themes(title, heading, headlines, subtitles etc), appbar theme
+// Icon theme, form themes and so on, because I am not getting this type of flexibility with Theme of(context). It will also help us in future maybe when we try to add dark mode in app
+
 class MyApp extends StatelessWidget {
   static const Color orangeColor = const Color(0xFFF57C00);
   @override
