@@ -28,7 +28,7 @@ class _SignInFormState extends State<SignInForm> {
                 TextFormField(
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.email),
-                    labelText: 'Email',
+                    labelText: 'Email or phone',
                   ),
                   validator: validator.validateEmail,
                   onSaved: (val) => _email = val,
@@ -54,22 +54,54 @@ class _SignInFormState extends State<SignInForm> {
                   onSaved: (val) => _password = val,
                 ),
                 SizedBox(height: 5.0),
-                Container(
-                  alignment: Alignment(1.0, 0.0),
-                  padding: EdgeInsets.only(top: 15.0, left: 20.0),
-                  child: GestureDetector(
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(
-                          color: Colors.orange[700],
-                          fontSize: 20,
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.bold),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      // margin: EdgeInsets.fromLTRB(30.0, 5.0, 30.0, 5.0),
+                      padding: EdgeInsets.only(top: 15.0),
+                      child: RaisedButton(
+                          padding:
+                              EdgeInsets.only(top: 3.0, bottom: 3.0, left: 0.0),
+                          color: Colors.white,
+                          onPressed: () {},
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Image.asset(
+                                'assets/images/google_sign_in.png',
+                                height: 25.0,
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                                child: Text(
+                                  "Sign in with Google",
+                                  style: TextStyle(
+                                      color: Colors.orange[700],
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          )),
                     ),
-                    onTap: () =>
-                        Navigator.pushNamed(context, '/resetPasswordPage'),
-                    onDoubleTap: () {},
-                  ),
+                    Container(
+                      alignment: Alignment(1.0, 0.0),
+                      padding: EdgeInsets.only(top: 15.0, left: 20.0),
+                      child: GestureDetector(
+                        child: Text(
+                          'Forgot Password?',
+                          style: TextStyle(
+                              color: Colors.orange[700],
+                              fontSize: 20,
+                              decoration: TextDecoration.underline,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: () =>
+                            Navigator.pushNamed(context, '/resetPasswordPage'),
+                        onDoubleTap: () {},
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: size.height * 0.03),
                 _isNetworkCall
@@ -79,7 +111,7 @@ class _SignInFormState extends State<SignInForm> {
                         child: CircularProgressIndicator(),
                       )
                     : CustomCicularButton(
-                        height: size.height * 0.1,
+                        height: size.height * 0.08,
                         splashColor: Colors.orangeAccent,
                         child: Icon(
                           Icons.keyboard_arrow_right,
