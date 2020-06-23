@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/forms/sign_up_form.dart';
+import '../../utils/forms/sign_up_email_form.dart';
+import '../../utils/forms/sign_up_phonenumber_form.dart';
 import '../../widgets/logo_widget.dart';
 
-// TODO: for @yash Create UI of SignUp with Phone Number page
 
 class SignUpPage extends StatelessWidget {
   @override
@@ -36,7 +36,8 @@ class SignUpPage extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              SignUpForm(),
+              SignUpWithEmailForm(),
+              SignUpWithPhoneForm(),
             ],
           ),
         ),

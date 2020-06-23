@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../../widgets/custom_circular_button.dart';
 import 'form_validator.dart';
 
-class SignUpForm extends StatefulWidget {
+class SignUpWithPhoneForm extends StatefulWidget {
   @override
-  _SignUpFormState createState() => _SignUpFormState();
+  _SignUpWithPhoneFormState createState() => _SignUpWithPhoneFormState();
 }
 
-class _SignUpFormState extends State<SignUpForm> {
-  String _email, _password, _firstName, _lastName;
-  bool _autoValidate = false, _obscureText = true, _isNetworkCall = false;
+class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
+  String _number, _otp , _firstName, _lastName; // _password
+  bool _autoValidate = false, _isNetworkCall = false; //_obscureText = true
   IconData iconData = Icons.visibility_off;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -53,49 +53,65 @@ class _SignUpFormState extends State<SignUpForm> {
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      labelText: 'Email',
-                      prefixIcon: const Icon(Icons.email),
+                      labelText: 'Phone Number',
+                      prefixIcon: const Icon(Icons.phone),
                     ),
-                    validator: validator.validateEmail,
-                    onSaved: (val) => _email = val,
-                    keyboardType: TextInputType.emailAddress,
+                    validator: validator.validateNumber,
+                    onSaved: (val) => _number = val,
+                    keyboardType: TextInputType.phone,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      labelText: 'Password',
-                      prefixIcon: const Icon(Icons.lock),
-                      suffixIcon: IconButton(
-                          icon: Icon(iconData),
-                          onPressed: () {
-                            setState(() {
-                              _obscureText = !_obscureText;
-                              iconData = _obscureText
-                                  ? Icons.visibility_off
-                                  : Icons.visibility;
-                            });
-                          }),
+                      labelText: 'OTP',
+                      prefixIcon: const Icon(Icons.lock_open),
                     ),
-                    obscureText: _obscureText,
-                    keyboardType: TextInputType.text,
-                    validator: validator.validatePassword,
-                    onSaved: (val) => _password = val,
+                    
+                    keyboardType: TextInputType.number,
+                    // Here we add otp validator 
+                    // validator: validator.validateNumber,
+                    onSaved: (val) => _otp = val,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Confirm Password',
-                      prefixIcon: const Icon(Icons.lock),
-                    ),
-                    obscureText: true,
-                    keyboardType: TextInputType.text,
-                    validator: validator.validateConfirmPassword,
-                  ),
-                ),
+
+                // Commenting pasword place we will use it if needed
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(vertical: 8.0),
+                //   child: TextFormField(
+                //     decoration: InputDecoration(
+                //       labelText: 'Password',
+                //       prefixIcon: const Icon(Icons.lock),
+                //       suffixIcon: IconButton(
+                //           icon: Icon(iconData),
+                //           onPressed: () {
+                //             setState(() {
+                //               _obscureText = !_obscureText;
+                //               iconData = _obscureText
+                //                   ? Icons.visibility_off
+                //                   : Icons.visibility;
+                //             });
+                //           }),
+                //     ),
+                //     obscureText: _obscureText,
+                //     keyboardType: TextInputType.text,
+                //     validator: validator.validatePassword,
+                //     onSaved: (val) => _password = val,
+                //   ),
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(vertical: 8.0),
+                //   child: TextFormField(
+                //     decoration: InputDecoration(
+                //       labelText: 'Confirm Password',
+                //       prefixIcon: const Icon(Icons.lock),
+                //     ),
+                //     obscureText: true,
+                //     keyboardType: TextInputType.text,
+                //     validator: validator.validateConfirmPassword,
+                //   ),
+                // ),
                 SizedBox(height: size.height * 0.03),
                 _isNetworkCall
                     ? Container(
@@ -128,7 +144,7 @@ class _SignUpFormState extends State<SignUpForm> {
                                 builder: (context) {
                                   return AlertDialog(
                                     content: Text(
-                                        'Name: $_firstName $_lastName\nEmail : $_email\nPassword: $_password'),
+                                        'Name: $_firstName $_lastName\nPhone Number : $_number\nOTP: $_otp'),
                                   );
                                 });
                             setState(() {
