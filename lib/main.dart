@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import './views/splash_Screen.dart';
 import './views/authentication/login_page.dart';
 import './views/authentication/reset_password_page.dart';
-import './views/authentication/signUp_page.dart';
+import './views/authentication/signUp_email_or_phone_page.dart';
 import './views/error_page.dart';
 
 void main() {
