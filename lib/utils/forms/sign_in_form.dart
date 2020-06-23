@@ -126,7 +126,7 @@ class _SignInFormState extends State<SignInForm> {
                           });
 
                           // Delay to mock as network call
-                          await Future.delayed(Duration(milliseconds: 100));
+                          await Future.delayed(Duration(milliseconds: 1000));
 
                           // Dialog box to display Form data we recieved
                           showDialog(

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import './views/splash_Screen.dart';
-import './views/authentication/login_page.dart';
+import './views/authentication/signin_page.dart';
 import './views/authentication/reset_password_page.dart';
 import './views/authentication/signUp_email_or_phone_page.dart';
 import './views/error_page.dart';
@@ -22,9 +22,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Everly',
       theme: ThemeData(
+        
+        // TODO: Read Everyone and remove all comment lines after reading finished
         // Theming for the Formfields
         // Usage is by default
-        // For modification purpose: Theme.of(context).inputDecorationTheme.labelStyle.apply(color: , rest all fields which you want to modify)
+        // For modification purpose: Theme.of(context).inputDecorationTheme.copyWith(color: , rest all fields which you want to modify)
         inputDecorationTheme: InputDecorationTheme(
           labelStyle: GoogleFonts.montserrat(
               color: orangeColor, fontWeight: FontWeight.bold),
@@ -41,14 +43,14 @@ class MyApp extends StatelessWidget {
 
         // Theming for Normal Icons displayed on page
         // No need to define usage if default property to be used
-        // Just modificaton: Theme.of(context).iconThemeData.apply(color: , rest all fields which you want to modify)
+        // Just modificaton: Theme.of(context).iconTheme.copyWit(color: , rest all fields which you want to modify)
         iconTheme: IconThemeData(color: orangeColor),
 
         // Theming for fonts displayed on page
         // Use headline6 for titles
         // use headline5 for rest of content
         // usage : Theme.of(context).textTheme.headline6 or Theme.of(context).textTheme.headline5
-        // Modification: Theme.of(context).textTheme.headline6.apply(all fields which you want to modify)
+        // Modification: Theme.of(context).textTheme.headline6.copyWith(all fields which you want to modify)
         textTheme: TextTheme(
           headline6:
               GoogleFonts.lato(color: orangeColor, fontWeight: FontWeight.bold),
@@ -58,7 +60,8 @@ class MyApp extends StatelessWidget {
 
         // Appbar theme
         // Usage is by default
-        // In case need modification : Theme.of(context).appBarTheme.textTheme.headline6.apply(all fields which you want to modify)
+        // In case need modification : Theme.of(context).appBarTheme.textTheme.headline6.copyWith(all fields which you want to modify)
+        // or Theme.of(context).appBarTheme.iconTheme.copyWit(color: , rest all fields which you want to modify)
         appBarTheme: AppBarTheme(
           color: Colors.white,
           iconTheme: IconThemeData(color: orangeColor),

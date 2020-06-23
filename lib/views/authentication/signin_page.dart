@@ -1,28 +1,17 @@
 import 'package:flutter/material.dart';
+
 import '../../widgets/cubic_clipper.dart';
 import '../../utils/forms/sign_in_form.dart';
 import '../../widgets/logo_widget.dart';
 
-// TODO: for @ravi implemnt following
-// Add login with phone option
-// improve signUp option, like change place in App, or change UI of button etc.
-// Add Google plus signIn option at the bottom of the screen as decided in the layout or whrerver in page and anytype G+ signIn UI but it should match with the rest of UI and look appealing
-// add the wave style, Look and responsiveness of UI shouldn't change and the functionality too
-// Use color code const Color(0xFFF57C00) wherever needed
-// After then all depends on you that what best you can do with the UI
-// Bonus task if possible then add a "Welcome to Everly" type text on the top most of page only if it will look better because there is no where on login page everly name is mentioned
-
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // final mediaQuery = MediaQuery.of(context);
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Welcome to Everly :)',
-          ),
+          title: Text('Welcome to Everly :)'),
           elevation: 0,
         ),
         body: SingleChildScrollView(
@@ -30,19 +19,14 @@ class LoginPage extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.40,
-                  bottom: 0,
-                  right: 0,
-                  left: 0),
+                  top: MediaQuery.of(context).size.height * 0.40),
               color: Colors.orange[50],
-//         width:MediaQuery.of(context).size.width * ,
               height: size.height * 0.60,
               child: ClipPath(
                 clipper: CubicClipper(),
                 child: Container(
                   height: size.height * 1,
                   color: Colors.white,
-                  // child: Center(child: Text("WaveClipperTwo(reverse: true)"),),
                 ),
               ),
             ),
@@ -77,22 +61,41 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   height: 1,
                 ),
-                Center(
-                  child: Text(
-                    '-----------Or------------',
-                    style: TextStyle(
+                Container(
+                  width: size.width * 0.7,
+                  height: size.height * 0.04,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                          child: Divider(
                         color: Colors.grey,
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal),
+                        thickness: 1,
+                      )),
+                      SizedBox(width: 5),
+                      Text(
+                        'OR',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline5
+                            .copyWith(fontSize: 16),
+                      ),
+                      SizedBox(width: 5),
+                      Expanded(
+                          child: Divider(
+                        color: Colors.grey,
+                        thickness: 1,
+                      )),
+                    ],
                   ),
                 ),
                 SizedBox(
-                  height: 4,
+                  height: size.width * 0.05,
                 ),
                 Container(
                   child: GestureDetector(
                     child: Text(
-                      'Create account',
+                      'Create Account',
                       style: TextStyle(
                           color: Colors.orange[700],
                           fontSize: 20,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/custom_button.dart';
 import '../../widgets/custom_circular_button.dart';
 import 'form_validator.dart';
 
@@ -9,9 +10,10 @@ class SignUpWithPhoneForm extends StatefulWidget {
 }
 
 class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
-  String _number, _otp , _firstName, _lastName; // _password
-  bool _autoValidate = false, _isNetworkCall = false; //_obscureText = true
+  String _phoneNumber, _otp, _firstName, _lastName;
+  bool _autoValidate = false, _isNetworkCall = false, _otpSent = false;
   IconData iconData = Icons.visibility_off;
+  TextEditingController _otpController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -52,66 +54,18 @@ class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextFormField(
+                    maxLength: 10,
                     decoration: InputDecoration(
                       labelText: 'Phone Number',
+                      prefixText: '+91',
+                      counterText: '',
                       prefixIcon: const Icon(Icons.phone),
                     ),
                     validator: validator.validateNumber,
-                    onSaved: (val) => _number = val,
+                    onSaved: (val) => _phoneNumber = val,
                     keyboardType: TextInputType.phone,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'OTP',
-                      prefixIcon: const Icon(Icons.lock_open),
-                    ),
-                    
-                    keyboardType: TextInputType.number,
-                    // Here we add otp validator 
-                    // validator: validator.validateNumber,
-                    onSaved: (val) => _otp = val,
-                  ),
-                ),
-
-                // Commenting pasword place we will use it if needed
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(vertical: 8.0),
-                //   child: TextFormField(
-                //     decoration: InputDecoration(
-                //       labelText: 'Password',
-                //       prefixIcon: const Icon(Icons.lock),
-                //       suffixIcon: IconButton(
-                //           icon: Icon(iconData),
-                //           onPressed: () {
-                //             setState(() {
-                //               _obscureText = !_obscureText;
-                //               iconData = _obscureText
-                //                   ? Icons.visibility_off
-                //                   : Icons.visibility;
-                //             });
-                //           }),
-                //     ),
-                //     obscureText: _obscureText,
-                //     keyboardType: TextInputType.text,
-                //     validator: validator.validatePassword,
-                //     onSaved: (val) => _password = val,
-                //   ),
-                // ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(vertical: 8.0),
-                //   child: TextFormField(
-                //     decoration: InputDecoration(
-                //       labelText: 'Confirm Password',
-                //       prefixIcon: const Icon(Icons.lock),
-                //     ),
-                //     obscureText: true,
-                //     keyboardType: TextInputType.text,
-                //     validator: validator.validateConfirmPassword,
-                //   ),
-                // ),
                 SizedBox(height: size.height * 0.03),
                 _isNetworkCall
                     ? Container(
@@ -144,11 +98,12 @@ class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
                                 builder: (context) {
                                   return AlertDialog(
                                     content: Text(
-                                        'Name: $_firstName $_lastName\nPhone Number : $_number\nOTP: $_otp'),
+                                        'Name: $_firstName $_lastName\nPhone Number : $_phoneNumber'),
                                   );
                                 });
                             setState(() {
                               _isNetworkCall = false;
+                              _otpSent = true;
                             });
                           } else {
                             setState(() {
@@ -157,6 +112,81 @@ class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
                           }
                         },
                       ),
+                SizedBox(height: size.height * 0.02),
+                _otpSent
+                    ? Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: TextFormField(
+                              onFieldSubmitted: (value) {
+                                _otp = _otpController.text;
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        content: Text(
+                                            'Verfied\nName: $_firstName $_lastName\nPhone Number : $_phoneNumber\nOTP: $_otp'),
+                                      );
+                                    });
+                              },
+                              maxLength: 6,
+                              controller: _otpController,
+                              decoration: InputDecoration(
+                                labelText: 'OTP',
+                                counterText: '',
+                                prefixIcon: const Icon(Icons.lock),
+                              ),
+                              keyboardType: TextInputType.number,
+                              onSaved: (val) => _otp = val,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          _isNetworkCall
+                              ? Container(
+                                  height: size.height * 0.05,
+                                  alignment: Alignment.center,
+                                  child: CircularProgressIndicator(),
+                                )
+                              : CustomButton(
+                                  height: size.height * 0.05,
+                                  child: const Text(
+                                    'Submit',
+                                    style: const TextStyle(
+                                        fontSize: 16, color: Colors.white),
+                                  ),
+                                  onPressed: () async {
+                                    FocusScope.of(context).unfocus();
+
+                                    setState(() {
+                                      _isNetworkCall = true;
+                                    });
+
+                                    // Delay to mock as network call
+                                    await Future.delayed(
+                                        Duration(milliseconds: 1000));
+
+                                    // Dialog box to display mock network response
+                                    _otp = _otpController.text;
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            content: Text(
+                                                'Verfied\nName: $_firstName $_lastName\nPhone Number : $_phoneNumber\nOTP: $_otp'),
+                                          );
+                                        });
+
+                                    setState(() {
+                                      _isNetworkCall = false;
+                                    });
+                                  },
+                                ),
+                        ],
+                      )
+                    : Container(),
                 SizedBox(height: size.height * 0.02),
               ],
             )),

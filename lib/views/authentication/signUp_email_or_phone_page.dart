@@ -36,7 +36,7 @@ class SignUpPage extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              SignUpWithEmailForm(),
+              // SignUpWithEmailForm(),
               SignUpWithPhoneForm(),
             ],
           ),
