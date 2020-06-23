@@ -1,8 +1,8 @@
-import 'package:everly/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
-import '../../utils/forms/form_validator.dart';
 import '../../widgets/logo_widget.dart';
+import '../../utils/forms/form_validator.dart';
+import '../../widgets/custom_button.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   @override
@@ -24,9 +24,9 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     // or anything to look the same like the other pages
     // After then all depends on you that what best you can do with th UI
 
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -58,6 +58,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   autovalidate: _autoValidate,
                   child: TextFormField(
                     decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.phone),
                       labelText: 'Phone Number',
                     ),
                     validator: validator.validateNumber,
