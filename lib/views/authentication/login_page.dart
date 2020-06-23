@@ -29,14 +29,14 @@ class LoginPage extends StatelessWidget {
             child: Stack(
           children: [
             Container(
-              // margin: EdgeInsets.only(
-              //     top: MediaQuery.of(context).size.height * 0.5,
-              //     bottom: 0,
-              //     right: 0,
-              //     left: 0),
-              color: Colors.orange[700],
+              margin: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.40,
+                  bottom: 0,
+                  right: 0,
+                  left: 0),
+              color: Colors.orange[50],
 //         width:MediaQuery.of(context).size.width * ,
-              height: size.height * 0.237,
+              height: size.height * 0.60,
               child: ClipPath(
                 clipper: CubicClipper(),
                 child: Container(
@@ -79,9 +79,9 @@ class LoginPage extends StatelessWidget {
                 ),
                 Center(
                   child: Text(
-                    'Or',
+                    '-----------Or------------',
                     style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.grey,
                         fontSize: 15,
                         fontWeight: FontWeight.normal),
                   ),
