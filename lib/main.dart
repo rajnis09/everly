@@ -1,4 +1,3 @@
-import 'package:everly/views/error_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,14 +7,11 @@ import './views/splash_Screen.dart';
 import './views/authentication/login_page.dart';
 import './views/authentication/reset_password_page.dart';
 import './views/authentication/signUp_page.dart';
+import './views/error_page.dart';
 
 void main() {
   runApp(MyApp());
 }
-
-// TODO: for @rajnish
-// implement a full class where all type of customized themes like text themes(title, heading, headlines, subtitles etc), appbar theme
-// Icon theme, form themes and so on, because I am not getting this type of flexibility with Theme of(context). It will also help us in future maybe when we try to add dark mode in app
 
 class MyApp extends StatelessWidget {
   static const Color orangeColor = const Color(0xFFF57C00);
@@ -26,28 +22,56 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Everly',
       theme: ThemeData(
+        // Theming for the Formfields
+        // Usage is by default
+        // For modification purpose: Theme.of(context).inputDecorationTheme.labelStyle.apply(color: , rest all fields which you want to modify)
         inputDecorationTheme: InputDecorationTheme(
-            labelStyle: GoogleFonts.montserrat(
-                color: orangeColor, fontWeight: FontWeight.bold),
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: orangeColor),
-            )),
+          labelStyle: GoogleFonts.montserrat(
+              color: orangeColor, fontWeight: FontWeight.bold),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: orangeColor),
+          ),
+        ),
         primaryColor: orangeColor,
         accentColor: orangeColor,
+        cursorColor: orangeColor,
         textSelectionHandleColor: orangeColor,
         textSelectionColor: orangeColor,
         scaffoldBackgroundColor: Colors.white,
-        cursorColor: orangeColor,
+
+        // Theming for Normal Icons displayed on page
+        // No need to define usage if default property to be used
+        // Just modificaton: Theme.of(context).iconThemeData.apply(color: , rest all fields which you want to modify)
+        iconTheme: IconThemeData(color: orangeColor),
+
+        // Theming for fonts displayed on page
+        // Use headline6 for titles
+        // use headline5 for rest of content
+        // usage : Theme.of(context).textTheme.headline6 or Theme.of(context).textTheme.headline5
+        // Modification: Theme.of(context).textTheme.headline6.apply(all fields which you want to modify)
+        textTheme: TextTheme(
+          headline6:
+              GoogleFonts.lato(color: orangeColor, fontWeight: FontWeight.bold),
+          headline5: GoogleFonts.montserrat(
+              color: orangeColor, fontWeight: FontWeight.bold),
+        ),
+
+        // Appbar theme
+        // Usage is by default
+        // In case need modification : Theme.of(context).appBarTheme.textTheme.headline6.apply(all fields which you want to modify)
         appBarTheme: AppBarTheme(
           color: Colors.white,
-          iconTheme: IconThemeData(color: orangeColor, size: 40),
+          iconTheme: IconThemeData(color: orangeColor),
+          actionsIconTheme: IconThemeData(color: orangeColor),
           textTheme: TextTheme(
-            headline6: GoogleFonts.roboto(color: orangeColor, fontSize: 40),
-            subtitle2: GoogleFonts.montserrat(color: Colors.black),
+            headline6: GoogleFonts.lato(
+                color: orangeColor, fontWeight: FontWeight.bold, fontSize: 30),
+            headline5: GoogleFonts.montserrat(
+                color: orangeColor, fontWeight: FontWeight.bold),
           ),
         ),
       ),
-      routes: {
+      routes: <String, WidgetBuilder>{
         '/': (context) => SplashScreen(),
         '/logInPage': (context) => LoginPage(),
         '/resetPasswordPage': (context) => ResetPasswordPage(),
