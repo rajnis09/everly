@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
           headline5: GoogleFonts.montserrat(
               color: orangeColor, fontWeight: FontWeight.bold),
         ),
-
+        
         // Appbar theme
         // Usage is by default
         // In case need modification : Theme.of(context).appBarTheme.textTheme.headline6.copyWith(all fields which you want to modify)
