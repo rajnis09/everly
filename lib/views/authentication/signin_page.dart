@@ -6,7 +6,6 @@ import '../../utils/forms/sign_in_form.dart';
 import '../../widgets/logo_widget.dart';
 
 class LoginPage extends StatelessWidget {
-  // static const  double backgroundSize;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -107,8 +106,8 @@ class LoginPage extends StatelessWidget {
                           child: CustomButton(
                             height: size.height * 0.05,
                             width: size.width * 0.36,
-                            onPressed: () =>
-                                Navigator.pushNamed(context, '/signUpPage'),
+                            onPressed: () => Navigator.pushNamed(
+                                context, '/signUpEmailPage'),
                             child: Text(
                               'Sign up with email',
                               style: TextStyle(
@@ -121,8 +120,8 @@ class LoginPage extends StatelessWidget {
                           child: CustomButton(
                             height: size.height * 0.05,
                             width: size.width * 0.36,
-                            onPressed: () =>
-                                Navigator.pushNamed(context, '/signUpPage'),
+                            onPressed: () => Navigator.pushNamed(
+                                context, '/signUpPhonepage'),
                             child: Text(
                               'Sign up with phone',
                               style: TextStyle(

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/forms/sign_up_email_form.dart';
 import '../../widgets/cubic_clipper.dart';
 import '../../utils/forms/sign_up_phonenumber_form.dart';
 import '../../widgets/logo_widget.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPhonePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -51,7 +50,6 @@ class SignUpPage extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  // SignUpWithEmailForm(),
                   SignUpWithPhoneForm(),
                 ],
               ),

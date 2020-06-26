@@ -6,7 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import './views/splash_Screen.dart';
 import './views/authentication/signin_page.dart';
 import './views/authentication/reset_password_page.dart';
-import './views/authentication/signUp_email_or_phone_page.dart';
+import './views/authentication/signUp_email_page.dart';
+import './views/authentication/signUp_phone_page.dart';
 import './views/error_page.dart';
 
 void main() {
@@ -50,8 +51,9 @@ class MyApp extends StatelessWidget {
         // usage : Theme.of(context).textTheme.headline6 or Theme.of(context).textTheme.headline5
         // Modification: Theme.of(context).textTheme.headline6.copyWith(all fields which you want to modify)
         textTheme: TextTheme(
-          headline6: GoogleFonts.lato(color: orangeColor),
-          headline5: GoogleFonts.montserrat(color: orangeColor),
+          headline6: GoogleFonts.lato(color: orangeColor, fontSize: 20.0),
+          headline5: GoogleFonts.montserrat(color: orangeColor, fontSize: 20.0),
+          headline4: GoogleFonts.robotoSlab(color: orangeColor, fontSize: 20.0),
         ),
 
         // Appbar theme
@@ -74,7 +76,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => SplashScreen(),
         '/logInPage': (context) => LoginPage(),
         '/resetPasswordPage': (context) => ResetPasswordPage(),
-        '/signUpPage': (context) => SignUpPage(),
+        '/signUpEmailPage': (context) => SignUpEmailPage(),
+        '/signUpPhonepage': (context) => SignUpPhonePage(),
       },
       onUnknownRoute: (settings) =>
           MaterialPageRoute(builder: (context) => ErrorPage()),
