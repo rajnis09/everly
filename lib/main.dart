@@ -22,8 +22,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Everly',
       theme: ThemeData(
-        
-        // TODO: Read Everyone and remove all comment lines after reading finished
         // Theming for the Formfields
         // Usage is by default
         // For modification purpose: Theme.of(context).inputDecorationTheme.copyWith(color: , rest all fields which you want to modify)
@@ -52,12 +50,10 @@ class MyApp extends StatelessWidget {
         // usage : Theme.of(context).textTheme.headline6 or Theme.of(context).textTheme.headline5
         // Modification: Theme.of(context).textTheme.headline6.copyWith(all fields which you want to modify)
         textTheme: TextTheme(
-          headline6:
-              GoogleFonts.lato(color: orangeColor, fontWeight: FontWeight.bold),
-          headline5: GoogleFonts.montserrat(
-              color: orangeColor, fontWeight: FontWeight.bold),
+          headline6: GoogleFonts.lato(color: orangeColor),
+          headline5: GoogleFonts.montserrat(color: orangeColor),
         ),
-        
+
         // Appbar theme
         // Usage is by default
         // In case need modification : Theme.of(context).appBarTheme.textTheme.headline6.copyWith(all fields which you want to modify)

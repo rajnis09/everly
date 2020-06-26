@@ -56,13 +56,13 @@ class _SignInFormState extends State<SignInForm> {
               SizedBox(height: 5.0),
               Container(
                 alignment: Alignment(1.0, 0.0),
-                padding: EdgeInsets.only(top: 0.0),
+                padding: EdgeInsets.only(top: 4.0),
                 child: GestureDetector(
                   child: Text(
                     'Forgot Password?',
                     style: TextStyle(
                         color: Colors.orange[700],
-                        fontSize: size.width * 0.04,
+                        fontSize: size.width * 0.042,
                         decoration: TextDecoration.underline,
                         fontWeight: FontWeight.bold),
                   ),
