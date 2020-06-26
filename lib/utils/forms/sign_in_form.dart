@@ -17,6 +17,7 @@ class _SignInFormState extends State<SignInForm> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Container(
       child: Form(
         key: _formKey,
@@ -34,7 +35,7 @@ class _SignInFormState extends State<SignInForm> {
                 onSaved: (val) => _email = val,
                 keyboardType: TextInputType.emailAddress,
               ),
-              SizedBox(height: size.height * 0.03),
+              SizedBox(height: size.height * 0.01),
               TextFormField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.lock),
@@ -53,7 +54,7 @@ class _SignInFormState extends State<SignInForm> {
                 obscureText: _obscureText,
                 onSaved: (val) => _password = val,
               ),
-              SizedBox(height: 5.0),
+              SizedBox(height: size.height * 0.01),
               Container(
                 alignment: Alignment(1.0, 0.0),
                 padding: EdgeInsets.only(top: 4.0),
@@ -71,7 +72,7 @@ class _SignInFormState extends State<SignInForm> {
                   onDoubleTap: () {},
                 ),
               ),
-              SizedBox(height: size.height * 0.03),
+              SizedBox(height: size.height * 0.015),
               _isNetworkCall
                   ? Container(
                       height: size.height * 0.1,
@@ -116,7 +117,7 @@ class _SignInFormState extends State<SignInForm> {
                         }
                       },
                     ),
-              SizedBox(height: size.height * 0.02),
+              SizedBox(height: size.height * 0.015),
             ],
           ),
         ),
