@@ -1,10 +1,10 @@
-import 'package:everly/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+import '../../widgets/custom_button.dart';
 import '../../widgets/cubic_clipper.dart';
 import '../../utils/forms/sign_in_form.dart';
 import '../../widgets/logo_widget.dart';
-
+import '../background_size.dart';
 // TODO: for @ravi implemnt following
 // Add login with phone option
 // improve signUp option, like change place in App, or change UI of button etc.
@@ -15,29 +15,32 @@ import '../../widgets/logo_widget.dart';
 // Bonus task if possible then add a "Welcome to Everly" type text on the top most of page only if it will look better because there is no where on login page everly name is mentioned
 
 class LoginPage extends StatelessWidget {
+  // static const  double backgroundSize;
   @override
   Widget build(BuildContext context) {
-    // final mediaQuery = MediaQuery.of(context);
     final size = MediaQuery.of(context).size;
+    // final sizeHeight = size.height.toString();
+    // BackgroundSize(backgroundHeight:sizeHeight);
+    // const String height = BackgroundSize().backgroundHeight;
     return SafeArea(
       child: Scaffold(
         body: Stack(
           children: [
             Container(
               margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.40,
+                  top: size.height * 0.40,
                   bottom: 0,
                   right: 0,
                   left: 0),
               color: Colors.orange[50],
 //         width:MediaQuery.of(context).size.width * ,
-              height: size.height * 0.60,
+              height:  size.height * 0.6,
+
               child: ClipPath(
                 clipper: CubicClipper(),
                 child: Container(
-                  height: size.height * 1,
+                  // height: const backgroundSize,
                   color: Colors.white,
-                  // child: Center(child: Text("WaveClipperTwo(reverse: true)"),),
                 ),
               ),
             ),
@@ -59,7 +62,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.all(kToolbarHeight - 25),
+                    margin: EdgeInsets.all(kToolbarHeight - size.height * 0.06),
                     height: size.height * 0.20,
                     alignment: Alignment.center,
                     child: LogoWidget(
@@ -80,23 +83,23 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: size.height * 0.02,
                   ),
                   SignInForm(),
-                  SizedBox(
-                    height: 1,
-                  ),
+                  // SizedBox(
+                  //   height: 1,
+                  // ),
                   Center(
                     child: Text(
                       '-----------OR------------',
                       style: TextStyle(
                           color: Colors.orange[700],
-                          fontSize: 15,
+                          fontSize: size.height * 0.02,
                           fontWeight: FontWeight.normal),
                     ),
                   ),
                   SizedBox(
-                    height: 15,
+                    height: size.height * 0.01,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -104,24 +107,28 @@ class LoginPage extends StatelessWidget {
                       Container(
                         child: CustomButton(
                           height: size.height * 0.05,
-                          width: size.width * 0.38,
+                          width: size.width * 0.36,
                           onPressed: () =>
                               Navigator.pushNamed(context, '/signUpPage'),
                           child: Text(
                             'Sign up with email',
-                            style: const TextStyle(fontSize: 15, color: Colors.white),
+                            style: TextStyle(
+                                fontSize: size.width * 0.03,
+                                color: Colors.white),
                           ),
                         ),
                       ),
                       Container(
                         child: CustomButton(
                           height: size.height * 0.05,
-                          width: size.width * 0.38,
+                          width: size.width * 0.36,
                           onPressed: () =>
                               Navigator.pushNamed(context, '/signUpPage'),
                           child: Text(
                             'Sign up with phone',
-                            style: const TextStyle(fontSize: 15, color: Colors.white),
+                            style: TextStyle(
+                                fontSize: size.width * 0.03,
+                                color: Colors.white),
                           ),
                         ),
                       ),
