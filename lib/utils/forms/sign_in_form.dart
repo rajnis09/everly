@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/custom_circular_button.dart';
-import 'form_validator.dart';
+import './form_validator.dart';
 
 class SignInForm extends StatefulWidget {
   @override
@@ -98,14 +98,15 @@ class _SignInFormState extends State<SignInForm> {
                           await Future.delayed(Duration(milliseconds: 1000));
 
                           // Dialog box to display Form data we recieved
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  content: Text(
-                                      'Email : $_email\nPassword: $_password'),
-                                );
-                              });
+                          // showDialog(
+                          //     context: context,
+                          //     builder: (context) {
+                          //       return AlertDialog(
+                          //         content: Text(
+                          //             'Email : $_email\nPassword: $_password'),
+                          //       );
+                          //     });
+                          Navigator.pushReplacementNamed(context, '/homePage');
 
                           setState(() {
                             _isNetworkCall = false;
