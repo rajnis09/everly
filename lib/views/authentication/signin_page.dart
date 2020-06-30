@@ -120,7 +120,8 @@ class LoginPage extends StatelessWidget {
                           child: CustomButton(
                             height: size.height * 0.05,
                             width: size.width * 0.36,
-                            onPressed: () => Navigator.pushNamed(context, '/homePage'),
+                            onPressed: () => Navigator.pushNamed(
+                                context, '/signUpPhonePage'),
                             child: Text(
                               'Sign up with phone',
                               style: TextStyle(

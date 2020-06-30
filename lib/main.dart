@@ -10,7 +10,7 @@ import './views/authentication/signUp_email_page.dart';
 import './views/authentication/signUp_phone_page.dart';
 import './views/intro_page.dart';
 import './views/error_page.dart';
-import './views/home_page.dart';
+import './views/bottom_navigation_bar.dart';
 
 void main() {
   runApp(MyApp());
@@ -79,9 +79,8 @@ class MyApp extends StatelessWidget {
         '/logInPage': (context) => LoginPage(),
         '/resetPasswordPage': (context) => ResetPasswordPage(),
         '/signUpEmailPage': (context) => SignUpEmailPage(),
-        '/signUpPhonepage': (context) => SignUpPhonePage(),
-        '/introPage': (context) => IntroPage(),
-        '/homePage': (context) => HomePage(),
+        '/signUpPhonePage': (context) => SignUpPhonePage(),
+        '/homePage': (context) => CustomBottomNavigationBar(),
       },
       onUnknownRoute: (settings) =>
           MaterialPageRoute(builder: (context) => ErrorPage()),

@@ -21,26 +21,26 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Stack(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(
-                  top: size.height * 0.4,
-                ),
-                color: Colors.orange[50],
-                height: size.height * 0.6,
-                child: ClipPath(
-                  clipper: CubicClipper(),
-                  child: Container(
-                    // height: size.height,
-                    color: Colors.white,
-                  ),
+        body: Stack(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(
+                top: size.height * 0.4,
+              ),
+              color: Colors.orange[50],
+              height: size.height * 0.6,
+              child: ClipPath(
+                clipper: CubicClipper(),
+                child: Container(
+                  height: size.height * 1,
+                  color: Colors.white,
                 ),
               ),
-              Container(
+            ),
+            SingleChildScrollView(
+              child: Container(
                 margin: const EdgeInsets.only(top: 20),
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Column(
                   children: <Widget>[
                     Container(
@@ -154,8 +154,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
