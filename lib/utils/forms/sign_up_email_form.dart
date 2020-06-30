@@ -135,6 +135,8 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
                             setState(() {
                               _isNetworkCall = false;
                             });
+
+                            Navigator.pushNamed(context, '/introPage');
                           } else {
                             setState(() {
                               _autoValidate = true;
