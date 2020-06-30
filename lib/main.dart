@@ -8,6 +8,7 @@ import './views/authentication/signin_page.dart';
 import './views/authentication/reset_password_page.dart';
 import './views/authentication/signUp_email_page.dart';
 import './views/authentication/signUp_phone_page.dart';
+import './views/intro_page.dart';
 import './views/error_page.dart';
 import './views/home_page.dart';
 
@@ -79,6 +80,7 @@ class MyApp extends StatelessWidget {
         '/resetPasswordPage': (context) => ResetPasswordPage(),
         '/signUpEmailPage': (context) => SignUpEmailPage(),
         '/signUpPhonepage': (context) => SignUpPhonePage(),
+        '/introPage': (context) => IntroPage(),
         '/homePage': (context) => HomePage(),
       },
       onUnknownRoute: (settings) =>
