@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/custom_circular_button.dart';
-import 'form_validator.dart';
+import './form_validator.dart';
 
 class SignInForm extends StatefulWidget {
   @override
@@ -17,6 +17,7 @@ class _SignInFormState extends State<SignInForm> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Container(
       child: Form(
         key: _formKey,
@@ -34,7 +35,7 @@ class _SignInFormState extends State<SignInForm> {
                 onSaved: (val) => _email = val,
                 keyboardType: TextInputType.emailAddress,
               ),
-              SizedBox(height: size.height * 0.03),
+              SizedBox(height: size.height * 0.01),
               TextFormField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.lock),
@@ -53,16 +54,16 @@ class _SignInFormState extends State<SignInForm> {
                 obscureText: _obscureText,
                 onSaved: (val) => _password = val,
               ),
-              SizedBox(height: 5.0),
+              SizedBox(height: size.height * 0.01),
               Container(
                 alignment: Alignment(1.0, 0.0),
-                padding: EdgeInsets.only(top: 0.0),
+                padding: EdgeInsets.only(top: 4.0),
                 child: GestureDetector(
                   child: Text(
                     'Forgot Password?',
                     style: TextStyle(
                         color: Colors.orange[700],
-                        fontSize: size.width * 0.04,
+                        fontSize: size.width * 0.042,
                         decoration: TextDecoration.underline,
                         fontWeight: FontWeight.bold),
                   ),
@@ -71,7 +72,7 @@ class _SignInFormState extends State<SignInForm> {
                   onDoubleTap: () {},
                 ),
               ),
-              SizedBox(height: size.height * 0.03),
+              SizedBox(height: size.height * 0.015),
               _isNetworkCall
                   ? Container(
                       height: size.height * 0.1,
@@ -97,14 +98,15 @@ class _SignInFormState extends State<SignInForm> {
                           await Future.delayed(Duration(milliseconds: 1000));
 
                           // Dialog box to display Form data we recieved
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  content: Text(
-                                      'Email : $_email\nPassword: $_password'),
-                                );
-                              });
+                          // showDialog(
+                          //     context: context,
+                          //     builder: (context) {
+                          //       return AlertDialog(
+                          //         content: Text(
+                          //             'Email : $_email\nPassword: $_password'),
+                          //       );
+                          //     });
+                          Navigator.pushReplacementNamed(context, '/homePage');
 
                           setState(() {
                             _isNetworkCall = false;
@@ -116,7 +118,7 @@ class _SignInFormState extends State<SignInForm> {
                         }
                       },
                     ),
-              SizedBox(height: size.height * 0.02),
+              SizedBox(height: size.height * 0.015),
             ],
           ),
         ),

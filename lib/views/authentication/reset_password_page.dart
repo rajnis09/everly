@@ -21,30 +21,30 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Stack(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(
-                  top: size.height * 0.4,
-                ),
-                color: Colors.orange[50],
-                height: size.height * 0.6,
-                child: ClipPath(
-                  clipper: CubicClipper(),
-                  child: Container(
-                    // height: size.height,
-                    color: Colors.white,
-                  ),
+        body: Stack(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(
+                top: size.height * 0.4,
+              ),
+              color: Colors.orange[50],
+              height: size.height * 0.6,
+              child: ClipPath(
+                clipper: CubicClipper(),
+                child: Container(
+                  height: size.height * 1,
+                  color: Colors.white,
                 ),
               ),
-              Container(
+            ),
+            SingleChildScrollView(
+              child: Container(
                 margin: const EdgeInsets.only(top: 20),
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      margin: const EdgeInsets.all(kToolbarHeight),
+                      margin: EdgeInsets.all(kToolbarHeight),
                       height: size.height * 0.20,
                       alignment: Alignment.center,
                       child: LogoWidget(
@@ -87,7 +87,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                             key: _formKey,
                             autovalidate: _autoValidate,
                             child: TextFormField(
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 prefixIcon: const Icon(Icons.email),
                                 labelText: 'Email',
                               ),
@@ -103,7 +103,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                             ? Container(
                                 height: size.height * 0.05,
                                 alignment: Alignment.center,
-                                child: const CircularProgressIndicator(),
+                                child: CircularProgressIndicator(),
                               )
                             : CustomButton(
                                 height: size.height * 0.07,
@@ -125,15 +125,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
                                     // Delay to mock as network call
                                     await Future.delayed(
-                                      Duration(milliseconds: 1000),
-                                    );
+                                        Duration(milliseconds: 1000));
 
                                     // Dialog box to display mock network response
                                     showDialog(
                                         context: context,
                                         builder: (context) {
                                           return AlertDialog(
-                                            title: const Text('Notification'),
+                                            title: Text('Notification'),
                                             content: Text(
                                               'A mail has been sent to $_email if it is registered with us',
                                             ),
@@ -155,8 +154,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
