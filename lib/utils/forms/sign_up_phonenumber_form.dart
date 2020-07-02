@@ -230,6 +230,7 @@ class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
                           setState(() {
                             _isNetworkCall = false;
                           });
+                          Navigator.pushNamed(context, '/introPage');
                         },
                       ),
                     )
