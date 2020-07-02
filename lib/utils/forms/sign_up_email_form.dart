@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/custom_circular_button.dart';
-
-import 'form_validator.dart';
+import '../auth/auth_handler.dart';
+import './form_validator.dart';
+import '../../widgets/all_Alert_Dialogs.dart';
 
 class SignUpWithEmailForm extends StatefulWidget {
   @override
@@ -119,24 +120,36 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
                               _isNetworkCall = true;
                             });
                             _formKey.currentState.save();
-
-                            // Delay to mock as network call
+                            int response = await authHandler.handleSignUp(
+                                _email,
+                                _password,
+                                _firstName + ' ' + _lastName,
+                                null);
+                            switch (response) {
+                              case 0:
+                                Navigator.pushReplacementNamed(
+                                    context, '/verifyEmailPage');
+                                break;
+                              case 1:
+                                notificationDialog(
+                                    context, 'Error', 'Invalid Email');
+                                break;
+                              case 2:
+                                notificationDialog(
+                                    context, 'Error', 'Password is weak');
+                                break;
+                              case 3:
+                                notificationDialog(context, 'Error',
+                                    'The Email is already in use');
+                                break;
+                              default:
+                                notificationDialog(context, 'Error',
+                                    'Contact Everly team by filling feedback form');
+                            }
                             await Future.delayed(Duration(milliseconds: 100));
-
-                            // Dialog box to display Form data we recieved
-                            showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    content: Text(
-                                        'Name: $_firstName $_lastName\nEmail : $_email\nPassword: $_password'),
-                                  );
-                                });
                             setState(() {
                               _isNetworkCall = false;
                             });
-
-                            Navigator.pushNamed(context, '/introPage');
                           } else {
                             setState(() {
                               _autoValidate = true;

@@ -4,6 +4,8 @@ import '../../widgets/logo_widget.dart';
 import '../../utils/forms/form_validator.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/cubic_clipper.dart';
+import '../../widgets/all_Alert_Dialogs.dart';
+import '../../utils/auth/auth_handler.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   @override
@@ -18,7 +20,6 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -115,30 +116,38 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                                   ),
                                 ),
                                 onPressed: () async {
-                                  FocusScope.of(context).unfocus();
-
                                   if (_formKey.currentState.validate()) {
                                     setState(() {
                                       _isNetworkCall = true;
                                     });
                                     _formKey.currentState.save();
-
-                                    // Delay to mock as network call
+                                    FocusScope.of(context).unfocus();
+                                    int response = await authHandler
+                                        .sendPasswordResetLink(_email);
+                                    switch (response) {
+                                      case 0:
+                                        notificationDialog(
+                                            context,
+                                            'Notification',
+                                            'A link to reset your password is sent to your email address');
+                                        break;
+                                      case 1:
+                                        notificationDialog(
+                                            context, 'Error', 'Invalid Email');
+                                        break;
+                                      case 2:
+                                        notificationDialog(context, 'Error',
+                                            'User not found.');
+                                        break;
+                                      default:
+                                        notificationDialog(
+                                          context,
+                                          'Error',
+                                          'Contact Everly team by filling feedback form',
+                                        );
+                                    }
                                     await Future.delayed(
-                                        Duration(milliseconds: 1000));
-
-                                    // Dialog box to display mock network response
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            title: Text('Notification'),
-                                            content: Text(
-                                              'A mail has been sent to $_email if it is registered with us',
-                                            ),
-                                          );
-                                        });
-
+                                        Duration(milliseconds: 100));
                                     setState(() {
                                       _isNetworkCall = false;
                                     });
@@ -147,8 +156,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                                       _autoValidate = true;
                                     });
                                   }
-                                },
-                              ),
+                                }),
                       ],
                     ),
                   ],

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/custom_button.dart';
 import '../../widgets/custom_circular_button.dart';
-import 'form_validator.dart';
+import '../../widgets/all_Alert_Dialogs.dart';
+import '../auth/auth_handler.dart';
+import './form_validator.dart';
 
 class SignUpWithPhoneForm extends StatefulWidget {
   @override
@@ -10,10 +11,9 @@ class SignUpWithPhoneForm extends StatefulWidget {
 }
 
 class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
-  String _phoneNumber, _otp, _firstName, _lastName;
+  String _phoneNumber, _firstName, _lastName;
   bool _autoValidate = false, _isNetworkCall = false, _isOtpSent = false;
   IconData iconData = Icons.visibility_off;
-  TextEditingController _otpController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -89,152 +89,80 @@ class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
                       keyboardType: TextInputType.phone,
                     ),
                   ),
-                  !_isOtpSent
-                      ? _isNetworkCall
-                          ? Container(
-                              height: size.height * 0.056,
-                              margin: EdgeInsets.only(top: size.height * 0.05),
-                              alignment: Alignment.center,
-                              child: CircularProgressIndicator(),
-                            )
-                          : Container(
-                              margin: EdgeInsets.only(top: size.height * 0.05),
-                              child: CustomButton(
-                                height: size.height * 0.056,
-                                width: size.width * 0.4,
-                                child: Text(
-                                  'Submit',
-                                  style: TextStyle(
-                                      fontSize: size.width * 0.05,
-                                      color: Colors.white),
-                                ),
-                                onPressed: () async {
-                                  FocusScope.of(context).unfocus();
-                                  if (_formKey.currentState.validate()) {
-                                    setState(() {
-                                      _isNetworkCall = true;
-                                    });
-                                    _formKey.currentState.save();
-
-                                    // Delay to mock as network call
-                                    await Future.delayed(
-                                        Duration(milliseconds: 2000));
-
-                                    // Dialog box to display Form data we recieved
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            content: Text(
-                                                'Name: $_firstName $_lastName\nPhone Number : $_phoneNumber'),
-                                          );
-                                        });
-
-                                    setState(() {
-                                      _isNetworkCall = false;
-                                      _isOtpSent = true;
-                                    });
-                                  } else {
-                                    setState(() {
-                                      _autoValidate = true;
-                                    });
-                                  }
-                                },
-                              ),
-                            )
-                      : Container(),
+                  _isNetworkCall
+                      ? Container(
+                          height: size.height * 0.056,
+                          margin: EdgeInsets.only(top: size.height * 0.05),
+                          alignment: Alignment.center,
+                          child: CircularProgressIndicator(),
+                        )
+                      : Container(
+                          margin: EdgeInsets.only(top: size.height * 0.02),
+                          child: CustomCicularButton(
+                            height: size.height * 0.1,
+                            splashColor: Colors.orangeAccent,
+                            child: Icon(
+                              Icons.keyboard_arrow_right,
+                              size: size.height * 0.08,
+                              color: Colors.white,
+                            ),
+                            onPressed: () async {
+                              FocusScope.of(context).unfocus();
+                              if (_formKey.currentState.validate()) {
+                                setState(() {
+                                  _isOtpSent = true;
+                                  _isNetworkCall = true;
+                                });
+                                _formKey.currentState.save();
+                                _phoneNumber = '+91' + _phoneNumber;
+                                print(_phoneNumber);
+                                // int response =
+                                //     await authHandler.signInWithPhone(
+                                //   _firstName + ' ' + _lastName,
+                                //   _phoneNumber,
+                                // );
+                                // print('Response $response');
+                                // switch (response) {
+                                //   case 0:
+                                //     Navigator.pushReplacementNamed(
+                                //         context, '/homePage');
+                                //     break;
+                                //   case 1:
+                                //     Navigator.pushReplacementNamed(
+                                //         context, '/introPage');
+                                //     break;
+                                //   case 2:
+                                //     notificationDialog(context, 'Error',
+                                //         'Account already Exists');
+                                //     break;
+                                //   case 3:
+                                //     notificationDialog(context, 'Error',
+                                //         'Invalid Credentials');
+                                //     break;
+                                //   default:
+                                //     notificationDialog(context, 'Error',
+                                //         'Contact Everly team by filling feedback form');
+                                // }
+                                notificationDialog(context, 'Error',
+                                    'For some reason phone authentication is disabled for now');
+                                await Future.delayed(
+                                    Duration(milliseconds: 100));
+                                setState(() {
+                                  _isOtpSent = false;
+                                  _isNetworkCall = false;
+                                });
+                              } else {
+                                setState(() {
+                                  _autoValidate = true;
+                                });
+                              }
+                            },
+                          ),
+                        )
                 ],
               ),
             ),
           ),
-          _isOtpSent
-              ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: TextFormField(
-                    onFieldSubmitted: (value) {
-                      _otp = _otpController.text;
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              content: Text(
-                                  'Verfied\nName: $_firstName $_lastName\nPhone Number : $_phoneNumber\nOTP: $_otp'),
-                            );
-                          });
-                    },
-                    maxLength: 6,
-                    controller: _otpController,
-                    decoration: InputDecoration(
-                      labelText: 'OTP',
-                      counterText: '',
-                      prefixIcon: const Icon(Icons.lock),
-                    ),
-                    keyboardType: TextInputType.number,
-                    onSaved: (val) => _otp = val,
-                  ),
-                )
-              : Container(),
-          _isOtpSent
-              ? Container(
-                  alignment: Alignment.centerRight,
-                  margin: EdgeInsets.only(top: size.height * 0.01),
-                  child: IconButton(
-                      icon: Icon(Icons.refresh, size: 30),
-                      onPressed: () {
-                        setState(() {
-                          _formKey.currentState.reset();
-                          _isOtpSent = false;
-                          _otpController.clear();
-                          _autoValidate = false;
-                        });
-                      }))
-              : Container(),
-          _isOtpSent
-              ? _isNetworkCall
-                  ? Container(
-                      height: size.height * 0.1,
-                      margin: EdgeInsets.only(top: size.height * 0.02),
-                      alignment: Alignment.center,
-                      child: CircularProgressIndicator(),
-                    )
-                  : Container(
-                      margin: EdgeInsets.only(top: size.height * 0.02),
-                      child: CustomCicularButton(
-                        height: size.height * 0.1,
-                        splashColor: Colors.orangeAccent,
-                        child: Icon(
-                          Icons.keyboard_arrow_right,
-                          size: size.height * 0.08,
-                          color: Colors.white,
-                        ),
-                        onPressed: () async {
-                          FocusScope.of(context).unfocus();
-                          setState(() {
-                            _isNetworkCall = true;
-                          });
-                          _otp = _otpController.text;
-                          // Delay to mock as network call
-                          await Future.delayed(Duration(milliseconds: 1000));
-
-                          // Dialog box to display Form data we recieved
-
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  content: Text(
-                                      'Name: $_firstName $_lastName\nPhone Number : $_phoneNumber\n OTP: $_otp'),
-                                );
-                              });
-
-                          setState(() {
-                            _isNetworkCall = false;
-                          });
-                          Navigator.pushNamed(context, '/introPage');
-                        },
-                      ),
-                    )
-              : Container(),
           SizedBox(height: size.height * 0.015),
         ],
       ),

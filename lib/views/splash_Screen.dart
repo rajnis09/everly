@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/auth/auth_handler.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({
@@ -18,7 +19,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void initializingApplication() {
     Future.delayed(Duration(seconds: 2), () async {
-      Navigator.pushReplacementNamed(context, '/logInPage');
+      var user = await authHandler.getCurrentUser();
+      if (user != null) {
+        Navigator.pushReplacementNamed(context, '/homePage');
+      } else {
+        Navigator.pushReplacementNamed(context, '/logInPage');
+      }
     });
   }
 

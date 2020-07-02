@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/custom_circular_button.dart';
+import '../../widgets/all_Alert_Dialogs.dart';
+import '../auth/auth_handler.dart';
 import './form_validator.dart';
 
 class SignInForm extends StatefulWidget {
@@ -93,21 +95,34 @@ class _SignInFormState extends State<SignInForm> {
                           setState(() {
                             _isNetworkCall = true;
                           });
-
-                          // Delay to mock as network call
-                          await Future.delayed(Duration(milliseconds: 1000));
-
-                          // Dialog box to display Form data we recieved
-                          // showDialog(
-                          //     context: context,
-                          //     builder: (context) {
-                          //       return AlertDialog(
-                          //         content: Text(
-                          //             'Email : $_email\nPassword: $_password'),
-                          //       );
-                          //     });
-                          Navigator.pushReplacementNamed(context, '/homePage');
-
+                          _formKey.currentState.save();
+                          int response = await authHandler.handleSignInEmail(
+                              _email, _password);
+                          switch (response) {
+                            case 0:
+                              Navigator.pushReplacementNamed(
+                                  context, '/introPage');
+                              break;
+                            case 1:
+                              notificationDialog(context, 'Error',
+                                  'Either email or password is incorrect');
+                              break;
+                            case 2:
+                              notificationDialog(context, 'Error',
+                                  'Either email or password is incorrect');
+                              break;
+                            case 3:
+                              notificationDialog(context, 'Error',
+                                  'Too many requests, try after sometime');
+                              break;
+                            default:
+                              notificationDialog(
+                                context,
+                                'Error',
+                                'Contact Everly team by filling feedback form',
+                              );
+                          }
+                          await Future.delayed(Duration(milliseconds: 100));
                           setState(() {
                             _isNetworkCall = false;
                           });

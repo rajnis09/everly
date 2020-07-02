@@ -17,8 +17,7 @@ class IntroPage extends StatelessWidget {
               Image.asset("assets/images/4.png", fit: BoxFit.fill),
             ],
             onIntroCompleted: () {
-              Navigator.pushNamed(context, '/homePage');
-              //To the navigation stuff here
+              Navigator.pushReplacementNamed(context, '/homePage');
             },
           ),
         ),
