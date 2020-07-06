@@ -106,7 +106,7 @@ class _SignInFormState extends State<SignInForm> {
                           //             'Email : $_email\nPassword: $_password'),
                           //       );
                           //     });
-                          Navigator.pushReplacementNamed(context, '/homePage');
+                          Navigator.pushReplacementNamed(context, '/introPage');
 
                           setState(() {
                             _isNetworkCall = false;

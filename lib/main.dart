@@ -9,6 +9,7 @@ import './views/authentication/reset_password_page.dart';
 import './views/authentication/signUp_email_page.dart';
 import './views/authentication/signUp_phone_page.dart';
 import './views/error_page.dart';
+import './views/intro_page.dart';
 import './views/bottom_navigation_bar.dart';
 
 void main() {
@@ -79,6 +80,7 @@ class MyApp extends StatelessWidget {
         '/resetPasswordPage': (context) => ResetPasswordPage(),
         '/signUpEmailPage': (context) => SignUpEmailPage(),
         '/signUpPhonePage': (context) => SignUpPhonePage(),
+        '/introPage': (context) => IntroPage(),
         '/homePage': (context) => CustomBottomNavigationBar(),
       },
       onUnknownRoute: (settings) =>
