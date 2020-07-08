@@ -11,7 +11,6 @@ import './views/authentication/signUp_phone_page.dart';
 import './views/error_page.dart';
 import './views/intro_page.dart';
 import './views/bottom_navigation_bar.dart';
-import './views/intro_page.dart';
 import './views/authentication/verify_email_page.dart';
 
 void main() {
@@ -84,7 +83,6 @@ class MyApp extends StatelessWidget {
         '/signUpPhonePage': (context) => SignUpPhonePage(),
         '/introPage': (context) => IntroPage(),
         '/homePage': (context) => CustomBottomNavigationBar(),
-        '/introPage': (context) => IntroPage(),
         '/verifyEmailPage': (context) => VerifyEmailPage(),
       },
       onUnknownRoute: (settings) =>

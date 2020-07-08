@@ -8,7 +8,7 @@ class ProfilePage extends StatelessWidget {
       child: RaisedButton(
         onPressed: () async {
           await authHandler.signOut();
-          Navigator.pop(context);
+          Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
         },
         child: Text(
           'Logout',

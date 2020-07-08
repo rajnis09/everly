@@ -101,7 +101,7 @@ class _SignInFormState extends State<SignInForm> {
                           switch (response) {
                             case 0:
                               Navigator.pushReplacementNamed(
-                                  context, '/introPage');
+                                  context, '/homePage');
                               break;
                             case 1:
                               notificationDialog(context, 'Error',
@@ -109,7 +109,7 @@ class _SignInFormState extends State<SignInForm> {
                               break;
                             case 2:
                               notificationDialog(context, 'Error',
-                                  'Either email or password is incorrect');
+                                  'User does not found');
                               break;
                             case 3:
                               notificationDialog(context, 'Error',
