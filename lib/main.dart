@@ -76,7 +76,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       routes: <String, WidgetBuilder>{
-        '/': (context) => SplashScreen(),
+        '/': (context) => CustomBottomNavigationBar(),
         '/logInPage': (context) => LoginPage(),
         '/resetPasswordPage': (context) => ResetPasswordPage(),
         '/signUpEmailPage': (context) => SignUpEmailPage(),
