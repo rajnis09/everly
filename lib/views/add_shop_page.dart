@@ -1,6 +1,7 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
-import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:qrscan/qrscan.dart' as scanner;
 
 class AddShopPage extends StatefulWidget {
   @override
@@ -13,95 +14,55 @@ class _AddShopPageState extends State<AddShopPage> {
   //   // print("hello" + barcode);
   // }
 
-  QRViewController controller;
-  var qrText = '';
-  final GlobalKey qrKey = GlobalKey();
+  Future _scan() async {
+    String barcode = await scanner.scan();
+    if (barcode != null) {
+      Navigator.of(context).pushReplacementNamed('/homePage');
+    }
+  }
 
-  bool isPhoneSelected = false;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    // var changedQrHeight = size.height - appbar.pre;
-    // var changedPhoneHeight = size.height * 0.05;
     return Scaffold(
-      body: isPhoneSelected
-          ? Center(
-              child: Container(
-                // height: size.height * 0.8,
-                width: size.width <= 400 ? size.width * 0.8 : size.width * 0.7,
-                child: Form(
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.contact_phone),
-                      labelText: 'Enter Phone number',
-                    ),
-                  ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Center(
+          child: Container(
+            // height: size.height * 0.8,
+            width: size.width <= 400 ? size.width * 0.8 : size.width * 0.7,
+            child: Form(
+              child: TextFormField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.contact_phone,color: Colors.orange[700]),
+                  labelText: 'Enter Phone number',
                 ),
               ),
-            )
-          : Column(
-              children: [
-                Container(
-                  height:
-                      (size.height - (Scaffold.of(context).appBarMaxHeight)) *
-                          0.8,
-                  child: QRView(
-                    key: qrKey,
-                    onQRViewCreated: _onQRViewCreated,
-                    overlay: QrScannerOverlayShape(
-                      borderColor: Colors.orange[700],
-                      borderRadius: 10,
-                      borderLength: 30,
-                      borderWidth: 10,
-                      cutOutSize: 300,
-                    ),
-                  ),
-                ),
-                Container(
-                  // margin: EdgeInsets.all(5),
-                  alignment: Alignment.centerRight,
-                  height: size.height * 0.1,
-                  child: GestureDetector(
-                    onTap: () {
-                      print(' hello! ');
-                      setState(() {
-                        isPhoneSelected = true;
-                      });
-                    },
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.phone_android,
-                            color: Colors.orange[700],
-                          ),
-                          Text(
-                            'Add Phone',
-                            style: TextStyle(color: Colors.orange[700]),
-                          ),
-                        ]),
-                  ),
-                ),
-              ],
             ),
-    );
-  }
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
-  }
-
-  void _onQRViewCreated(QRViewController controller) {
-    this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        qrText = scanData;
-        if (qrText != null) {
-          Navigator.of(context).pushReplacementNamed('/homePage');
-        }
-      });
-    });
+          ),
+        ),
+        SizedBox(height:size.height * 0.05),
+        Center(
+          child: Container(
+            margin: EdgeInsets.only(left:size.width <= 400 ? size.width * 0.12 : size.width * 0.17),
+            // padding: EdgeInsets.all(size.width <= 400 ? size.width * 0.05 : size.width * 0.05),
+            alignment: Alignment.center,
+            child: GestureDetector(
+              onTap: _scan,
+              child: Row(
+                // mainAxisSize: MainAxisSize.max,
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                Icon(Icons.camera_alt,color: Colors.orange[700],),
+                Text('Scan QR code',style: Theme.of(context).textTheme.headline5.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),),
+              ],),
+            ),
+          ),
+        ),
+      ],
+    ));
   }
 }
