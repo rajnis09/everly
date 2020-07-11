@@ -33,6 +33,7 @@ dependencies:
   qrscan: ^0.2.17
 
 dev_dependencies:
+  flutter_swiper: ^1.1.6
   flutter_test:
     sdk: flutter
     
