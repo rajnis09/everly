@@ -81,7 +81,7 @@ class MyApp extends StatelessWidget {
         '/resetPasswordPage': (context) => ResetPasswordPage(),
         '/signUpEmailPage': (context) => SignUpEmailPage(),
         '/signUpPhonePage': (context) => SignUpPhonePage(),
-        '/introPage': (context) => IntroPage(),
+        '/introPage': (context) => IntroScreen(),
         '/homePage': (context) => CustomBottomNavigationBar(),
         '/verifyEmailPage': (context) => VerifyEmailPage(),
       },
