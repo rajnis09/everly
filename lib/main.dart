@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import './views/splash_Screen.dart';
 import './views/authentication/signin_page.dart';
+import './views/add_shop_page.dart';
 import './views/authentication/reset_password_page.dart';
 import './views/authentication/signUp_email_page.dart';
 import './views/authentication/signUp_phone_page.dart';
@@ -84,6 +85,7 @@ class MyApp extends StatelessWidget {
         '/introPage': (context) => IntroScreen(),
         '/homePage': (context) => CustomBottomNavigationBar(),
         '/verifyEmailPage': (context) => VerifyEmailPage(),
+        '/addShopPage': (context) => AddShopPage(),
       },
       onUnknownRoute: (settings) =>
           MaterialPageRoute(builder: (context) => ErrorPage()),
