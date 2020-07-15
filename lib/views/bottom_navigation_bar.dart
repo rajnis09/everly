@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../views/home_page.dart';
 import '../views/profile_page.dart';
-import '../views/add_shop_page.dart';
 import '../views/orders_page.dart';
 import '../views/settings_page.dart';
 
@@ -18,15 +17,16 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     ProfilePage(),
     OrdersPage(),
     SettingsPage(),
-    AddShopPage(),
+    // AddShopPage(),
   ];
   final List<String> _titles = [
     'Home',
     'My Profile',
     'My Orders',
     'Settings',
-    'Add Shop'
+    // 'Add Shop'
   ];
+
   var _selectedPageIndex = 0;
 
   @override
@@ -36,26 +36,9 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         title: Text(_titles[_selectedPageIndex]),
       ),
       body: _pages[_selectedPageIndex],
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        height: 50,
-        child: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              _selectedPageIndex = 4;
-            });
-          },
-          child: Icon(Icons.add),
-          elevation: 5,
-          foregroundColor: Colors.white,
-          backgroundColor: _selectedPageIndex == 4
-              ? Colors.purple
-              : Theme.of(context).accentColor,
-        ),
-      ),
       bottomNavigationBar: _FABBottomAppBar(
-        selectedColor: _selectedPageIndex == 4 ? null : Colors.purple,
-        centerItemText: 'Add Shop',
+        // selectedColor: _selectedPageIndex == 4 ? null : Colors.purple,
+        // centerItemText: 'Add Shop',
         onTabSelected: (index) {
           setState(() {
             _selectedPageIndex = index;
@@ -137,7 +120,7 @@ class _FABBottomAppBarState extends State<_FABBottomAppBar> {
         onPressed: _updateIndex,
       );
     });
-    items.insert(items.length >> 1, _buildMiddleTabItem());
+    // items.insert(items.length >> 1, _buildMiddleTabItem());
 
     return BottomAppBar(
       shape: widget.notchedShape,
@@ -147,25 +130,6 @@ class _FABBottomAppBarState extends State<_FABBottomAppBar> {
         children: items,
       ),
       color: widget.backgroundColor,
-    );
-  }
-
-  Widget _buildMiddleTabItem() {
-    return Expanded(
-      child: SizedBox(
-        height: widget.height,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(height: widget.iconSize),
-            Text(
-              widget.centerItemText ?? '',
-              style: TextStyle(color: widget.color),
-            ),
-          ],
-        ),
-      ),
     );
   }
 
