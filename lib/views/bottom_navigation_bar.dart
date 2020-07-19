@@ -33,11 +33,15 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_titles[_selectedPageIndex]),
+        title: Text(
+          _titles[_selectedPageIndex],
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: _pages[_selectedPageIndex],
       bottomNavigationBar: _FABBottomAppBar(
-        // selectedColor: _selectedPageIndex == 4 ? null : Colors.purple,
+        selectedColor: _selectedPageIndex == 4 ? null : Colors.grey,
         // centerItemText: 'Add Shop',
         onTabSelected: (index) {
           setState(() {

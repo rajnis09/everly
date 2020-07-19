@@ -20,7 +20,8 @@ class _AddShopPageState extends State<AddShopPage> {
           child: Form(
             child: TextFormField(
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.phone, color: Colors.orange[700]),
+                prefixIcon:
+                    Icon(Icons.phone, color: Theme.of(context).primaryColor),
                 labelText: 'Enter Phone number',
               ),
             ),

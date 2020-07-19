@@ -64,7 +64,7 @@ class _SignInFormState extends State<SignInForm> {
                   child: Text(
                     'Forgot Password?',
                     style: TextStyle(
-                        color: Colors.orange[700],
+                        color: Theme.of(context).primaryColor,
                         fontSize: size.width * 0.042,
                         decoration: TextDecoration.underline,
                         fontWeight: FontWeight.bold),
@@ -83,7 +83,7 @@ class _SignInFormState extends State<SignInForm> {
                     )
                   : CustomCicularButton(
                       height: size.height * 0.08,
-                      splashColor: Colors.orangeAccent,
+                      splashColor: Theme.of(context).primaryColor,
                       child: Icon(
                         Icons.keyboard_arrow_right,
                         size: size.height * 0.08,
@@ -108,8 +108,8 @@ class _SignInFormState extends State<SignInForm> {
                                   'Either email or password is incorrect');
                               break;
                             case 2:
-                              notificationDialog(context, 'Error',
-                                  'User does not found');
+                              notificationDialog(
+                                  context, 'Error', 'User does not found');
                               break;
                             case 3:
                               notificationDialog(context, 'Error',

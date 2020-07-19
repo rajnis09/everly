@@ -12,7 +12,7 @@ class CustomButton extends StatelessWidget {
     Key key,
     @required this.height,
     this.width,
-    this.backgroundColor = const Color(0xFFF57C00),
+    this.backgroundColor = const Color(0xff414345),
     @required this.onPressed,
     this.splashColor = Colors.white30,
     @required this.child,

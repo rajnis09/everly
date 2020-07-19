@@ -15,7 +15,16 @@ class LoginPage extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.only(top: size.height * 0.40),
-              color: Colors.orange[50],
+              color: const Color(0xffffffff),
+              // decoration: BoxDecoration(
+              //   // color: Colors.orange[50],
+              //   gradient: LinearGradient(
+              //     begin: Alignment.topLeft,
+              //     end: Alignment(0.8, 0.0),
+              //     colors: [const Color(0xff457b9d), const Color(0xff1c5e9b)],
+              //     // tileMode: TileMode.repeated,
+              //   ),
+              // ),
               height: size.height * 0.6,
               child: ClipPath(
                 clipper: CubicClipper(),
@@ -62,7 +71,7 @@ class LoginPage extends StatelessWidget {
                         'LogIn',
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                            color: Colors.orange[700],
+                            color: Theme.of(context).primaryColor,
                             fontSize: size.height * 0.045,
                             fontWeight: FontWeight.bold),
                       ),

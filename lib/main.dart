@@ -20,6 +20,10 @@ void main() {
 
 class MyApp extends StatelessWidget {
   static const Color orangeColor = const Color(0xFFF57C00);
+  static const Color blackColor = const Color(0xff414345);
+  // static const Color blackColor = const Color(0xff1c6e9b);
+  // static const Color blackColor = const Color(0xff414345);
+  // static const Color blackColor = const Color(0xff1c5e9b);
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
@@ -32,22 +36,22 @@ class MyApp extends StatelessWidget {
         // For modification purpose: Theme.of(context).inputDecorationTheme.copyWith(color: , rest all fields which you want to modify)
         inputDecorationTheme: InputDecorationTheme(
           labelStyle: GoogleFonts.montserrat(
-              color: orangeColor, fontWeight: FontWeight.bold),
+              color: blackColor, fontWeight: FontWeight.bold),
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: orangeColor),
+            borderSide: BorderSide(color: blackColor),
           ),
         ),
-        primaryColor: orangeColor,
-        accentColor: orangeColor,
-        cursorColor: orangeColor,
-        textSelectionHandleColor: orangeColor,
-        textSelectionColor: orangeColor,
+        primaryColor: blackColor,
+        accentColor: blackColor,
+        cursorColor: blackColor,
+        textSelectionHandleColor: blackColor,
+        textSelectionColor: blackColor,
         scaffoldBackgroundColor: Colors.white,
 
         // Theming for Normal Icons displayed on page
         // No need to define usage if default property to be used
         // Just modificaton: Theme.of(context).iconTheme.copyWit(color: , rest all fields which you want to modify)
-        iconTheme: IconThemeData(color: orangeColor),
+        iconTheme: IconThemeData(color: blackColor),
 
         // Theming for fonts displayed on page
         // Use headline6 for titles
@@ -55,9 +59,9 @@ class MyApp extends StatelessWidget {
         // usage : Theme.of(context).textTheme.headline6 or Theme.of(context).textTheme.headline5
         // Modification: Theme.of(context).textTheme.headline6.copyWith(all fields which you want to modify)
         textTheme: TextTheme(
-          headline6: GoogleFonts.lato(color: orangeColor, fontSize: 20.0),
-          headline5: GoogleFonts.montserrat(color: orangeColor, fontSize: 20.0),
-          headline4: GoogleFonts.robotoSlab(color: orangeColor, fontSize: 20.0),
+          headline6: GoogleFonts.lato(color: blackColor, fontSize: 20.0),
+          headline5: GoogleFonts.montserrat(color: blackColor, fontSize: 20.0),
+          headline4: GoogleFonts.robotoSlab(color: blackColor, fontSize: 20.0),
         ),
 
         // Appbar theme
@@ -66,13 +70,13 @@ class MyApp extends StatelessWidget {
         // or Theme.of(context).appBarTheme.iconTheme.copyWit(color: , rest all fields which you want to modify)
         appBarTheme: AppBarTheme(
           color: Colors.white,
-          iconTheme: IconThemeData(color: orangeColor),
-          actionsIconTheme: IconThemeData(color: orangeColor),
+          iconTheme: IconThemeData(color: blackColor),
+          actionsIconTheme: IconThemeData(color: blackColor),
           textTheme: TextTheme(
             headline6: GoogleFonts.lato(
-                color: orangeColor, fontWeight: FontWeight.bold, fontSize: 30),
+                color: blackColor, fontWeight: FontWeight.bold, fontSize: 30),
             headline5: GoogleFonts.montserrat(
-                color: orangeColor, fontWeight: FontWeight.bold),
+                color: blackColor, fontWeight: FontWeight.bold),
           ),
         ),
       ),

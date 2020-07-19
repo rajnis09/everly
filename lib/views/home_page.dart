@@ -11,31 +11,31 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<Map<String, String>> dummyData = [
     {
-      "image": "assets/images/Sweets.jpg",
+      "image": "assets/images/openshop.jpg",
       "shopName": "Desserts",
       "sellerName": "The Sweetman",
       "category": "Sweets",
     },
     {
-      "image": "assets/images/grocery.jpg",
+      "image": "assets/images/openshop.jpg",
       "shopName": "Fresh'O Juicy",
       "sellerName": "The Freshman",
       "category": "Grocery",
     },
     {
-      "image": "assets/images/Foodmart.jpg",
+      "image": "assets/images/openshop.jpg",
       "shopName": "Food Mart",
       "sellerName": "The Foodman",
       "category": "Supermart",
     },
     {
-      "image": "assets/images/need.jpg",
+      "image": "assets/images/openshop.jpg",
       "shopName": "Essestianls",
       "sellerName": "The Needman",
       "category": "Daily Needs",
     },
     {
-      "image": "assets/images/need.jpg",
+      "image": "assets/images/openshop.jpg",
       "shopName": "Essestianls",
       "sellerName": "The Needman",
       "category": "Daily Needs",
@@ -102,8 +102,8 @@ class _HomePageState extends State<HomePage> {
                                       .copyWith(
                                         fontSize:
                                             MediaQuery.of(context).size.height *
-                                                0.04,
-                                        color: Colors.orange[700],
+                                                0.03,
+                                        // color: Colors.orange[700],
                                         fontWeight: FontWeight.bold,
                                       )),
                             ),
@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                                 onTap: null,
                                 child: Icon(
                                   Icons.favorite_border,
-                                  color: Colors.orange[700],
+                                  // color: Colors.orange[700],
                                 ),
                               ),
                             ],
@@ -157,29 +157,31 @@ class _HomePageState extends State<HomePage> {
           itemCount: dummyData.length,
         ),
         Container(
-          margin: EdgeInsets.only(right: 10, bottom: 1),
+          margin: EdgeInsets.only(right: 10, bottom: 8),
           child: SpeedDial(
             animatedIcon: AnimatedIcons.menu_close,
             animatedIconTheme: IconThemeData(size: 25.0, color: Colors.white),
             visible: dialVisible,
-            curve: Curves.easeIn,
-            animationSpeed: 50,
+            // curve: Curves.easeIn,
+            animationSpeed: 150,
+            backgroundColor: Theme.of(context).primaryColor,
+            elevation: 6,
             // overlayOpacity: 0,
             children: [
               SpeedDialChild(
-                child: Icon(Icons.camera_alt, color: Colors.white),
-                backgroundColor: Colors.grey,
+                child:
+                    Icon(Icons.camera, color: Theme.of(context).primaryColor),
+                backgroundColor: Colors.white,
                 onTap: _scan,
-                label: 'Scan',
-                labelStyle: TextStyle(fontWeight: FontWeight.w500),
+                label: 'Scan QR code',
                 labelBackgroundColor: Colors.white,
               ),
               SpeedDialChild(
-                child: Icon(Icons.phone, color: Colors.white),
-                backgroundColor: Colors.grey,
+                child: Icon(Icons.account_circle,
+                    color: Theme.of(context).primaryColor),
+                backgroundColor: Colors.white,
                 onTap: () => Navigator.of(context).pushNamed('/addShopPage'),
-                label: 'Via Phone',
-                labelStyle: TextStyle(fontWeight: FontWeight.w500),
+                label: 'Add contacts',
                 labelBackgroundColor: Colors.white,
               ),
             ],

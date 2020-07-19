@@ -15,7 +15,7 @@ class SignUpPhonePage extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.40),
-              color: Colors.orange[50],
+              color: Colors.white,
               height: size.height * 0.60,
               child: ClipPath(
                 clipper: CubicClipper(),
@@ -45,7 +45,7 @@ class SignUpPhonePage extends StatelessWidget {
                       'SignUp',
                       textAlign: TextAlign.start,
                       style: TextStyle(
-                          color: Colors.orange[700],
+                          color: Theme.of(context).primaryColor,
                           fontSize: MediaQuery.of(context).size.height * 0.05,
                           fontWeight: FontWeight.bold),
                     ),
