@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/custom_circular_button.dart';
 import '../../widgets/all_Alert_Dialogs.dart';
+import '../theme/theme_data.dart';
 import '../auth/auth_handler.dart';
 import './form_validator.dart';
 
@@ -35,7 +36,8 @@ class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
                       enabled: !_isOtpSent,
                       decoration: InputDecoration(
                         labelText: 'First Name',
-                        prefixIcon: const Icon(Icons.person),
+                        prefixIcon: Icon(Icons.person,
+                            color: CustomThemeData.blackColorShade2),
                         labelStyle: _isOtpSent
                             ? Theme.of(context)
                                 .inputDecorationTheme
@@ -54,7 +56,8 @@ class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
                       enabled: !_isOtpSent,
                       decoration: InputDecoration(
                         labelText: 'Last Name',
-                        prefixIcon: const Icon(Icons.person),
+                        prefixIcon: Icon(Icons.person,
+                            color: CustomThemeData.blackColorShade2),
                         labelStyle: _isOtpSent
                             ? Theme.of(context)
                                 .inputDecorationTheme
@@ -76,7 +79,8 @@ class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
                         labelText: 'Phone Number',
                         prefixText: '+91',
                         counterText: '',
-                        prefixIcon: const Icon(Icons.phone),
+                        prefixIcon: Icon(Icons.phone,
+                            color: CustomThemeData.blackColorShade2),
                         labelStyle: _isOtpSent
                             ? Theme.of(context)
                                 .inputDecorationTheme
@@ -100,7 +104,7 @@ class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
                           margin: EdgeInsets.only(top: size.height * 0.02),
                           child: CustomCicularButton(
                             height: size.height * 0.1,
-                            splashColor: Colors.orangeAccent,
+                            splashColor: CustomThemeData.buleColorShade2,
                             child: Icon(
                               Icons.keyboard_arrow_right,
                               size: size.height * 0.08,

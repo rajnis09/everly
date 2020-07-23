@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../utils/theme/theme_data.dart';
 import '../views/home_page.dart';
 import '../views/profile_page.dart';
 import '../views/orders_page.dart';
@@ -33,16 +34,12 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          _titles[_selectedPageIndex],
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Theme.of(context).primaryColor,
+        title: Text(_titles[_selectedPageIndex]),
       ),
       body: _pages[_selectedPageIndex],
       bottomNavigationBar: _FABBottomAppBar(
-        selectedColor: _selectedPageIndex == 4 ? null : Colors.grey,
-        // centerItemText: 'Add Shop',
+        selectedColor:
+            _selectedPageIndex == 4 ? null : CustomThemeData.buleColorShade1,
         onTabSelected: (index) {
           setState(() {
             _selectedPageIndex = index;
@@ -161,7 +158,10 @@ class _FABBottomAppBarState extends State<_FABBottomAppBar> {
                 ),
                 Text(
                   item.text,
-                  style: TextStyle(color: color),
+                  style: CustomThemeData.robotoFont.copyWith(
+                    color: CustomThemeData.blackColorShade1,
+                  ),
+                  textScaleFactor: 1.01,
                 )
               ],
             ),

@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+
+import '../../utils/theme/theme_data.dart';
 import '../../widgets/all_Alert_Dialogs.dart';
 import '../../utils/auth/auth_handler.dart';
 
@@ -43,15 +45,15 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            CircularProgressIndicator(),
+            CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                      CustomThemeData.buleColorShade1),
+                ),
             SizedBox(height: 20),
             Text(
               'Verify your Email to Continue',
               textScaleFactor: 1.5,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  .copyWith(fontWeight: FontWeight.bold),
+              style: CustomThemeData.montserratFont.copyWith(fontWeight: FontWeight.bold, color: CustomThemeData.blackColorShade1)
             ),
           ],
         ),

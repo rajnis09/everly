@@ -1,3 +1,4 @@
+import 'package:everly/utils/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -12,7 +13,8 @@ class CustomButton extends StatelessWidget {
     Key key,
     @required this.height,
     this.width,
-    this.backgroundColor = const Color(0xff414345),
+    this.backgroundColor,
+    // this.backgroundColor = Colors.indigo,
     @required this.onPressed,
     this.splashColor = Colors.white30,
     @required this.child,
@@ -29,7 +31,8 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        color: backgroundColor,
+        color: backgroundColor ?? CustomThemeData.buleColorShade1,
+        // color: customThemeData.buttonColor,
         elevation: 5.0,
         child: Center(
           child: child,

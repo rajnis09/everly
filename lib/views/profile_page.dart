@@ -1,5 +1,7 @@
-import 'package:everly/utils/auth/auth_handler.dart';
 import 'package:flutter/material.dart';
+
+import '../utils/auth/auth_handler.dart';
+import '../utils/theme/theme_data.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -7,17 +9,19 @@ class ProfilePage extends StatelessWidget {
     return Center(
       child: RaisedButton(
         onPressed: () async {
-          await authHandler.signOut();
+          if (await authHandler.getCurrentUser() != null) {
+            await authHandler.signOut();
+          }
           Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
         },
         child: Text(
           'Logout',
-          style: Theme.of(context)
-              .textTheme
-              .headline6
-              .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+          style: CustomThemeData.latoFont.copyWith(
+              color: CustomThemeData.whiteColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 18),
         ),
-        color: Theme.of(context).primaryColor,
+        color: CustomThemeData.buleColorShade1,
       ),
     );
   }

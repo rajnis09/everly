@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_swiper/flutter_swiper.dart';
+
+import '../utils/theme/theme_data.dart';
 
 class IntroScreen extends StatefulWidget {
   @override
@@ -59,14 +62,11 @@ class _IntroScreenState extends State<IntroScreen> {
             child: Align(
               alignment: Alignment.bottomLeft,
               child: GestureDetector(
-                // color: Colors.orange[700],
                 child: Text(
                   "Skip",
-                  style: TextStyle(
-                    color: Colors.white,
-                    // fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: CustomThemeData.latoFont.copyWith(
+                      color: CustomThemeData.whiteColor,
+                      fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
                   Navigator.of(context).pushReplacementNamed('/homePage');
@@ -109,7 +109,8 @@ class IntroItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: bg ?? Theme.of(context).primaryColor,
+      // color: bg ?? Theme.of(context).primaryColor,
+      color: bg ?? CustomThemeData.buleColorShade1,
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
@@ -138,18 +139,19 @@ class IntroItem extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Text(
-                title,
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 35.0,
-                    color: Colors.white),
-              ),
+              Text(title,
+                  style: CustomThemeData.latoFont.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 35.0,
+                      color: CustomThemeData.whiteColor)),
               if (subtitle != null) ...[
                 const SizedBox(height: 10.0),
                 Text(
                   subtitle,
-                  style: TextStyle(color: Colors.white, fontSize: 24.0),
+                  style: CustomThemeData.latoFont.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24.0,
+                      color: CustomThemeData.whiteColor),
                   textAlign: TextAlign.center,
                 ),
               ],

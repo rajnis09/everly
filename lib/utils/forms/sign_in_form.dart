@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/theme/theme_data.dart';
 import '../../widgets/custom_circular_button.dart';
 import '../../widgets/all_Alert_Dialogs.dart';
 import '../auth/auth_handler.dart';
@@ -30,7 +31,10 @@ class _SignInFormState extends State<SignInForm> {
             children: <Widget>[
               TextFormField(
                 decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.email),
+                  prefixIcon: Icon(
+                    Icons.email,
+                    color: CustomThemeData.blackColorShade2,
+                  ),
                   labelText: 'Email or phone',
                 ),
                 validator: validator.validateEmail,
@@ -40,9 +44,11 @@ class _SignInFormState extends State<SignInForm> {
               SizedBox(height: size.height * 0.01),
               TextFormField(
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.lock),
+                  prefixIcon:
+                      Icon(Icons.lock, color: CustomThemeData.blackColorShade2),
                   suffixIcon: IconButton(
-                      icon: Icon(iconData),
+                      icon: Icon(iconData,
+                          color: CustomThemeData.blackColorShade2),
                       onPressed: () {
                         setState(() {
                           _obscureText = !_obscureText;
@@ -63,11 +69,12 @@ class _SignInFormState extends State<SignInForm> {
                 child: GestureDetector(
                   child: Text(
                     'Forgot Password?',
-                    style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: size.width * 0.042,
-                        decoration: TextDecoration.underline,
-                        fontWeight: FontWeight.bold),
+                    style: CustomThemeData.robotoFont.copyWith(
+                      fontSize: size.width * 0.042,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline,
+                      color: CustomThemeData.buleColorShade1,
+                    ),
                   ),
                   onTap: () =>
                       Navigator.pushNamed(context, '/resetPasswordPage'),
@@ -83,7 +90,7 @@ class _SignInFormState extends State<SignInForm> {
                     )
                   : CustomCicularButton(
                       height: size.height * 0.08,
-                      splashColor: Theme.of(context).primaryColor,
+                      splashColor: CustomThemeData.buleColorShade2,
                       child: Icon(
                         Icons.keyboard_arrow_right,
                         size: size.height * 0.08,

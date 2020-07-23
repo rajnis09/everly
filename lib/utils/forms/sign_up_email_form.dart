@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/theme/theme_data.dart';
 import '../../widgets/custom_circular_button.dart';
 import '../auth/auth_handler.dart';
 import './form_validator.dart';
@@ -32,7 +33,8 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
                   child: TextFormField(
                     decoration: InputDecoration(
                       labelText: 'First Name',
-                      prefixIcon: const Icon(Icons.person),
+                      prefixIcon: Icon(Icons.person,
+                          color: CustomThemeData.blackColorShade2),
                     ),
                     validator: validator.validateName,
                     onSaved: (val) => _firstName = val,
@@ -44,7 +46,8 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
                   child: TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Last Name',
-                      prefixIcon: const Icon(Icons.person),
+                      prefixIcon: Icon(Icons.person,
+                          color: CustomThemeData.blackColorShade2),
                     ),
                     validator: validator.validateName,
                     onSaved: (val) => _lastName = val,
@@ -56,7 +59,8 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
                   child: TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Email',
-                      prefixIcon: const Icon(Icons.email),
+                      prefixIcon: Icon(Icons.email,
+                          color: CustomThemeData.blackColorShade2),
                     ),
                     validator: validator.validateEmail,
                     onSaved: (val) => _email = val,
@@ -68,9 +72,11 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
                   child: TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Password',
-                      prefixIcon: const Icon(Icons.lock),
+                      prefixIcon: Icon(Icons.lock,
+                          color: CustomThemeData.blackColorShade2),
                       suffixIcon: IconButton(
-                          icon: Icon(iconData),
+                          icon: Icon(iconData,
+                              color: CustomThemeData.blackColorShade2),
                           onPressed: () {
                             setState(() {
                               _obscureText = !_obscureText;
@@ -91,7 +97,8 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
                   child: TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Confirm Password',
-                      prefixIcon: const Icon(Icons.lock),
+                      prefixIcon: Icon(Icons.lock,
+                          color: CustomThemeData.blackColorShade2),
                     ),
                     obscureText: true,
                     keyboardType: TextInputType.text,
@@ -107,7 +114,7 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
                       )
                     : CustomCicularButton(
                         height: size.height * 0.1,
-                        splashColor: Theme.of(context).primaryColor,
+                        splashColor: CustomThemeData.buleColorShade2,
                         child: Icon(
                           Icons.keyboard_arrow_right,
                           size: size.height * 0.08,

@@ -1,3 +1,4 @@
+import 'package:everly/utils/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 
 class LogoWidget extends StatelessWidget {
@@ -12,13 +13,7 @@ class LogoWidget extends StatelessWidget {
         height: size,
         width: size,
         decoration: BoxDecoration(
-          // color: Colors.black54,
-          // gradient: LinearGradient(
-          //   begin: Alignment.topLeft,
-          //   end: Alignment(0.8, 0.0),
-          //   colors: [const Color(0xff232526), const Color(0xff414345)],
-          //   // tileMode: TileMode.repeated,
-          // ),
+          // color: CustomThemeData.blackColorShade3,
           shape: BoxShape.circle,
           image: DecorationImage(
             image: AssetImage('assets/icon/logo.png'),

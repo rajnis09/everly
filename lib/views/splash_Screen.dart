@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../utils/theme/theme_data.dart';
 import '../utils/auth/auth_handler.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -58,7 +60,10 @@ class _SplashScreenState extends State<SplashScreen> {
                     ),
                   ),
                 ),
-                CircularProgressIndicator(),
+                CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                      CustomThemeData.buleColorShade1),
+                ),
               ],
             ),
           );
