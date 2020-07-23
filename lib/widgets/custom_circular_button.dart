@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:everly/utils/theme/theme_data.dart';
+
 class CustomCicularButton extends StatelessWidget {
   final double height;
   final Color backgroundColor, splashColor;
@@ -9,7 +11,7 @@ class CustomCicularButton extends StatelessWidget {
   const CustomCicularButton({
     Key key,
     @required this.height,
-    this.backgroundColor = const Color(0xFFF57C00),
+    this.backgroundColor,
     @required this.onPressed,
     this.splashColor = Colors.white30,
     @required this.child,
@@ -23,7 +25,7 @@ class CustomCicularButton extends StatelessWidget {
         shape: CircleBorder(),
         splashColor: splashColor,
         onPressed: onPressed,
-        color: backgroundColor,
+        color: backgroundColor ?? CustomThemeData.buleColorShade1,
         elevation: 5.0,
         child: Center(
           child: child,
@@ -32,10 +34,3 @@ class CustomCicularButton extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-

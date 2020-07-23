@@ -1,256 +1,88 @@
 import 'package:flutter/material.dart';
 
+import '../utils/theme/theme_data.dart';
+
+
 class SettingsPage extends StatefulWidget {
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool isSwitched = false;
+  bool _isSwitched = false;
+  final _divider = Divider(
+    color: CustomThemeData.greyColorShade,
+    thickness: .5,
+    indent: 8,
+    endIndent: 8,
+  );
+
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: 
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  height: 50.0,
-                  width: size.width * 0.90,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(10.0, 0, 5.0, 0),
-                            child: Icon(
-                              Icons.notifications_active,
-                              color: Theme.of(context).accentColor,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            'Notification',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Switch(
-                        value: isSwitched,
-                        onChanged: (value) {
-                          setState(() {
-                            isSwitched = value;
-                            print(isSwitched);
-                          });
-                        },
-                        activeTrackColor: Colors.orange[50],
-                        activeColor: Theme.of(context).accentColor,
-                      ),
-                    ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
+              _buildListitem(
+                  context,
+                  'Notification',
+                  Icons.notifications_active,
+                  Switch(
+                    value: _isSwitched,
+                    onChanged: (value) {
+                      setState(() {
+                        _isSwitched = value;
+                        print(_isSwitched);
+                      });
+                    },
+                    activeTrackColor:
+                        CustomThemeData.buleColorShade1.withOpacity(0.4),
+                    activeColor: CustomThemeData.buleColorShade1,
                   ),
-                ),
-               Divider(
-                  color: Colors.black,
-                  thickness: .5,
-                  indent: 8,
-                  endIndent: 8,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    print("Container clicked");
-                  },
-                  child: Container(
-                    height: 50.0,
-                    width: size.width * 0.90,
-                    child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(10.0, 0, 5.0, 0),
-                          child: Icon(
-                            Icons.help,
-                            color: Theme.of(context).accentColor,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          'Help & Support',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Divider(
-                  color: Colors.black,
-                  thickness: .5,
-                  indent: 8,
-                  endIndent: 8,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    print("Container clicked");
-                  },
-                  child: Container(
-                    height: 50.0,
-                    width: size.width * 0.90,
-                    child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(10.0, 0, 5.0, 0),
-                          child: Icon(
-                            Icons.rate_review,
-                            color: Theme.of(context).accentColor,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          'Rate App',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Divider(
-                  color: Colors.black,
-                  thickness: .5,
-                  indent: 8,
-                  endIndent: 8,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    print("Container clicked");
-                  },
-                  child: Container(
-                    height: 50.0,
-                    width: size.width * 0.90,
-                    child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(10.0, 0, 5.0, 0),
-                          child: Icon(
-                            Icons.share,
-                            color: Theme.of(context).accentColor,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          'Invite Friends',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Divider(
-                  color: Colors.black,
-                  thickness: .5,
-                  indent: 8,
-                  endIndent: 8,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    print("Container clicked");
-                  },
-                  child: Container(
-                    height: 50.0,
-                    width: size.width * 0.90,
-                    child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(10.0, 0, 5.0, 0),
-                          child: Icon(
-                            Icons.collections_bookmark,
-                            color: Theme.of(context).accentColor,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          'Terms of Service',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Divider(
-                  color: Colors.black,
-                  thickness: .5,
-                  indent: 8,
-                  endIndent: 8,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    print("Container clicked");
-                  },
-                  child: Container(
-                    height: 50.0,
-                    width: size.width * 0.90,
-                    child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(10.0, 0, 5.0, 0),
-                          child: Icon(
-                            Icons.exit_to_app,
-                            color: Theme.of(context).accentColor,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          'Sign Out',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Divider(
-                  color: Colors.black,
-                  thickness: .5,
-                  indent: 8,
-                  endIndent: 8,
-                ),
-              ],
-            ),
+                  null),
+              _divider,
+              _buildListitem(
+                  context, 'Help & Supoort', Icons.help, null, () {}),
+              _divider,
+              _buildListitem(
+                  context, 'Rate App', Icons.rate_review, null, () {}),
+              _divider,
+              _buildListitem(context, 'Invite Friends', Icons.share, null, () {
+                print('Friend Invited');
+              }),
+              _divider,
+              _buildListitem(context, 'Terms and Service',
+                  Icons.collections_bookmark, null, () {
+                print('Terms and services');
+              }),
+              _divider,
+            ],
           ),
-        );
+        ),
+      ),
+    );
   }
+}
+
+Widget _buildListitem(BuildContext context, String title, IconData iconData,
+    Widget trailing, Function onPressed) {
+  return Theme(
+    data: ThemeData(
+        splashColor: Colors.transparent, highlightColor: Colors.transparent),
+    child: ListTile(
+      leading: Icon(iconData, color: CustomThemeData.blackColorShade2),
+      title: Text(
+        title,
+        style: CustomThemeData.latoFont.copyWith(
+          color: CustomThemeData.blackColorShade2,
+          fontSize: 18,
+        ),
+      ),
+      trailing: trailing,
+      onTap: onPressed,
+    ),
+  );
 }

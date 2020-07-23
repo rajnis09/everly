@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+
+import '../utils/theme/theme_data.dart';
+
 // Dialog used to serve proper notification popups to user
 notificationDialog(BuildContext context, String title, String notification) {
   return showDialog(
@@ -19,10 +22,7 @@ notificationDialog(BuildContext context, String title, String notification) {
               color: Theme.of(context).primaryColor,
               child: Text(
                 "OK",
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+                style: CustomThemeData.latoFont.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
               ),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -33,10 +33,7 @@ notificationDialog(BuildContext context, String title, String notification) {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
           content: Text(
             notification,
-            style: Theme.of(context)
-                .textTheme
-                .headline5
-                .copyWith(fontWeight: FontWeight.bold),
+            style: CustomThemeData.latoFont.copyWith(fontWeight: FontWeight.bold),
           ),
         );
       });
@@ -52,20 +49,14 @@ Future<String> otpRetrieveDialog(BuildContext context) {
         return AlertDialog(
           title: Text(
             'Enter OTP recieved',
-            style: Theme.of(context)
-                .textTheme
-                .headline6
-                .copyWith(fontWeight: FontWeight.bold),
+            style: CustomThemeData.latoFont.copyWith(fontWeight: FontWeight.bold),
           ),
           actions: <Widget>[
             FlatButton(
               color: Theme.of(context).primaryColor,
               child: Text(
                 "OK",
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+                style: CustomThemeData.latoFont.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
               ),
               onPressed: () {
                 otp = _otpController.text;

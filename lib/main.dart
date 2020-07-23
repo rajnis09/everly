@@ -1,7 +1,6 @@
+import 'package:everly/utils/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:google_fonts/google_fonts.dart';
 
 import './views/splash_Screen.dart';
 import './views/authentication/signin_page.dart';
@@ -19,7 +18,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  static const Color orangeColor = const Color(0xFFF57C00);
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
@@ -27,53 +25,33 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Everly',
       theme: ThemeData(
-        // Theming for the Formfields
-        // Usage is by default
-        // For modification purpose: Theme.of(context).inputDecorationTheme.copyWith(color: , rest all fields which you want to modify)
         inputDecorationTheme: InputDecorationTheme(
-          labelStyle: GoogleFonts.montserrat(
-              color: orangeColor, fontWeight: FontWeight.bold),
+          labelStyle: CustomThemeData.robotoFont.copyWith(
+              fontWeight: FontWeight.bold,
+              color: CustomThemeData.blackColorShade2),
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: orangeColor),
+            borderSide: BorderSide(color: CustomThemeData.buleColorShade2),
           ),
         ),
-        primaryColor: orangeColor,
-        accentColor: orangeColor,
-        cursorColor: orangeColor,
-        textSelectionHandleColor: orangeColor,
-        textSelectionColor: orangeColor,
+        cursorColor: CustomThemeData.buleColorShade2,
+        textSelectionHandleColor: CustomThemeData.buleColorShade2,
+        textSelectionColor: CustomThemeData.buleColorShade2,
         scaffoldBackgroundColor: Colors.white,
-
-        // Theming for Normal Icons displayed on page
-        // No need to define usage if default property to be used
-        // Just modificaton: Theme.of(context).iconTheme.copyWit(color: , rest all fields which you want to modify)
-        iconTheme: IconThemeData(color: orangeColor),
-
-        // Theming for fonts displayed on page
-        // Use headline6 for titles
-        // use headline5 for rest of content
-        // usage : Theme.of(context).textTheme.headline6 or Theme.of(context).textTheme.headline5
-        // Modification: Theme.of(context).textTheme.headline6.copyWith(all fields which you want to modify)
-        textTheme: TextTheme(
-          headline6: GoogleFonts.lato(color: orangeColor, fontSize: 20.0),
-          headline5: GoogleFonts.montserrat(color: orangeColor, fontSize: 20.0),
-          headline4: GoogleFonts.robotoSlab(color: orangeColor, fontSize: 20.0),
-        ),
-
-        // Appbar theme
-        // Usage is by default
-        // In case need modification : Theme.of(context).appBarTheme.textTheme.headline6.copyWith(all fields which you want to modify)
-        // or Theme.of(context).appBarTheme.iconTheme.copyWit(color: , rest all fields which you want to modify)
+        accentColor: CustomThemeData.buleColorShade1,
         appBarTheme: AppBarTheme(
           color: Colors.white,
-          iconTheme: IconThemeData(color: orangeColor),
-          actionsIconTheme: IconThemeData(color: orangeColor),
+          iconTheme: IconThemeData(color: CustomThemeData.blackColorShade2),
+          actionsIconTheme:
+              IconThemeData(color: CustomThemeData.blackColorShade2),
           textTheme: TextTheme(
-            headline6: GoogleFonts.lato(
-                color: orangeColor, fontWeight: FontWeight.bold, fontSize: 30),
-            headline5: GoogleFonts.montserrat(
-                color: orangeColor, fontWeight: FontWeight.bold),
+            headline6: CustomThemeData.robotoFont.copyWith(
+                color: CustomThemeData.blackColorShade1,
+                fontSize: 22,
+                fontWeight: FontWeight.bold),
           ),
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: CustomThemeData.buleColorShade1,
         ),
       ),
       routes: <String, WidgetBuilder>{

@@ -1,3 +1,4 @@
+import 'package:everly/utils/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 
 class LogoWidget extends StatelessWidget {
@@ -12,7 +13,7 @@ class LogoWidget extends StatelessWidget {
         height: size,
         width: size,
         decoration: BoxDecoration(
-          color: Colors.orange[50],
+        // color: CustomThemeData.blackColorShade3,
           shape: BoxShape.circle,
           image: DecorationImage(
             image: AssetImage('assets/icon/logo.png'),
