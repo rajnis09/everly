@@ -33,9 +33,22 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: _selectedPageIndex!=1? AppBar(
         title: Text(_titles[_selectedPageIndex]),
-      ),
+        actions: <Widget>[
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/cartPage');
+                },
+                child: Icon(
+                  Icons.shopping_cart,
+                  size: 30,
+                ),
+              )),
+        ],
+      ):null,
       body: _pages[_selectedPageIndex],
       bottomNavigationBar: _FABBottomAppBar(
         selectedColor:
