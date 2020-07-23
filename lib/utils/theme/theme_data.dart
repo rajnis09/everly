@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-// TODO: Read this and remove this todo
 class CustomThemeData {
   // Level 1 color (darkest of all), Used for AppBar Titles etc.
   static final Color blackColorShade1 = Color(0xFF0F111A);

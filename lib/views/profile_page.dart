@@ -9,7 +9,9 @@ class ProfilePage extends StatelessWidget {
     return Center(
       child: RaisedButton(
         onPressed: () async {
-          // await authHandler.signOut();
+          if (await authHandler.getCurrentUser() != null) {
+            await authHandler.signOut();
+          }
           Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
         },
         child: Text(

@@ -1,7 +1,7 @@
-import 'package:everly/utils/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import './utils/theme/theme_data.dart';
 import './views/splash_Screen.dart';
 import './views/authentication/signin_page.dart';
 import './views/add_shop_page.dart';
@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'Everly',
       theme: ThemeData(
         inputDecorationTheme: InputDecorationTheme(
+
           labelStyle: CustomThemeData.robotoFont.copyWith(
               fontWeight: FontWeight.bold,
               color: CustomThemeData.blackColorShade2),
