@@ -1,42 +1,79 @@
 {
   "project_info": {
-    "project_number": "793996880240",
-    "firebase_url": "https://everly-1ed87.firebaseio.com",
-    "project_id": "everly-1ed87",
-    "storage_bucket": "everly-1ed87.appspot.com"
+    "project_number": "956174036740",
+    "firebase_url": "https://everly-6a842.firebaseio.com",
+    "project_id": "everly-6a842",
+    "storage_bucket": "everly-6a842.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:793996880240:android:795dff666f2567370607b5",
+        "mobilesdk_app_id": "1:956174036740:android:55b570ff3984d5002b2a51",
         "android_client_info": {
           "package_name": "com.unmount.everly"
         }
       },
       "oauth_client": [
         {
-          "client_id": "793996880240-1bb8j1nq2pk9kh8lfpqhiqjnr0mps623.apps.googleusercontent.com",
+          "client_id": "956174036740-p4cvpqvbafj6dsv0uj4qjgoar5i3unkb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.unmount.everly",
-            "certificate_hash": "0858f4e3569c22f161c3bde97656dc8b705d492e"
+            "certificate_hash": "e011c0aabc27615dd093e9e00b6aa8ebc6e5fb7b"
           }
         },
         {
-          "client_id": "793996880240-p08gsdovpkanihqeuqbjqsduiokchrkm.apps.googleusercontent.com",
+          "client_id": "956174036740-1s1a7gulj3499j72frguo6031i79t5gu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDZRtcxZXJmtm-UJ9Tb7yyHj-9p1n3nuTI"
+          "current_key": "AIzaSyBN79wugBrJ4U1uG6Pk_cHM8v9yQO8Eer4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "793996880240-p08gsdovpkanihqeuqbjqsduiokchrkm.apps.googleusercontent.com",
+              "client_id": "956174036740-1s1a7gulj3499j72frguo6031i79t5gu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:956174036740:android:4acf9481e76a69752b2a51",
+        "android_client_info": {
+          "package_name": "com.unmount.pushnotification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "956174036740-i3l0jatf1kdk2fj79vidklhcusnrh74l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.unmount.pushnotification",
+            "certificate_hash": "e011c0aabc27615dd093e9e00b6aa8ebc6e5fb7b"
+          }
+        },
+        {
+          "client_id": "956174036740-1s1a7gulj3499j72frguo6031i79t5gu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN79wugBrJ4U1uG6Pk_cHM8v9yQO8Eer4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "956174036740-1s1a7gulj3499j72frguo6031i79t5gu.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
