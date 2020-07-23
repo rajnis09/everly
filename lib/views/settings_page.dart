@@ -66,7 +66,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       setState(() {
                         _isSwitched = value;
                         print(_isSwitched);
-                        if (isSwitched) _register();
+                        if (_isSwitched) _register();
                       });
                     },
                     activeTrackColor:
