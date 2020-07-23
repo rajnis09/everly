@@ -27,10 +27,10 @@ class LoginPage extends StatelessWidget {
                     'Welcome to Everly :)',
                     textAlign: TextAlign.start,
                     style: CustomThemeData.robotoFont.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: size.height * 0.035,
-                          color: CustomThemeData.blackColorShade1,
-                        ),
+                      fontWeight: FontWeight.bold,
+                      fontSize: size.height * 0.035,
+                      color: CustomThemeData.blackColorShade1,
+                    ),
                   ),
                 ),
                 Container(
@@ -49,10 +49,10 @@ class LoginPage extends StatelessWidget {
                     'LogIn',
                     textAlign: TextAlign.start,
                     style: CustomThemeData.robotoFont.copyWith(
-                          fontSize: size.height * 0.045,
-                          fontWeight: FontWeight.bold,
-                          color: CustomThemeData.blackColorShade1,
-                        ),
+                      fontSize: size.height * 0.045,
+                      fontWeight: FontWeight.bold,
+                      color: CustomThemeData.blackColorShade1,
+                    ),
                   ),
                 ),
                 SizedBox(

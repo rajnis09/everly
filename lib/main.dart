@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
       title: 'Everly',
       theme: ThemeData(
         inputDecorationTheme: InputDecorationTheme(
-
           labelStyle: CustomThemeData.robotoFont.copyWith(
               fontWeight: FontWeight.bold,
               color: CustomThemeData.blackColorShade2),

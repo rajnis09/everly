@@ -29,11 +29,10 @@ class SignUpEmailPage extends StatelessWidget {
                 child: Text(
                   'SignUp',
                   textAlign: TextAlign.start,
-                  style: 
-                      CustomThemeData.robotoFont.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: MediaQuery.of(context).size.height * 0.05,
-                      ),
+                  style: CustomThemeData.robotoFont.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: MediaQuery.of(context).size.height * 0.05,
+                  ),
                 ),
               ),
               SignUpWithEmailForm(),

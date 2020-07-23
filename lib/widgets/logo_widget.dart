@@ -13,7 +13,7 @@ class LogoWidget extends StatelessWidget {
         height: size,
         width: size,
         decoration: BoxDecoration(
-        // color: CustomThemeData.blackColorShade3,
+          // color: CustomThemeData.blackColorShade3,
           shape: BoxShape.circle,
           image: DecorationImage(
             image: AssetImage('assets/icon/logo.png'),

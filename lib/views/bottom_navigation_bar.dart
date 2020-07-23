@@ -38,7 +38,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       ),
       body: _pages[_selectedPageIndex],
       bottomNavigationBar: _FABBottomAppBar(
-        selectedColor: _selectedPageIndex == 4 ? null : CustomThemeData.buleColorShade1,
+        selectedColor:
+            _selectedPageIndex == 4 ? null : CustomThemeData.buleColorShade1,
         onTabSelected: (index) {
           setState(() {
             _selectedPageIndex = index;
@@ -157,7 +158,9 @@ class _FABBottomAppBarState extends State<_FABBottomAppBar> {
                 ),
                 Text(
                   item.text,
-                  style: CustomThemeData.robotoFont.copyWith(color: CustomThemeData.blackColorShade1,),
+                  style: CustomThemeData.robotoFont.copyWith(
+                    color: CustomThemeData.blackColorShade1,
+                  ),
                   textScaleFactor: 1.01,
                 )
               ],

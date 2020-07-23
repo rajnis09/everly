@@ -26,7 +26,10 @@ class _AddShopPageState extends State<AddShopPage> {
         //     ),
         //   ),
         // ),
-        child: Text('Page UI is not implemented as it should have to', textScaleFactor: 1.2,),
+        child: Text(
+          'Page UI is not implemented as it should have to',
+          textScaleFactor: 1.2,
+        ),
       ),
     );
   }

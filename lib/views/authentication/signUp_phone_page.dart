@@ -30,9 +30,9 @@ class SignUpPhonePage extends StatelessWidget {
                   'SignUp',
                   textAlign: TextAlign.start,
                   style: CustomThemeData.robotoFont.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: MediaQuery.of(context).size.height * 0.05,
-                      ),
+                    fontWeight: FontWeight.bold,
+                    fontSize: MediaQuery.of(context).size.height * 0.05,
+                  ),
                 ),
               ),
               SignUpWithPhoneForm(),
