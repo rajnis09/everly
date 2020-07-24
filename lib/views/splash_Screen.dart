@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void initializingApplication() {
-    Future.delayed(Duration(seconds: 2), () async {
+    Future.delayed(Duration(seconds: 1), () async {
        var user = await authHandler.getCurrentUser();
        if (user != null) {
          Navigator.pushReplacementNamed(context, '/homePage');
