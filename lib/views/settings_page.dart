@@ -37,10 +37,8 @@ class _SettingsPageState extends State<SettingsPage> {
     });
   }
 
-  
-
-  bool isSwitched = false;
-  bool _isSwitched = false;
+  bool _lang = true;
+  bool _isSwitched = true;
   final _divider = Divider(
     color: CustomThemeData.greyColorShade,
     thickness: .5,
@@ -59,7 +57,7 @@ class _SettingsPageState extends State<SettingsPage> {
             children: <Widget>[
               _buildListitem(
                   context,
-                  'Notification',
+                  _lang ? 'Notification' : 'सूचना प्राप्त करे',
                   Icons.notifications_active,
                   Switch(
                     value: _isSwitched,
@@ -77,18 +75,57 @@ class _SettingsPageState extends State<SettingsPage> {
                   null),
               _divider,
               _buildListitem(
-                  context, 'Help & Supoort', Icons.help, null, () {}),
+                  context,
+                  _lang ? 'Change Language' : 'भाषा बदले',
+                  Icons.language,
+                  Text(
+                    _lang ? 'हिन्दी' : 'English',
+                    style: CustomThemeData.latoFont.copyWith(
+                      color: CustomThemeData.blackColorShade2,
+                      fontSize: 18,
+                    ),
+                  ), () {
+                setState(() {
+                  _lang = !_lang;
+                });
+              }),
               _divider,
               _buildListitem(
-                  context, 'Rate App', Icons.rate_review, null, () {}),
+                  context,
+                  _lang ? 'Help & Support' : 'सहायता और समर्थन',
+                  Icons.help,
+                  null,
+                  () {}),
               _divider,
-              _buildListitem(context, 'Invite Friends', Icons.share, null, () {
+              _buildListitem(
+                  context,
+                  _lang ? 'Rate App' : 'एप्लिकेशन का मूल्यांकन करें',
+                  Icons.rate_review,
+                  null,
+                  () {}),
+              _divider,
+              _buildListitem(
+                  context,
+                  _lang ? 'Invite Friends' : 'मित्रों को आमंत्रित करें',
+                  Icons.share,
+                  null, () {
                 print('Friend Invited');
               }),
               _divider,
-              _buildListitem(context, 'Terms and Service',
-                  Icons.collections_bookmark, null, () {
-                print('Terms and services');
+              _buildListitem(
+                  context,
+                  _lang ? 'Terms and Conditions' : 'नियम और शर्तें',
+                  Icons.collections_bookmark,
+                  null, () {
+                print('Terms and Conditions');
+              }),
+              _divider,
+              _buildListitem(
+                  context,
+                  _lang ? 'Privacy and Policy' : 'गोपनीयता और नीति',
+                  Icons.library_books,
+                  null, () {
+                print('Privacy and Policies');
               }),
               _divider,
             ],
