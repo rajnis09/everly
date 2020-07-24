@@ -114,7 +114,7 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
                       )
                     : CustomCicularButton(
                         height: size.height * 0.1,
-                        splashColor: CustomThemeData.buleColorShade2,
+                        splashColor: CustomThemeData.blueColorShade2,
                         child: Icon(
                           Icons.keyboard_arrow_right,
                           size: size.height * 0.08,

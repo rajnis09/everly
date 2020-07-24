@@ -110,7 +110,7 @@ class IntroItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // color: bg ?? Theme.of(context).primaryColor,
-      color: bg ?? CustomThemeData.buleColorShade1,
+      color: bg ?? CustomThemeData.blueColorShade1,
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),

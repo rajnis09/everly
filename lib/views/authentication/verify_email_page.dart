@@ -47,7 +47,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
           children: <Widget>[
             CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                      CustomThemeData.buleColorShade1),
+                      CustomThemeData.blueColorShade1),
                 ),
             SizedBox(height: 20),
             Text(

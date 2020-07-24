@@ -31,7 +31,7 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        color: backgroundColor ?? CustomThemeData.buleColorShade1,
+        color: backgroundColor ?? CustomThemeData.blueColorShade1,
         // color: customThemeData.buttonColor,
         elevation: 5.0,
         child: Center(

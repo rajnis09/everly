@@ -11,9 +11,9 @@ class CustomThemeData {
   // Grey color
   static final Color greyColorShade = Color(0xFF9E9E9E);
   // Blue color level 1
-  static final Color buleColorShade1 = Color(0xFF1B98E0);
+  static final Color blueColorShade1 = Color(0xFF1B98E0);
   // Blue color level 2
-  static final Color buleColorShade2 = Color(0xFF40C4FF);
+  static final Color blueColorShade2 = Color(0xFF40C4FF);
 
   // For now it's pure white color
   static final Color whiteColor = Colors.white;

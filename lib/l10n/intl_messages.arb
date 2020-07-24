@@ -1,0 +1,53 @@
+{
+  "@@last_modified": "2020-07-24T22:09:15.637585",
+  "ok": "OK",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Email",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotPassword": "Forgot Password?",
+  "@forgotPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "registeredEmail": "Please enter your registered email to reset your password",
+  "@registeredEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resetPassword": "Reset Password",
+  "@resetPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentResetMailText": "A link to reset your password has been sent to your email address",
+  "@sentResetMailText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Invalid Email",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotFound": "User not found",
+  "@userNotFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultFeedbackText": "Contact Everly team by filling feedback form",
+  "@defaultFeedbackText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "error": "Error",
+  "@error": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

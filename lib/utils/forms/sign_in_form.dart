@@ -73,7 +73,7 @@ class _SignInFormState extends State<SignInForm> {
                       fontSize: size.width * 0.042,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline,
-                      color: CustomThemeData.buleColorShade1,
+                      color: CustomThemeData.blueColorShade1,
                     ),
                   ),
                   onTap: () =>
@@ -90,7 +90,7 @@ class _SignInFormState extends State<SignInForm> {
                     )
                   : CustomCicularButton(
                       height: size.height * 0.08,
-                      splashColor: CustomThemeData.buleColorShade2,
+                      splashColor: CustomThemeData.blueColorShade2,
                       child: Icon(
                         Icons.keyboard_arrow_right,
                         size: size.height * 0.08,

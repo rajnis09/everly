@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-
 import '../../utils/theme/theme_data.dart';
 import '../../widgets/logo_widget.dart';
 import '../../utils/forms/form_validator.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/all_Alert_Dialogs.dart';
 import '../../utils/auth/auth_handler.dart';
+
+import '../../locale/app_localization.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   @override
@@ -20,6 +21,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
+    var locale = AppLocalization.of(context);
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -41,7 +43,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   children: <Widget>[
                     FittedBox(
                       child: Text(
-                        'Forgot Password?',
+                        locale.forgotPassword,
                         style: CustomThemeData.robotoFont.copyWith(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
@@ -55,7 +57,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     Container(
                       width: size.width * 0.7,
                       child: Text(
-                        'Please enter your registered email to reset your password',
+                        locale.registeredEmail,
                         style: CustomThemeData.latoFont.copyWith(
                           fontSize: 16,
                           color: CustomThemeData.blackColorShade2,
@@ -75,16 +77,18 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         autovalidate: _autoValidate,
                         child: TextFormField(
                           decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.email, color: CustomThemeData.blackColorShade2,),
-                            labelText: 'Email',
-                          ),
+                              prefixIcon: Icon(
+                                Icons.email,
+                                color: CustomThemeData.blackColorShade2,
+                              ),
+                              labelText: locale.email),
                           validator: validator.validateEmail,
                           onSaved: (val) => _email = val,
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: size.height* 0.03,
+                      height: size.height * 0.03,
                     ),
                     _isNetworkCall
                         ? Container(
@@ -95,7 +99,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         : CustomButton(
                             height: size.height * 0.06,
                             child: Text(
-                              'Reset Password',
+                              locale.resetPassword,
                               style: CustomThemeData.robotoFont.copyWith(
                                 fontSize: 16,
                                 color: Colors.white,
@@ -112,24 +116,22 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                                     .sendPasswordResetLink(_email);
                                 switch (response) {
                                   case 0:
-                                    notificationDialog(
-                                        context,
-                                        'Notification',
-                                        'A link to reset your password is sent to your email address');
+                                    notificationDialog(context, 'Notification',
+                                        locale.sentResetMailText);
                                     break;
                                   case 1:
-                                    notificationDialog(
-                                        context, 'Error', 'Invalid Email');
+                                    notificationDialog(context, locale.error,
+                                        locale.invalidEmail);
                                     break;
                                   case 2:
-                                    notificationDialog(context, 'Error',
-                                        'User not found.');
+                                    notificationDialog(context, locale.error,
+                                        locale.userNotFound);
                                     break;
                                   default:
                                     notificationDialog(
                                       context,
-                                      'Error',
-                                      'Contact Everly team by filling feedback form',
+                                      locale.error,
+                                      locale.defaultFeedbackText,
                                     );
                                 }
                                 await Future.delayed(
