@@ -19,7 +19,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getMessage();
   }
@@ -37,6 +36,8 @@ class _SettingsPageState extends State<SettingsPage> {
       setState(() => _message = message["notification"]["title"]);
     });
   }
+
+  
 
   bool isSwitched = false;
   bool _isSwitched = false;
@@ -90,7 +91,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 print('Terms and services');
               }),
               _divider,
-              Text(_message),
             ],
           ),
         ),
