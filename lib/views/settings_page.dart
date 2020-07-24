@@ -70,8 +70,8 @@ class _SettingsPageState extends State<SettingsPage> {
                       });
                     },
                     activeTrackColor:
-                        CustomThemeData.buleColorShade1.withOpacity(0.4),
-                    activeColor: CustomThemeData.buleColorShade1,
+                        CustomThemeData.blueColorShade1.withOpacity(0.4),
+                    activeColor: CustomThemeData.blueColorShade1,
                   ),
                   null),
               _divider,

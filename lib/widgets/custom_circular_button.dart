@@ -25,7 +25,7 @@ class CustomCicularButton extends StatelessWidget {
         shape: CircleBorder(),
         splashColor: splashColor,
         onPressed: onPressed,
-        color: backgroundColor ?? CustomThemeData.buleColorShade1,
+        color: backgroundColor ?? CustomThemeData.blueColorShade1,
         elevation: 5.0,
         child: Center(
           child: child,

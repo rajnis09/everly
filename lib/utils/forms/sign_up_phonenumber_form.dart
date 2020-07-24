@@ -104,7 +104,7 @@ class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
                           margin: EdgeInsets.only(top: size.height * 0.02),
                           child: CustomCicularButton(
                             height: size.height * 0.1,
-                            splashColor: CustomThemeData.buleColorShade2,
+                            splashColor: CustomThemeData.blueColorShade2,
                             child: Icon(
                               Icons.keyboard_arrow_right,
                               size: size.height * 0.08,

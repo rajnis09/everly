@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import './utils/theme/theme_data.dart';
 import './views/splash_Screen.dart';
@@ -14,31 +15,61 @@ import './views/bottom_navigation_bar.dart';
 import './views/authentication/verify_email_page.dart';
 import './views/my_cart.dart';
 
+import './locale/app_localization.dart';
+
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  AppLocalizationDelegate _localizationDelegate =
+      AppLocalizationDelegate(Locale('hi', 'IN'));
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
+      [
+        DeviceOrientation.portraitDown,
+        DeviceOrientation.portraitUp,
+      ],
+    );
+
     return MaterialApp(
       title: 'Everly',
+      localizationsDelegates: <LocalizationsDelegate>[
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        _localizationDelegate
+      ],
+      supportedLocales: <Locale>[
+        const Locale.fromSubtags(
+          languageCode: 'en',
+          countryCode: 'US',
+        ),
+        const Locale.fromSubtags(
+          languageCode: 'hi',
+          countryCode: 'IN',
+        ),
+      ],
       theme: ThemeData(
         inputDecorationTheme: InputDecorationTheme(
           labelStyle: CustomThemeData.robotoFont.copyWith(
               fontWeight: FontWeight.bold,
               color: CustomThemeData.blackColorShade2),
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: CustomThemeData.buleColorShade2),
+            borderSide: BorderSide(color: CustomThemeData.blueColorShade2),
           ),
         ),
-        cursorColor: CustomThemeData.buleColorShade2,
-        textSelectionHandleColor: CustomThemeData.buleColorShade2,
-        textSelectionColor: CustomThemeData.buleColorShade2,
+        cursorColor: CustomThemeData.blueColorShade2,
+        textSelectionHandleColor: CustomThemeData.blueColorShade2,
+        textSelectionColor: CustomThemeData.blueColorShade2,
         scaffoldBackgroundColor: Colors.white,
-        accentColor: CustomThemeData.buleColorShade1,
+        accentColor: CustomThemeData.blueColorShade1,
         appBarTheme: AppBarTheme(
           color: Colors.white,
           iconTheme: IconThemeData(color: CustomThemeData.blackColorShade2),
@@ -52,7 +83,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: CustomThemeData.buleColorShade1,
+          backgroundColor: CustomThemeData.blueColorShade1,
         ),
       ),
       routes: <String, WidgetBuilder>{

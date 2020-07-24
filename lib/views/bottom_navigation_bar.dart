@@ -5,6 +5,7 @@ import '../views/home_page.dart';
 import '../views/profile_page.dart';
 import '../views/orders_page.dart';
 import '../views/settings_page.dart';
+import '../locale/app_localization.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   @override
@@ -20,39 +21,43 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     SettingsPage(),
     // AddShopPage(),
   ];
-  final List<String> _titles = [
-    'Home',
-    'My Profile',
-    'My Orders',
-    'Settings',
-    // 'Add Shop'
-  ];
 
   var _selectedPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocalization.of(context);
+    final List<String> _titles = [
+      locale.home,
+      locale.profile,
+      locale.myOrders,
+      locale.settings,
+      // 'Add Shop'
+    ];
+
     return Scaffold(
-      appBar: _selectedPageIndex!=1? AppBar(
-        title: Text(_titles[_selectedPageIndex]),
-        actions: <Widget>[
-          Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/cartPage');
-                },
-                child: Icon(
-                  Icons.shopping_cart,
-                  size: 30,
-                ),
-              )),
-        ],
-      ):null,
+      appBar: _selectedPageIndex != 1
+          ? AppBar(
+              title: Text(_titles[_selectedPageIndex]),
+              actions: <Widget>[
+                Padding(
+                    padding: EdgeInsets.only(right: 20.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/cartPage');
+                      },
+                      child: Icon(
+                        Icons.shopping_cart,
+                        size: 30,
+                      ),
+                    )),
+              ],
+            )
+          : null,
       body: _pages[_selectedPageIndex],
       bottomNavigationBar: _FABBottomAppBar(
         selectedColor:
-            _selectedPageIndex == 4 ? null : CustomThemeData.buleColorShade1,
+            _selectedPageIndex == 4 ? null : CustomThemeData.blueColorShade1,
         onTabSelected: (index) {
           setState(() {
             _selectedPageIndex = index;
@@ -61,19 +66,19 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         items: [
           _FABBottomAppBarItem(
             iconData: Icons.home,
-            text: 'Home',
+            text: locale.home,
           ),
           _FABBottomAppBarItem(
             iconData: Icons.person,
-            text: 'Profile',
+            text: locale.profile,
           ),
           _FABBottomAppBarItem(
             iconData: Icons.account_balance_wallet,
-            text: 'Orders',
+            text: locale.myOrders,
           ),
           _FABBottomAppBarItem(
             iconData: Icons.settings,
-            text: 'Settings',
+            text: locale.settings,
           ),
         ],
       ),
