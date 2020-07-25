@@ -1,6 +1,7 @@
-import 'package:everly/helpers/locale/app_localization.dart';
 import 'package:flutter/material.dart';
+
 import '../model/list_profile_section.dart';
+import '../helpers/locale/app_localization.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
