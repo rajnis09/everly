@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+
 import '../utils/theme/theme_data.dart';
+import '../helpers/locale/app_localization.dart';
 
 class SettingsPage extends StatefulWidget {
+  SettingsPage({
+    this.changeToHindi,
+    this.changeToEnglish,
+  });
+
+  final Function changeToHindi;
+  final Function changeToEnglish;
+
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
@@ -48,7 +58,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
+    var locale = AppLocalization.of(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -57,7 +67,7 @@ class _SettingsPageState extends State<SettingsPage> {
             children: <Widget>[
               _buildListitem(
                   context,
-                  _lang ? 'Notification' : 'सूचना प्राप्त करे',
+                  locale.notification,
                   Icons.notifications_active,
                   Switch(
                     value: _isSwitched,
@@ -76,10 +86,10 @@ class _SettingsPageState extends State<SettingsPage> {
               _divider,
               _buildListitem(
                   context,
-                  _lang ? 'Change Language' : 'भाषा बदले',
+                  locale.changeLanguage,
                   Icons.language,
                   Text(
-                    _lang ? 'हिन्दी' : 'English',
+                    locale.lang,
                     style: CustomThemeData.latoFont.copyWith(
                       color: CustomThemeData.blackColorShade2,
                       fontSize: 18,
@@ -88,43 +98,30 @@ class _SettingsPageState extends State<SettingsPage> {
                 setState(() {
                   _lang = !_lang;
                 });
+                _lang ? widget.changeToEnglish() : widget.changeToHindi();
+              }),
+              _divider,
+              _buildListitem(context, locale.help, Icons.help, null, () {
+
+                // TODO: Remove this route
+                // this routing is for testing purpose only
+                Navigator.pushNamed(context, '/logInPage');
               }),
               _divider,
               _buildListitem(
-                  context,
-                  _lang ? 'Help & Support' : 'सहायता और समर्थन',
-                  Icons.help,
-                  null,
-                  () {}),
+                  context, locale.rate, Icons.rate_review, null, () {}),
               _divider,
-              _buildListitem(
-                  context,
-                  _lang ? 'Rate App' : 'एप्लिकेशन का मूल्यांकन करें',
-                  Icons.rate_review,
-                  null,
-                  () {}),
-              _divider,
-              _buildListitem(
-                  context,
-                  _lang ? 'Invite Friends' : 'मित्रों को आमंत्रित करें',
-                  Icons.share,
-                  null, () {
+              _buildListitem(context, locale.invite, Icons.share, null, () {
                 print('Friend Invited');
               }),
               _divider,
               _buildListitem(
-                  context,
-                  _lang ? 'Terms and Conditions' : 'नियम और शर्तें',
-                  Icons.collections_bookmark,
-                  null, () {
+                  context, locale.tnc, Icons.collections_bookmark, null, () {
                 print('Terms and Conditions');
               }),
               _divider,
-              _buildListitem(
-                  context,
-                  _lang ? 'Privacy and Policy' : 'गोपनीयता और नीति',
-                  Icons.library_books,
-                  null, () {
+              _buildListitem(context, locale.privacy, Icons.library_books, null,
+                  () {
                 print('Privacy and Policies');
               }),
               _divider,

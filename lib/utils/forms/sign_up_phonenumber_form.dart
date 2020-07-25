@@ -5,6 +5,7 @@ import '../../widgets/all_Alert_Dialogs.dart';
 import '../theme/theme_data.dart';
 import '../auth/auth_handler.dart';
 import './form_validator.dart';
+import '../../helpers/locale/app_localization.dart';
 
 class SignUpWithPhoneForm extends StatefulWidget {
   @override
@@ -20,6 +21,8 @@ class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+  final locale = AppLocalization.of(context);
+
     return Container(
       child: Column(
         children: <Widget>[
@@ -35,7 +38,7 @@ class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
                     child: TextFormField(
                       enabled: !_isOtpSent,
                       decoration: InputDecoration(
-                        labelText: 'First Name',
+                        labelText: locale.firstName,
                         prefixIcon: Icon(Icons.person,
                             color: CustomThemeData.blackColorShade2),
                         labelStyle: _isOtpSent
@@ -55,7 +58,7 @@ class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
                     child: TextFormField(
                       enabled: !_isOtpSent,
                       decoration: InputDecoration(
-                        labelText: 'Last Name',
+                        labelText: locale.lastName,
                         prefixIcon: Icon(Icons.person,
                             color: CustomThemeData.blackColorShade2),
                         labelStyle: _isOtpSent
@@ -76,7 +79,7 @@ class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
                       enabled: !_isOtpSent,
                       maxLength: 10,
                       decoration: InputDecoration(
-                        labelText: 'Phone Number',
+                        labelText: locale.phone,
                         prefixText: '+91',
                         counterText: '',
                         prefixIcon: Icon(Icons.phone,
@@ -147,7 +150,7 @@ class _SignUpWithPhoneFormState extends State<SignUpWithPhoneForm> {
                                 //     notificationDialog(context, 'Error',
                                 //         'Contact Everly team by filling feedback form');
                                 // }
-                                notificationDialog(context, 'Error',
+                                notificationDialog(context, locale.error,
                                     'For some reason phone authentication is disabled for now');
                                 await Future.delayed(
                                     Duration(milliseconds: 100));

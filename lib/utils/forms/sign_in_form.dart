@@ -5,6 +5,7 @@ import '../../widgets/custom_circular_button.dart';
 import '../../widgets/all_Alert_Dialogs.dart';
 import '../auth/auth_handler.dart';
 import './form_validator.dart';
+import '../../helpers/locale/app_localization.dart';
 
 class SignInForm extends StatefulWidget {
   @override
@@ -20,6 +21,7 @@ class _SignInFormState extends State<SignInForm> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final locale = AppLocalization.of(context);
 
     return Container(
       child: Form(
@@ -35,7 +37,7 @@ class _SignInFormState extends State<SignInForm> {
                     Icons.email,
                     color: CustomThemeData.blackColorShade2,
                   ),
-                  labelText: 'Email or phone',
+                  labelText: locale.emailPhone,
                 ),
                 validator: validator.validateEmail,
                 onSaved: (val) => _email = val,
@@ -57,7 +59,7 @@ class _SignInFormState extends State<SignInForm> {
                               : Icons.visibility;
                         });
                       }),
-                  labelText: 'Password',
+                  labelText: locale.pass,
                 ),
                 obscureText: _obscureText,
                 onSaved: (val) => _password = val,
@@ -68,7 +70,7 @@ class _SignInFormState extends State<SignInForm> {
                 padding: EdgeInsets.only(top: 4.0),
                 child: GestureDetector(
                   child: Text(
-                    'Forgot Password?',
+                    locale.forgotPassword,
                     style: CustomThemeData.robotoFont.copyWith(
                       fontSize: size.width * 0.042,
                       fontWeight: FontWeight.bold,
@@ -111,22 +113,22 @@ class _SignInFormState extends State<SignInForm> {
                                   context, '/homePage');
                               break;
                             case 1:
-                              notificationDialog(context, 'Error',
+                              notificationDialog(context, locale.error,
                                   'Either email or password is incorrect');
                               break;
                             case 2:
                               notificationDialog(
-                                  context, 'Error', 'User does not found');
+                                  context, locale.error, locale.userNotFound);
                               break;
                             case 3:
-                              notificationDialog(context, 'Error',
+                              notificationDialog(context, locale.error,
                                   'Too many requests, try after sometime');
                               break;
                             default:
                               notificationDialog(
                                 context,
-                                'Error',
-                                'Contact Everly team by filling feedback form',
+                                locale.error,
+                                locale.defaultFeedbackText,
                               );
                           }
                           await Future.delayed(Duration(milliseconds: 100));

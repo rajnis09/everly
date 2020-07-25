@@ -5,6 +5,7 @@ import '../../widgets/custom_circular_button.dart';
 import '../auth/auth_handler.dart';
 import './form_validator.dart';
 import '../../widgets/all_Alert_Dialogs.dart';
+import '../../helpers/locale/app_localization.dart';
 
 class SignUpWithEmailForm extends StatefulWidget {
   @override
@@ -20,6 +21,8 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final locale = AppLocalization.of(context);
+
     return Container(
       child: Form(
         key: _formKey,
@@ -32,7 +35,7 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      labelText: 'First Name',
+                      labelText: locale.firstName,
                       prefixIcon: Icon(Icons.person,
                           color: CustomThemeData.blackColorShade2),
                     ),
@@ -45,7 +48,7 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      labelText: 'Last Name',
+                      labelText: locale.lastName,
                       prefixIcon: Icon(Icons.person,
                           color: CustomThemeData.blackColorShade2),
                     ),
@@ -58,7 +61,7 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      labelText: 'Email',
+                      labelText: locale.email,
                       prefixIcon: Icon(Icons.email,
                           color: CustomThemeData.blackColorShade2),
                     ),
@@ -71,7 +74,7 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      labelText: 'Password',
+                      labelText: locale.pass,
                       prefixIcon: Icon(Icons.lock,
                           color: CustomThemeData.blackColorShade2),
                       suffixIcon: IconButton(
@@ -96,7 +99,7 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      labelText: 'Confirm Password',
+                      labelText: locale.confirmPassword,
                       prefixIcon: Icon(Icons.lock,
                           color: CustomThemeData.blackColorShade2),
                     ),
@@ -139,19 +142,19 @@ class _SignUpWithEmailFormState extends State<SignUpWithEmailForm> {
                                 break;
                               case 1:
                                 notificationDialog(
-                                    context, 'Error', 'Invalid Email');
+                                    context, locale.error, locale.invalidEmail);
                                 break;
                               case 2:
                                 notificationDialog(
-                                    context, 'Error', 'Password is weak');
+                                    context, locale.error, 'Password is weak');
                                 break;
                               case 3:
-                                notificationDialog(context, 'Error',
+                                notificationDialog(context, locale.error,
                                     'The Email is already in use');
                                 break;
                               default:
-                                notificationDialog(context, 'Error',
-                                    'Contact Everly team by filling feedback form');
+                                notificationDialog(context, locale.error,
+                                    locale.defaultFeedbackText);
                             }
                             await Future.delayed(Duration(milliseconds: 100));
                             setState(() {
