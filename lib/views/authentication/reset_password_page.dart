@@ -7,7 +7,7 @@ import '../../widgets/custom_button.dart';
 import '../../widgets/all_Alert_Dialogs.dart';
 import '../../utils/auth/auth_handler.dart';
 
-import '../../locale/app_localization.dart';
+import '../../helpers/locale/app_localization.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   @override
@@ -116,7 +116,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                                     .sendPasswordResetLink(_email);
                                 switch (response) {
                                   case 0:
-                                    notificationDialog(context, 'Notification',
+                                    notificationDialog(context, locale.notification,
                                         locale.sentResetMailText);
                                     break;
                                   case 1:

@@ -15,7 +15,7 @@ import './views/bottom_navigation_bar.dart';
 import './views/authentication/verify_email_page.dart';
 import './views/my_cart.dart';
 
-import './locale/app_localization.dart';
+import './helpers/locale/app_localization.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,6 +29,18 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   AppLocalizationDelegate _localizationDelegate =
       AppLocalizationDelegate(Locale('hi', 'IN'));
+
+      void _changeToHindi() {
+        setState(() {
+          AppLocalization.load(Locale('hi', 'IN'));
+        });
+      }
+
+      void _changeToEnglish() {
+        setState(() {
+          AppLocalization.load(Locale('en', 'US'));
+        });
+      }
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +105,7 @@ class _MyAppState extends State<MyApp> {
         '/signUpEmailPage': (context) => SignUpEmailPage(),
         '/signUpPhonePage': (context) => SignUpPhonePage(),
         '/introPage': (context) => IntroScreen(),
-        '/homePage': (context) => CustomBottomNavigationBar(),
+        '/homePage': (context) => CustomBottomNavigationBar(changeToHindi: _changeToHindi, changeToEnglish:_changeToEnglish),
         '/verifyEmailPage': (context) => VerifyEmailPage(),
         '/addShopPage': (context) => AddShopPage(),
         "/cartPage": (context) => CartPage(),

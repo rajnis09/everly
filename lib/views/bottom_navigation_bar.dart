@@ -5,23 +5,23 @@ import '../views/home_page.dart';
 import '../views/profile_page.dart';
 import '../views/orders_page.dart';
 import '../views/settings_page.dart';
-import '../locale/app_localization.dart';
+import '../helpers/locale/app_localization.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
+  CustomBottomNavigationBar({
+    this.changeToHindi,
+    this.changeToEnglish,
+  });
+
+  final Function changeToHindi;
+  final Function changeToEnglish;
+
   @override
   _CustomBottomNavigationBarState createState() =>
       _CustomBottomNavigationBarState();
 }
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  final List<Widget> _pages = [
-    HomePage(),
-    ProfilePage(),
-    OrdersPage(),
-    SettingsPage(),
-    // AddShopPage(),
-  ];
-
   var _selectedPageIndex = 0;
 
   @override
@@ -33,6 +33,15 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       locale.myOrders,
       locale.settings,
       // 'Add Shop'
+    ];
+    final List<Widget> _pages = [
+      HomePage(),
+      ProfilePage(),
+      OrdersPage(),
+      SettingsPage(
+        changeToHindi: widget.changeToHindi,
+        changeToEnglish: widget.changeToEnglish,
+      ),
     ];
 
     return Scaffold(
@@ -139,7 +148,6 @@ class _FABBottomAppBarState extends State<_FABBottomAppBar> {
         onPressed: _updateIndex,
       );
     });
-    // items.insert(items.length >> 1, _buildMiddleTabItem());
 
     return BottomAppBar(
       shape: widget.notchedShape,

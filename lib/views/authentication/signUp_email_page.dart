@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import '../../utils/theme/theme_data.dart';
 import '../../utils/forms/sign_up_email_form.dart';
 import '../../widgets/logo_widget.dart';
+import '../../helpers/locale/app_localization.dart';
 
 class SignUpEmailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+  final locale = AppLocalization.of(context);
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -27,7 +30,7 @@ class SignUpEmailPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'SignUp',
+                  locale.signUp,
                   textAlign: TextAlign.start,
                   style: CustomThemeData.robotoFont.copyWith(
                     fontWeight: FontWeight.bold,

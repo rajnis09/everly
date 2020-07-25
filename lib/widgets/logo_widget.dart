@@ -1,4 +1,3 @@
-import 'package:everly/utils/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 
 class LogoWidget extends StatelessWidget {
