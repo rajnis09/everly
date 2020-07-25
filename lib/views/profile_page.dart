@@ -19,14 +19,19 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void createListItem() {
-    listSection
-        .add(createSection(locale.changePassword, Icons.mode_edit, null));
-    listSection.add(createSection(locale.addressMan, Icons.mode_edit, null));
-    listSection.add(createSection(locale.logout, Icons.exit_to_app, null));
+    listSection.add(createSection(locale.changePassword, Icons.mode_edit, () {
+      print('Change Password');
+    }));
+    listSection.add(createSection(locale.addressMan, Icons.mode_edit, () {
+      print('Address Mangement');
+    }));
+    listSection.add(createSection(locale.logout, Icons.exit_to_app, () {
+      print('Logout');
+    }));
   }
 
-  createSection(String title, IconData icon, Widget widget) {
-    return ListProfileSection(title, icon, widget);
+  createSection(String title, IconData icon, Function onpressed) {
+    return ListProfileSection(title, icon, onpressed);
   }
 
   @override
@@ -135,7 +140,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 return Builder(builder: (context) {
                                   return InkWell(
                                     splashColor: Colors.grey.shade200,
-                                    onTap: () {},
+                                    onTap: listSection[index].onpressed,
                                     child: Container(
                                       margin:
                                           EdgeInsets.only(left: 16, right: 12),

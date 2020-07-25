@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ListProfileSection {
   String title;
   IconData icon;
-  Widget widget;
+  Function onpressed;
 
-  ListProfileSection(this.title, this.icon, this.widget);
+  ListProfileSection(this.title, this.icon, this.onpressed);
 }

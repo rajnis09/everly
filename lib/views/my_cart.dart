@@ -105,7 +105,6 @@ class _CartPageState extends State<CartPage> {
                                           EdgeInsets.only(right: 8, top: 4),
                                       child: Text(
                                         "Item Name",
-                                        
                                         style: TextStyle(fontSize: 14),
                                       ),
                                     ),
