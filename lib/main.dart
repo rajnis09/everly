@@ -1,3 +1,4 @@
+import 'package:everly/views/support.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,6 +16,7 @@ import './views/bottom_navigation_bar.dart';
 import './views/authentication/verify_email_page.dart';
 import './views/my_cart.dart';
 import './views/notification_page.dart';
+import './views/support.dart';
 
 import './helpers/locale/app_localization.dart';
 
@@ -31,17 +33,17 @@ class _MyAppState extends State<MyApp> {
   AppLocalizationDelegate _localizationDelegate =
       AppLocalizationDelegate(Locale('hi', 'IN'));
 
-      void _changeToHindi() {
-        setState(() {
-          AppLocalization.load(Locale('hi', 'IN'));
-        });
-      }
+  void _changeToHindi() {
+    setState(() {
+      AppLocalization.load(Locale('hi', 'IN'));
+    });
+  }
 
-      void _changeToEnglish() {
-        setState(() {
-          AppLocalization.load(Locale('en', 'US'));
-        });
-      }
+  void _changeToEnglish() {
+    setState(() {
+      AppLocalization.load(Locale('en', 'US'));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,11 +108,13 @@ class _MyAppState extends State<MyApp> {
         '/signUpEmailPage': (context) => SignUpEmailPage(),
         '/signUpPhonePage': (context) => SignUpPhonePage(),
         '/introPage': (context) => IntroScreen(),
-        '/homePage': (context) => CustomBottomNavigationBar(changeToHindi: _changeToHindi, changeToEnglish:_changeToEnglish),
+        '/homePage': (context) => CustomBottomNavigationBar(
+            changeToHindi: _changeToHindi, changeToEnglish: _changeToEnglish),
         '/verifyEmailPage': (context) => VerifyEmailPage(),
         '/addShopPage': (context) => AddShopPage(),
         "/cartPage": (context) => CartPage(),
         '/notificationPage': (context) => NotificationPage(),
+        '/supportPage': (context) => SupportPage(),
       },
       onUnknownRoute: (settings) =>
           MaterialPageRoute(builder: (context) => ErrorPage()),
