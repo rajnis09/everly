@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:barcode_scan/barcode_scan.dart';
+import 'package:qrscan/qrscan.dart' as scanner;
 
 import '../utils/theme/theme_data.dart';
 import '../helpers/locale/app_localization.dart';
