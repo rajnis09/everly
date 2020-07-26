@@ -92,7 +92,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
                 // TODO: Remove this route
                 // this routing is for testing purpose only
-                Navigator.pushNamed(context, '/logInPage');
+                Navigator.pushNamed(context, '/supportPage');
               }),
               _divider,
               _buildListItem(
