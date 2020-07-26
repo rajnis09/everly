@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:barcode_scan/barcode_scan.dart';
+import 'package:qrscan/qrscan.dart' as scanner;
 
 import '../utils/theme/theme_data.dart';
 import '../helpers/locale/app_localization.dart';
@@ -49,19 +49,10 @@ class _HomePageState extends State<HomePage> {
   bool dialVisible = true;
 
   Future _scan() async {
-    try {
-      ScanResult scanResult = await BarcodeScanner.scan();
-      print(scanResult.rawContent);
-    } on PlatformException catch (e) {
-      if (e.code == BarcodeScanner.cameraAccessDenied) {}
-      SnackBar(
-        content: Text('Allow camera permission to scan'),
-        action: SnackBarAction(
-          label: 'Ok',
-          onPressed: null,
-        ),
-      );
-    } on FormatException {} catch (e) {}
+    String scanResult = await scanner.scan();
+    if (scanResult != null) {
+      print(scanResult);
+    }
   }
 
   @override
