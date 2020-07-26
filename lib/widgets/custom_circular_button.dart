@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:everly/utils/theme/theme_data.dart';
+import '../utils/theme/theme_data.dart';
 
 class CustomCicularButton extends StatelessWidget {
   final double height;

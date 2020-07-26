@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/services.dart';
 
 import '../utils/theme/theme_data.dart';
 import '../helpers/locale/app_localization.dart';
@@ -19,9 +20,18 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  String _message = 'hell';
+  static const platform = MethodChannel("com.unmount.everly/channel");
 
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+
+  void _invite() async {
+    try {
+      var result = await platform.invokeMethod("invite") as bool;
+      print(result);
+    } on PlatformException catch(ignored) {
+      print(ignored);
+    }
+  }
 
   _register() {
     _firebaseMessaging.getToken().then((token) => print(token));
@@ -37,13 +47,10 @@ class _SettingsPageState extends State<SettingsPage> {
     _firebaseMessaging.configure(
         onMessage: (Map<String, dynamic> message) async {
       print('on message $message');
-      setState(() => _message = message["notification"]["title"]);
     }, onResume: (Map<String, dynamic> message) async {
       print('on resume $message');
-      setState(() => _message = message["notification"]["title"]);
     }, onLaunch: (Map<String, dynamic> message) async {
       print('on launch $message');
-      setState(() => _message = message["notification"]["title"]);
     });
   }
 
@@ -65,7 +72,7 @@ class _SettingsPageState extends State<SettingsPage> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: <Widget>[
-              _buildListitem(
+              _buildListItem(
                   context,
                   locale.notification,
                   Icons.notifications_active,
@@ -84,7 +91,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   null),
               _divider,
-              _buildListitem(
+              _buildListItem(
                   context,
                   locale.changeLanguage,
                   Icons.language,
@@ -101,26 +108,26 @@ class _SettingsPageState extends State<SettingsPage> {
                 _lang ? widget.changeToEnglish() : widget.changeToHindi();
               }),
               _divider,
-              _buildListitem(context, locale.help, Icons.help, null, () {
+              _buildListItem(context, locale.help, Icons.help, null, () {
 
                 // TODO: Remove this route
                 // this routing is for testing purpose only
                 Navigator.pushNamed(context, '/logInPage');
               }),
               _divider,
-              _buildListitem(
+              _buildListItem(
                   context, locale.rate, Icons.rate_review, null, () {}),
               _divider,
-              _buildListitem(context, locale.invite, Icons.share, null, () {
-                print('Friend Invited');
+              _buildListItem(context, locale.invite, Icons.share, null, () {
+                _invite();
               }),
               _divider,
-              _buildListitem(
+              _buildListItem(
                   context, locale.tnc, Icons.collections_bookmark, null, () {
                 print('Terms and Conditions');
               }),
               _divider,
-              _buildListitem(context, locale.privacy, Icons.library_books, null,
+              _buildListItem(context, locale.privacy, Icons.library_books, null,
                   () {
                 print('Privacy and Policies');
               }),
@@ -133,7 +140,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 }
 
-Widget _buildListitem(BuildContext context, String title, IconData iconData,
+Widget _buildListItem(BuildContext context, String title, IconData iconData,
     Widget trailing, Function onPressed) {
   return Theme(
     data: ThemeData(
