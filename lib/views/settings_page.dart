@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:firebase_messaging/firebase_messaging.dart';
 import '../utils/theme/theme_data.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -9,35 +8,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  String _message = 'hell';
-
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
-
-  _register() {
-    _firebaseMessaging.getToken().then((token) => print(token));
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getMessage();
-  }
-
-  void getMessage() {
-    _firebaseMessaging.configure(
-        onMessage: (Map<String, dynamic> message) async {
-      print('on message $message');
-      setState(() => _message = message["notification"]["title"]);
-    }, onResume: (Map<String, dynamic> message) async {
-      print('on resume $message');
-      setState(() => _message = message["notification"]["title"]);
-    }, onLaunch: (Map<String, dynamic> message) async {
-      print('on launch $message');
-      setState(() => _message = message["notification"]["title"]);
-    });
-  }
-
   bool isSwitched = false;
   bool _isSwitched = false;
   final _divider = Divider(
@@ -66,7 +36,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       setState(() {
                         _isSwitched = value;
                         print(_isSwitched);
-                        if (_isSwitched) _register();
+                        // if (_isSwitched) _register();
                       });
                     },
                     activeTrackColor:
@@ -90,7 +60,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 print('Terms and services');
               }),
               _divider,
-              Text(_message),
+              // Text(_message),
             ],
           ),
         ),

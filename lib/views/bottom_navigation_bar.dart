@@ -5,6 +5,9 @@ import '../views/home_page.dart';
 import '../views/profile_page.dart';
 import '../views/orders_page.dart';
 import '../views/settings_page.dart';
+import '../model/notification_manager.dart';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   @override
@@ -28,27 +31,64 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     // 'Add Shop'
   ];
 
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+
+  @override
+  void initState() {
+    super.initState();
+    getMessage();
+  }
+
+  void getMessage() {
+    _firebaseMessaging.configure(
+        onMessage: (Map<String, dynamic> message) async {
+      notify.addMessage(message['data']['title']);
+    }, onResume: (Map<String, dynamic> message) async {
+      if (message != null) {
+        notify.addMessage(message['data']['title']);
+        Navigator.of(context).pushNamed(
+          '/notificationPage',
+        );
+      }
+    }, onLaunch: (Map<String, dynamic> message) async {
+      notify.addMessage(message['data']['title']);
+    });
+  }
+
   var _selectedPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _selectedPageIndex!=1? AppBar(
-        title: Text(_titles[_selectedPageIndex]),
-        actions: <Widget>[
-          Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/cartPage');
-                },
-                child: Icon(
-                  Icons.shopping_cart,
-                  size: 30,
-                ),
-              )),
-        ],
-      ):null,
+      appBar: _selectedPageIndex != 1
+          ? AppBar(
+              title: Text(_titles[_selectedPageIndex]),
+              actions: <Widget>[
+                Padding(
+                    padding: EdgeInsets.only(right: 10.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/notificationPage');
+                      },
+                      child: Icon(
+                        Icons.notifications_none,
+                        size: 25,
+                      ),
+                    )),
+                Padding(
+                    padding: EdgeInsets.only(right: 10.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/cartPage');
+                      },
+                      child: Icon(
+                        Icons.shopping_cart,
+                        size: 25,
+                      ),
+                    )),
+              ],
+            )
+          : null,
       body: _pages[_selectedPageIndex],
       bottomNavigationBar: _FABBottomAppBar(
         selectedColor:

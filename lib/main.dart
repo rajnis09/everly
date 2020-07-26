@@ -13,6 +13,7 @@ import './views/intro_page.dart';
 import './views/bottom_navigation_bar.dart';
 import './views/authentication/verify_email_page.dart';
 import './views/my_cart.dart';
+import './views/notification_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
         '/verifyEmailPage': (context) => VerifyEmailPage(),
         '/addShopPage': (context) => AddShopPage(),
         "/cartPage": (context) => CartPage(),
+        '/notificationPage': (context) => NotificationPage(),
       },
       onUnknownRoute: (settings) =>
           MaterialPageRoute(builder: (context) => ErrorPage()),
