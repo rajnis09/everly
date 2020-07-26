@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:firebase_messaging/firebase_messaging.dart';
-
 import '../utils/theme/theme_data.dart';
 import '../helpers/locale/app_localization.dart';
 
@@ -22,7 +20,6 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   static const platform = MethodChannel("com.unmount.everly/channel");
 
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   void _invite() async {
     try {
@@ -33,27 +30,11 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
-  _register() {
-    _firebaseMessaging.getToken().then((token) => print(token));
-  }
-
   @override
   void initState() {
     super.initState();
-    getMessage();
   }
-
-  void getMessage() {
-    _firebaseMessaging.configure(
-        onMessage: (Map<String, dynamic> message) async {
-      print('on message $message');
-    }, onResume: (Map<String, dynamic> message) async {
-      print('on resume $message');
-    }, onLaunch: (Map<String, dynamic> message) async {
-      print('on launch $message');
-    });
-  }
-
+  
   bool _lang = true;
   bool _isSwitched = true;
   final _divider = Divider(
@@ -82,7 +63,6 @@ class _SettingsPageState extends State<SettingsPage> {
                       setState(() {
                         _isSwitched = value;
                         print(_isSwitched);
-                        if (_isSwitched) _register();
                       });
                     },
                     activeTrackColor:
