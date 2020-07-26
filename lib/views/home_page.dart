@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../utils/theme/theme_data.dart';
 
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:qrscan/qrscan.dart' as scanner;
+import 'package:barcode_scan/barcode_scan.dart';
+
+import '../utils/theme/theme_data.dart';
+import '../helpers/locale/app_localization.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -47,14 +51,24 @@ class _HomePageState extends State<HomePage> {
   bool dialVisible = true;
 
   Future _scan() async {
-    String barcode = await scanner.scan();
-    if (barcode != null) {
-      Navigator.of(context).pushReplacementNamed('/homePage');
-    }
+    try {
+      ScanResult scanResult = await BarcodeScanner.scan();
+      print(scanResult.rawContent);
+    } on PlatformException catch (e) {
+      if (e.code == BarcodeScanner.cameraAccessDenied) {}
+      SnackBar(
+        content: Text('Allow camera permission to scan'),
+        action: SnackBarAction(
+          label: 'Ok',
+          onPressed: null,
+        ),
+      );
+    } on FormatException {} catch (e) {}
   }
 
   @override
   Widget build(BuildContext context) {
+    var locale = AppLocalization.of(context);
     return Scaffold(
       body: ListView.builder(
         itemBuilder: (context, index) {
@@ -138,7 +152,7 @@ class _HomePageState extends State<HomePage> {
             child: Icon(Icons.camera_alt, color: Colors.white),
             backgroundColor: CustomThemeData.greyColorShade,
             onTap: _scan,
-            label: 'Scan',
+            label: locale.scanText,
             labelStyle: CustomThemeData.latoFont.copyWith(
                 color: CustomThemeData.blackColorShade1,
                 fontWeight: FontWeight.bold),
@@ -148,10 +162,11 @@ class _HomePageState extends State<HomePage> {
             child: Icon(Icons.phone, color: Colors.white),
             backgroundColor: CustomThemeData.greyColorShade,
             onTap: () => Navigator.of(context).pushNamed('/addShopPage'),
-            label: 'Via Phone',
+            label: locale.viaPhone,
             labelStyle: CustomThemeData.latoFont.copyWith(
-                color: CustomThemeData.blackColorShade1,
-                fontWeight: FontWeight.bold),
+              color: CustomThemeData.blackColorShade1,
+              fontWeight: FontWeight.bold,
+            ),
             labelBackgroundColor: Colors.white,
           ),
         ],

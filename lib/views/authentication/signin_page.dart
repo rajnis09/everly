@@ -4,11 +4,13 @@ import '../../utils/theme/theme_data.dart';
 import '../../widgets/custom_button.dart';
 import '../../utils/forms/sign_in_form.dart';
 import '../../widgets/logo_widget.dart';
+import '../../helpers/locale/app_localization.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final locale = AppLocalization.of(context);
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -46,7 +48,7 @@ class LoginPage extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   height: size.height * 0.06,
                   child: Text(
-                    'LogIn',
+                    locale.login,
                     textAlign: TextAlign.start,
                     style: CustomThemeData.robotoFont.copyWith(
                       fontSize: size.height * 0.045,
@@ -109,7 +111,7 @@ class LoginPage extends StatelessWidget {
                           width: size.width * 0.01,
                         ),
                         Text(
-                          'Sign up with email',
+                          locale.signUpEmail,
                           style: CustomThemeData.robotoFont.copyWith(
                               fontSize: size.width * 0.038,
                               color: CustomThemeData.whiteColor),
@@ -139,7 +141,7 @@ class LoginPage extends StatelessWidget {
                           width: size.width * 0.01,
                         ),
                         Text(
-                          'Sign up with phone',
+                          locale.signUpPhone,
                           style: CustomThemeData.robotoFont.copyWith(
                               fontSize: size.width * 0.038,
                               color: CustomThemeData.whiteColor),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../model/list_profile_section.dart';
+import '../helpers/locale/app_localization.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -8,21 +10,29 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   List<ListProfileSection> listSection = new List();
+  AppLocalization locale;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    locale = AppLocalization.of(context);
     createListItem();
   }
 
   void createListItem() {
-    listSection.add(createSection("Change Password", Icons.mode_edit, null));
-    listSection.add(createSection("Address Management", Icons.mode_edit, null));
-    listSection.add(createSection("Logout", Icons.exit_to_app, null));
+    listSection.add(createSection(locale.changePassword, Icons.mode_edit, () {
+      print('Change Password');
+    }));
+    listSection.add(createSection(locale.addressMan, Icons.mode_edit, () {
+      print('Address Mangement');
+    }));
+    listSection.add(createSection(locale.logout, Icons.exit_to_app, () {
+      print('Logout');
+    }));
   }
 
-  createSection(String title, IconData icon, Widget widget) {
-    return ListProfileSection(title, icon, widget);
+  createSection(String title, IconData icon, Function onpressed) {
+    return ListProfileSection(title, icon, onpressed);
   }
 
   @override
@@ -34,7 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Stack(
             children: <Widget>[
               Container(
-                height: 250, 
+                height: 250,
                 width: double.infinity,
                 decoration: BoxDecoration(
                     gradient: LinearGradient(colors: [
@@ -48,7 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Container(
                   padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                   child: Text(
-                    "Profile",
+                    locale.profile,
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       color: Colors.white,
@@ -72,8 +82,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         margin: EdgeInsets.only(top: 50, left: 16, right: 16),
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(14),)),
+                            borderRadius: BorderRadius.all(
+                          Radius.circular(14),
+                        )),
                         child: Column(
                           children: <Widget>[
                             Container(
@@ -130,7 +141,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 return Builder(builder: (context) {
                                   return InkWell(
                                     splashColor: Colors.grey.shade200,
-                                    onTap: () {},
+                                    onTap: listSection[index].onpressed,
                                     child: Container(
                                       margin:
                                           EdgeInsets.only(left: 16, right: 12),

@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-
 import '../../utils/theme/theme_data.dart';
 import '../../widgets/all_Alert_Dialogs.dart';
 import '../../utils/auth/auth_handler.dart';
+import '../../helpers/locale/app_localization.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   @override
@@ -40,6 +40,8 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocalization.of(context);
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -47,11 +49,11 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
           children: <Widget>[
             CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                      CustomThemeData.buleColorShade1),
+                      CustomThemeData.blueColorShade1),
                 ),
             SizedBox(height: 20),
             Text(
-              'Verify your Email to Continue',
+              locale.verifyToContinue,
               textScaleFactor: 1.5,
               style: CustomThemeData.montserratFont.copyWith(fontWeight: FontWeight.bold, color: CustomThemeData.blackColorShade1)
             ),

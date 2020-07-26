@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 
 import '../utils/theme/theme_data.dart';
+import '../helpers/locale/app_localization.dart';
 
 class SettingsPage extends StatefulWidget {
+  SettingsPage({
+    this.changeToHindi,
+    this.changeToEnglish,
+  });
+
+  final Function changeToHindi;
+  final Function changeToEnglish;
+
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool isSwitched = false;
-  bool _isSwitched = false;
+  bool _lang = true;
+  bool _isSwitched = true;
   final _divider = Divider(
     color: CustomThemeData.greyColorShade,
     thickness: .5,
@@ -19,7 +28,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
+    var locale = AppLocalization.of(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -28,7 +37,7 @@ class _SettingsPageState extends State<SettingsPage> {
             children: <Widget>[
               _buildListitem(
                   context,
-                  'Notification',
+                  locale.notification,
                   Icons.notifications_active,
                   Switch(
                     value: _isSwitched,
@@ -40,27 +49,51 @@ class _SettingsPageState extends State<SettingsPage> {
                       });
                     },
                     activeTrackColor:
-                        CustomThemeData.buleColorShade1.withOpacity(0.4),
-                    activeColor: CustomThemeData.buleColorShade1,
+                        CustomThemeData.blueColorShade1.withOpacity(0.4),
+                    activeColor: CustomThemeData.blueColorShade1,
                   ),
                   null),
               _divider,
               _buildListitem(
-                  context, 'Help & Supoort', Icons.help, null, () {}),
+                  context,
+                  locale.changeLanguage,
+                  Icons.language,
+                  Text(
+                    locale.lang,
+                    style: CustomThemeData.latoFont.copyWith(
+                      color: CustomThemeData.blackColorShade2,
+                      fontSize: 18,
+                    ),
+                  ), () {
+                setState(() {
+                  _lang = !_lang;
+                });
+                _lang ? widget.changeToEnglish() : widget.changeToHindi();
+              }),
+              _divider,
+              _buildListitem(context, locale.help, Icons.help, null, () {
+                // TODO: Remove this route
+                // this routing is for testing purpose only
+                Navigator.pushNamed(context, '/logInPage');
+              }),
               _divider,
               _buildListitem(
-                  context, 'Rate App', Icons.rate_review, null, () {}),
+                  context, locale.rate, Icons.rate_review, null, () {}),
               _divider,
-              _buildListitem(context, 'Invite Friends', Icons.share, null, () {
+              _buildListitem(context, locale.invite, Icons.share, null, () {
                 print('Friend Invited');
               }),
               _divider,
-              _buildListitem(context, 'Terms and Service',
-                  Icons.collections_bookmark, null, () {
-                print('Terms and services');
+              _buildListitem(
+                  context, locale.tnc, Icons.collections_bookmark, null, () {
+                print('Terms and Conditions');
               }),
               _divider,
-              // Text(_message),
+              _buildListitem(context, locale.privacy, Icons.library_books, null,
+                  () {
+                print('Privacy and Policies');
+              }),
+              _divider,
             ],
           ),
         ),

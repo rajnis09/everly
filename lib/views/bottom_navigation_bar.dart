@@ -8,29 +8,23 @@ import '../views/settings_page.dart';
 import '../model/notification_manager.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import '../helpers/locale/app_localization.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
+  CustomBottomNavigationBar({
+    this.changeToHindi,
+    this.changeToEnglish,
+  });
+
+  final Function changeToHindi;
+  final Function changeToEnglish;
+
   @override
   _CustomBottomNavigationBarState createState() =>
       _CustomBottomNavigationBarState();
 }
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  final List<Widget> _pages = [
-    HomePage(),
-    ProfilePage(),
-    OrdersPage(),
-    SettingsPage(),
-    // AddShopPage(),
-  ];
-  final List<String> _titles = [
-    'Home',
-    'My Profile',
-    'My Orders',
-    'Settings',
-    // 'Add Shop'
-  ];
-
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   @override
@@ -59,6 +53,24 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocalization.of(context);
+    final List<String> _titles = [
+      locale.home,
+      locale.profile,
+      locale.myOrders,
+      locale.settings,
+      // 'Add Shop'
+    ];
+    final List<Widget> _pages = [
+      HomePage(),
+      ProfilePage(),
+      OrdersPage(),
+      SettingsPage(
+        changeToHindi: widget.changeToHindi,
+        changeToEnglish: widget.changeToEnglish,
+      ),
+    ];
+
     return Scaffold(
       appBar: _selectedPageIndex != 1
           ? AppBar(
@@ -92,7 +104,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       body: _pages[_selectedPageIndex],
       bottomNavigationBar: _FABBottomAppBar(
         selectedColor:
-            _selectedPageIndex == 4 ? null : CustomThemeData.buleColorShade1,
+            _selectedPageIndex == 4 ? null : CustomThemeData.blueColorShade1,
         onTabSelected: (index) {
           setState(() {
             _selectedPageIndex = index;
@@ -101,19 +113,19 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         items: [
           _FABBottomAppBarItem(
             iconData: Icons.home,
-            text: 'Home',
+            text: locale.home,
           ),
           _FABBottomAppBarItem(
             iconData: Icons.person,
-            text: 'Profile',
+            text: locale.profile,
           ),
           _FABBottomAppBarItem(
             iconData: Icons.account_balance_wallet,
-            text: 'Orders',
+            text: locale.myOrders,
           ),
           _FABBottomAppBarItem(
             iconData: Icons.settings,
-            text: 'Settings',
+            text: locale.settings,
           ),
         ],
       ),
@@ -174,7 +186,6 @@ class _FABBottomAppBarState extends State<_FABBottomAppBar> {
         onPressed: _updateIndex,
       );
     });
-    // items.insert(items.length >> 1, _buildMiddleTabItem());
 
     return BottomAppBar(
       shape: widget.notchedShape,
