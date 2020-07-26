@@ -108,13 +108,18 @@ class _SettingsPageState extends State<SettingsPage> {
                 _lang ? widget.changeToEnglish() : widget.changeToHindi();
               }),
               _divider,
+<<<<<<< HEAD
               _buildListItem(context, locale.help, Icons.help, null, () {
+=======
+              _buildListitem(context, locale.help, Icons.help, null, () {
+>>>>>>> 4309f899d6c14334b647fa698973360a0d2dd09b
 
                 // TODO: Remove this route
                 // this routing is for testing purpose only
                 Navigator.pushNamed(context, '/logInPage');
               }),
               _divider,
+<<<<<<< HEAD
               _buildListItem(
                   context, locale.rate, Icons.rate_review, null, () {}),
               _divider,
@@ -123,11 +128,25 @@ class _SettingsPageState extends State<SettingsPage> {
               }),
               _divider,
               _buildListItem(
+=======
+              _buildListitem(
+                  context, locale.rate, Icons.rate_review, null, () {}),
+              _divider,
+              _buildListitem(context, locale.invite, Icons.share, null, () {
+                print('Friend Invited');
+              }),
+              _divider,
+              _buildListitem(
+>>>>>>> 4309f899d6c14334b647fa698973360a0d2dd09b
                   context, locale.tnc, Icons.collections_bookmark, null, () {
                 print('Terms and Conditions');
               }),
               _divider,
+<<<<<<< HEAD
               _buildListItem(context, locale.privacy, Icons.library_books, null,
+=======
+              _buildListitem(context, locale.privacy, Icons.library_books, null,
+>>>>>>> 4309f899d6c14334b647fa698973360a0d2dd09b
                   () {
                 print('Privacy and Policies');
               }),
