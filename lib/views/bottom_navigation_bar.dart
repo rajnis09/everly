@@ -5,10 +5,10 @@ import '../views/home_page.dart';
 import '../views/profile_page.dart';
 import '../views/orders_page.dart';
 import '../views/settings_page.dart';
+import '../helpers/locale/app_localization.dart';
 import '../model/notification_manager.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
-import '../helpers/locale/app_localization.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   CustomBottomNavigationBar({
@@ -25,6 +25,21 @@ class CustomBottomNavigationBar extends StatefulWidget {
 }
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+  final List<Widget> _pages = [
+    HomePage(),
+    ProfilePage(),
+    OrdersPage(),
+    SettingsPage(),
+    // AddShopPage(),
+  ];
+  final List<String> _titles = [
+    'Home',
+    'My Profile',
+    'My Orders',
+    'Settings',
+    // 'Add Shop'
+  ];
+
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   @override

@@ -20,7 +20,7 @@ dependencies:
   flutter_swiper:
   flutter_speed_dial:
   firebase_messaging: 
-  barcode_scan:
+  qrscan:
 
 
   cupertino_icons: ^0.1.3
