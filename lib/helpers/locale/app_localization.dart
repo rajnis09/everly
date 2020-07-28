@@ -286,6 +286,154 @@ class AppLocalization {
       name: 'lang',
     );
   }
+
+  String get q1 {
+    return Intl.message(
+      'Where is my order?',
+      name: 'q1',
+    );
+  }
+  
+  String get a1 {
+    return Intl.message(
+      'You can track your order in my order section.',
+      name: 'a1',
+    );
+  }
+
+  String get q2 {
+    return Intl.message(
+      'Did your app provide delivery services?',
+      name: 'q2',
+    );
+  }
+  
+  String get a2 {
+    return Intl.message(
+      'No , this app only provides you the platform to place the order from your own place , We does not provide any such facility.',
+      name: 'a2',
+    );
+  }
+
+  String get q3 {
+    return Intl.message(
+      'How can I cancel my order?',
+      name: 'q3',
+    );
+  }
+  
+  String get a3 {
+    return Intl.message(
+      'Everly provides easy and hassel-free cancellation. You can can the order via app before it is packed.',
+      name: 'a3',
+    );
+  }
+  
+  String get q4 {
+    return Intl.message(
+      'What if I want to return something?',
+      name: 'q4',
+    );
+  }
+  
+  String get a4 {
+    return Intl.message(
+      'If you are disatisfied with the products deliverd,please contanct to the seller as soon as possible , the app does not provide any such service.',
+      name: 'a4',
+    );
+  }
+
+  String get q5 {
+    return Intl.message(
+      'What is minimum order value?',
+      name: 'q5',
+    );
+  }
+  
+  String get a5 {
+    return Intl.message(
+      'There is no minimum order value. However each store can have some minimum order value.',
+      name: 'a5',
+    );
+  }
+
+  String get q6 {
+    return Intl.message(
+      'Can I schedule an order to my convinence?',
+      name: 'q6',
+    );
+  }
+  
+  String get a6 {
+    return Intl.message(
+      'Sure, Its seller and customer mutual understanding.',
+      name: 'a6',
+    );
+  }
+
+  String get q7 {
+    return Intl.message(
+      'Where is my order?',
+      name: 'q7',
+    );
+  }
+  
+  String get a7 {
+    return Intl.message(
+      'You can track your order in my order section.',
+      name: 'a7',
+    );
+  }
+
+  String get q8 {
+    return Intl.message(
+      'Where is my order?',
+      name: 'q8',
+    );
+  }
+  
+  String get a8 {
+    return Intl.message(
+      'You can track your order in my order section.',
+      name: 'a8',
+    );
+  }
+
+  String get q9 {
+    return Intl.message(
+      'Where is my order?',
+      name: 'q9',
+    );
+  }
+  
+  String get a9 {
+    return Intl.message(
+      'You can track your order in my order section.',
+      name: 'a9',
+    );
+  }
+
+  String get q10 {
+    return Intl.message(
+      'Where is my order?',
+      name: 'q10',
+    );
+  }
+  
+  String get a10 {
+    return Intl.message(
+      'You can track your order in my order section.',
+      name: 'a10',
+    );
+  }
+  
+  String get stillNeedHelp{
+    return Intl.message(
+      'Still need help? Write to us',
+      name: 'stillNeedHelp',
+    );
+  }
+  
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {
