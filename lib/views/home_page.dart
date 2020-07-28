@@ -60,68 +60,72 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return Container(
-            height: MediaQuery.of(context).size.height * 0.18,
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              clipBehavior: Clip.antiAlias,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                    MediaQuery.of(context).size.height * 0.02),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.35,
-                    child: Image.asset(
-                      dummyData[index % 4]['image'],
-                      fit: BoxFit.cover,
-                      height:
-                          MediaQuery.of(context).size.height * (0.18 - (0.01)),
+          return GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed('/shopDetailsPage'),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.18,
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                clipBehavior: Clip.antiAlias,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                      MediaQuery.of(context).size.height * 0.02),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.35,
+                      child: Image.asset(
+                        dummyData[index % 4]['image'],
+                        fit: BoxFit.cover,
+                        height: MediaQuery.of(context).size.height *
+                            (0.18 - (0.01)),
+                      ),
                     ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(
-                        MediaQuery.of(context).size.width * 0.02),
-                    width: MediaQuery.of(context).size.width * (1 - (0.46)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        FittedBox(
-                          child: Text(dummyData[index % 4]['shopName'],
-                              style: CustomThemeData.robotoFont.copyWith(
-                                color: CustomThemeData.blackColorShade1,
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.03,
-                                fontWeight: FontWeight.bold,
-                              )),
-                        ),
-                        FittedBox(
-                          child: Text(dummyData[index % 4]['sellerName'],
-                              style: CustomThemeData.latoFont.copyWith(
+                    Container(
+                      padding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02),
+                      width: MediaQuery.of(context).size.width * (1 - (0.46)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          FittedBox(
+                            child: Text(dummyData[index % 4]['shopName'],
+                                style: CustomThemeData.robotoFont.copyWith(
+                                  color: CustomThemeData.blackColorShade1,
                                   fontSize:
-                                      MediaQuery.of(context).size.height * 0.02,
-                                  color: CustomThemeData.blackColorShade2
-                                  // fontWeight: FontWeight.bold,
-                                  )),
-                        ),
-                        FittedBox(
-                          child: Text(
-                            dummyData[index % 4]['category'],
-                            style: CustomThemeData.montserratFont.copyWith(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.018,
-                                color: CustomThemeData.blackColorShade3
-                                // fontWeight: FontWeight.bold,
-                                ),
+                                      MediaQuery.of(context).size.height * 0.03,
+                                  fontWeight: FontWeight.bold,
+                                )),
                           ),
-                        ),
-                      ],
+                          FittedBox(
+                            child: Text(dummyData[index % 4]['sellerName'],
+                                style: CustomThemeData.latoFont.copyWith(
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.02,
+                                    color: CustomThemeData.blackColorShade2
+                                    // fontWeight: FontWeight.bold,
+                                    )),
+                          ),
+                          FittedBox(
+                            child: Text(
+                              dummyData[index % 4]['category'],
+                              style: CustomThemeData.montserratFont.copyWith(
+                                  fontSize: MediaQuery.of(context).size.height *
+                                      0.018,
+                                  color: CustomThemeData.blackColorShade3
+                                  // fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );
