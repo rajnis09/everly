@@ -6,7 +6,7 @@ class CustomButton extends StatelessWidget {
   final Color backgroundColor, splashColor;
   final Function onPressed;
   final Widget child;
-
+  final Color disabledColor;
   final double width;
 
   const CustomButton({
@@ -14,6 +14,7 @@ class CustomButton extends StatelessWidget {
     @required this.height,
     this.width,
     this.backgroundColor,
+    this.disabledColor,
     // this.backgroundColor = Colors.indigo,
     @required this.onPressed,
     this.splashColor = Colors.white30,
@@ -26,13 +27,13 @@ class CustomButton extends StatelessWidget {
       height: height,
       width: width ?? 200,
       child: MaterialButton(
+        disabledColor: disabledColor,
         splashColor: splashColor,
         onPressed: onPressed,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
         color: backgroundColor ?? CustomThemeData.blueColorShade1,
-        // color: customThemeData.buttonColor,
         elevation: 5.0,
         child: Center(
           child: child,
