@@ -1,7 +1,7 @@
-import 'package:everly/utils/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 
 import '../model/shop_items.dart';
+import '../utils/theme/theme_data.dart';
 
 class ShopDetailsPage extends StatefulWidget {
   @override
@@ -57,7 +57,8 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                               children: [
                                 FittedBox(
                                   child: Text(
-                                    shopItem.shopItems[index]["price"] +
+                                    shopItem.shopItems[index]["price"]
+                                            .toString() +
                                         ' / ' +
                                         shopItem.shopItems[index]["amount"],
                                     style:

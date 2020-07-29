@@ -110,7 +110,7 @@ class _MyAppState extends State<MyApp> {
         '/signUpPhonePage': (context) => SignUpPhonePage(),
         '/introPage': (context) => IntroScreen(),
         '/homePage': (context) => CustomBottomNavigationBar(
-            changeToHindi: _changeToHindi, changeToEnglish: _changeToEnglish),
+            changeToHindi: _changeToHindi, changeToEnglish: _changeToEnglish,),
         '/verifyEmailPage': (context) => VerifyEmailPage(),
         '/addShopPage': (context) => AddShopPage(),
         "/cartPage": (context) => CartPage(),
