@@ -9,7 +9,7 @@ class ShopItems {
     },
     {
       "image": "assets/images/sugar.png",
-      "itemName": "Sugar packaged",
+      "itemName": "Organic Sugar with hand processed",
       "amount": "1k",
       "quantity": "1",
       "price": "60",
