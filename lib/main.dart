@@ -17,6 +17,7 @@ import './views/authentication/verify_email_page.dart';
 import './views/my_cart.dart';
 import './views/notification_page.dart';
 import './views/support.dart';
+import './views/shop_details_page.dart';
 
 import './helpers/locale/app_localization.dart';
 
@@ -115,6 +116,7 @@ class _MyAppState extends State<MyApp> {
         "/cartPage": (context) => CartPage(),
         '/notificationPage': (context) => NotificationPage(),
         '/supportPage': (context) => SupportPage(),
+        '/shopDetailsPage': (context) => ShopDetailsPage(),
       },
       onUnknownRoute: (settings) =>
           MaterialPageRoute(builder: (context) => ErrorPage()),

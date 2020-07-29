@@ -20,12 +20,11 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   static const platform = MethodChannel("com.unmount.everly/channel");
 
-
   void _invite() async {
     try {
       var result = await platform.invokeMethod("invite") as bool;
       print(result);
-    } on PlatformException catch(ignored) {
+    } on PlatformException catch (ignored) {
       print(ignored);
     }
   }
@@ -34,7 +33,7 @@ class _SettingsPageState extends State<SettingsPage> {
   void initState() {
     super.initState();
   }
-  
+
   bool _lang = true;
   bool _isSwitched = true;
   final _divider = Divider(
@@ -89,7 +88,6 @@ class _SettingsPageState extends State<SettingsPage> {
               }),
               _divider,
               _buildListItem(context, locale.help, Icons.help, null, () {
-
                 // TODO: Remove this route
                 // this routing is for testing purpose only
                 Navigator.pushNamed(context, '/supportPage');

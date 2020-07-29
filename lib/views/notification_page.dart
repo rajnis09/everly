@@ -1,7 +1,8 @@
-import 'package:everly/utils/theme/theme_data.dart';
+import '../utils/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 
-import 'package:everly/model/notification_manager.dart';
+import '../model/notification_manager.dart';
+import '../helpers/locale/app_localization.dart';
 
 class NotificationPage extends StatefulWidget {
   @override
@@ -20,9 +21,10 @@ class _NotificationPageState extends State<NotificationPage> {
 
   @override
   Widget build(BuildContext context) {
+    var locale = AppLocalization.of(context);
     return Scaffold(
         appBar: AppBar(
-          title: Text('Notifications'),
+          title: Text(locale.notification),
         ),
         body: tempMessage.length > 0
             ? ListView.builder(
@@ -31,13 +33,19 @@ class _NotificationPageState extends State<NotificationPage> {
                   return Dismissible(
                     background: Container(
                       color: Colors.red,
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Removed',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                     key: Key(keyItem),
                     onDismissed: (direction) {
                       removeMsg(index);
                       // Show a snackbar. This snackbar could also contain "Undo" actions.
                       Scaffold.of(context).showSnackBar(SnackBar(
-                          content: Text('Notification removed successfully')));
+                        content: Text('Notification removed successfully'),
+                      ));
                     },
                     child: Container(
                       height: 90,
