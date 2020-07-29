@@ -21,6 +21,8 @@ dependencies:
   flutter_speed_dial:
   firebase_messaging: 
   qrscan:
+  # image_picker: 
+  # image_cropper: 
 
 
   cupertino_icons: ^0.1.3

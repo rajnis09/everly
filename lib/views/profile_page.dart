@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../model/list_profile_section.dart';
 import '../helpers/locale/app_localization.dart';
+import '../utils/theme/theme_data.dart';
+import './edit_profile_info.dart';
+
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -97,7 +100,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                     icon: Icon(Icons.edit),
                                     color: Colors.black,
                                     iconSize: 24,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                       Navigator.pushNamed(context, '/editprofileinfo');
+                                    },
                                   ),
                                   // IconButton(
                                   //   icon: Icon(Icons.shopping_cart),
@@ -164,7 +169,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           Icon(
                                             Icons.navigate_next,
                                             color: Colors.grey.shade500,
-                                          )
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -182,16 +187,38 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.grey.shade400, width: 2),
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                  image: AssetImage("assets/images/1.png"),
-                                  fit: BoxFit.cover)),
-                          width: 100,
                           height: 100,
-                        ),
+                          width: 100,
+                          child:Stack(
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.grey.shade400, width: 2),
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image: AssetImage("assets/images/1.png"),
+                                      fit: BoxFit.cover)),
+                              width: 100,
+                              height: 100,
+                            ),
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child:GestureDetector(
+                            child: new CircleAvatar(
+                              backgroundColor: CustomThemeData.blackColorShade1,
+                              radius: 18.0,
+                              child: new Icon(
+                                Icons.camera_alt,
+                                color: Colors.white,
+                              ),
+                            ),
+                            onTap: () {
+                              print("change Picture");
+                            },
+                          ),),
+                          ],
+                        ),),
                       ),
                     ),
                   ],

@@ -1,6 +1,6 @@
-import 'package:everly/views/support.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import './utils/theme/theme_data.dart';
@@ -18,7 +18,7 @@ import './views/my_cart.dart';
 import './views/notification_page.dart';
 import './views/support.dart';
 import './views/shop_details_page.dart';
-
+import './views/edit_profile_info.dart';
 import './helpers/locale/app_localization.dart';
 
 void main() {
@@ -117,6 +117,8 @@ class _MyAppState extends State<MyApp> {
         '/notificationPage': (context) => NotificationPage(),
         '/supportPage': (context) => SupportPage(),
         '/shopDetailsPage': (context) => ShopDetailsPage(),
+        '/editprofileinfo':(context)=> EditProfileInfoPage(),
+
       },
       onUnknownRoute: (settings) =>
           MaterialPageRoute(builder: (context) => ErrorPage()),
