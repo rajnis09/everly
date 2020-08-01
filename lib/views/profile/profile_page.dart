@@ -1,10 +1,9 @@
+import 'package:everly/utils/auth/auth_handler.dart';
 import 'package:flutter/material.dart';
 
-import '../model/list_profile_section.dart';
-import '../helpers/locale/app_localization.dart';
-import '../utils/theme/theme_data.dart';
-import './edit_profile_info.dart';
-
+import '../../model/list_profile_section.dart';
+import '../../helpers/locale/app_localization.dart';
+import '../../utils/theme/theme_data.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -23,14 +22,14 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void createListItem() {
-    listSection.add(createSection(locale.changePassword, Icons.mode_edit, () {
-      print('Change Password');
-    }));
     listSection.add(createSection(locale.addressMan, Icons.mode_edit, () {
       print('Address Mangement');
     }));
-    listSection.add(createSection(locale.logout, Icons.exit_to_app, () {
-      print('Logout');
+    listSection.add(createSection(locale.logout, Icons.exit_to_app, () async {
+      if (await authHandler.getCurrentUser() != null) {
+        authHandler.signOut();
+      }
+      Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
     }));
   }
 
@@ -77,7 +76,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 margin: EdgeInsets.only(
                   top: 150,
                 ),
-                // color : Colors.red,
                 child: Stack(
                   children: <Widget>[
                     Container(
@@ -101,15 +99,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                     color: Colors.black,
                                     iconSize: 24,
                                     onPressed: () {
-                                       Navigator.pushNamed(context, '/editprofileinfo');
+                                      Navigator.pushNamed(
+                                          context, '/editprofileinfo');
                                     },
                                   ),
-                                  // IconButton(
-                                  //   icon: Icon(Icons.shopping_cart),
-                                  //   color: Colors.black,
-                                  //   iconSize: 24,
-                                  //   onPressed: () {},
-                                  // )
                                 ],
                               ),
                             ),
@@ -189,36 +182,40 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Container(
                           height: 100,
                           width: 100,
-                          child:Stack(
-                          children: <Widget>[
-                            Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: Colors.grey.shade400, width: 2),
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                      image: AssetImage("assets/images/1.png"),
-                                      fit: BoxFit.cover)),
-                              width: 100,
-                              height: 100,
-                            ),
-                            Align(
-                              alignment: Alignment.bottomRight,
-                              child:GestureDetector(
-                            child: new CircleAvatar(
-                              backgroundColor: CustomThemeData.blackColorShade1,
-                              radius: 18.0,
-                              child: new Icon(
-                                Icons.camera_alt,
-                                color: Colors.white,
+                          child: Stack(
+                            children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.grey.shade400, width: 2),
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        image:
+                                            AssetImage("assets/images/1.png"),
+                                        fit: BoxFit.cover)),
+                                width: 100,
+                                height: 100,
                               ),
-                            ),
-                            onTap: () {
-                              print("change Picture");
-                            },
-                          ),),
-                          ],
-                        ),),
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: GestureDetector(
+                                  child: new CircleAvatar(
+                                    backgroundColor:
+                                        CustomThemeData.blackColorShade1,
+                                    radius: 18.0,
+                                    child: new Icon(
+                                      Icons.camera_alt,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    print("change Picture");
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ],

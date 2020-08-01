@@ -1,8 +1,9 @@
-import '../utils/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/theme/theme_data.dart';
 import '../model/notification_manager.dart';
 import '../helpers/locale/app_localization.dart';
+import '../widgets/network_builder.dart';
 
 class NotificationPage extends StatefulWidget {
   @override
@@ -23,10 +24,11 @@ class _NotificationPageState extends State<NotificationPage> {
   Widget build(BuildContext context) {
     var locale = AppLocalization.of(context);
     return Scaffold(
-        appBar: AppBar(
-          title: Text(locale.notification),
-        ),
-        body: tempMessage.length > 0
+      appBar: AppBar(
+        title: Text(locale.notification),
+      ),
+      body: NetworkBuilder(
+        child: tempMessage.length > 0
             ? ListView.builder(
                 itemBuilder: (context, index) {
                   final keyItem = tempMessage[index];
@@ -66,6 +68,8 @@ class _NotificationPageState extends State<NotificationPage> {
                 },
                 itemCount: tempMessage.length,
               )
-            : Center(child: Text('No notifications yet :)')));
+            : Center(child: Text('No notifications yet :)')),
+      ),
+    );
   }
 }

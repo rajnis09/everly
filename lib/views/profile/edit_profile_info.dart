@@ -7,11 +7,9 @@ class EditProfileInfoPage extends StatefulWidget {
 
 class MapScreenState extends State<EditProfileInfoPage>
     with SingleTickerProviderStateMixin {
-
-
   @override
   Widget build(BuildContext context) {
-    String _newEmail, _newName, _newNo , _newCity , _newState;
+    String _newEmail, _newName, _newNo, _newCity, _newState;
     return new Scaffold(
         appBar: AppBar(
           title: Text('Personal Information'),
@@ -60,7 +58,6 @@ class MapScreenState extends State<EditProfileInfoPage>
                                     child: new TextFormField(
                                       decoration: const InputDecoration(
                                         hintText: "Enter Your Name",
-                                        
                                       ),
                                       onSaved: (val) => _newName = val,
                                     ),
@@ -97,9 +94,8 @@ class MapScreenState extends State<EditProfileInfoPage>
                                     child: new TextFormField(
                                       decoration: const InputDecoration(
                                           hintText: "Enter Email ID"),
-                                          onSaved: (val) => _newEmail = val,
+                                      onSaved: (val) => _newEmail = val,
                                     ),
-                                    
                                   ),
                                 ],
                               )),
@@ -133,7 +129,7 @@ class MapScreenState extends State<EditProfileInfoPage>
                                     child: new TextFormField(
                                       decoration: const InputDecoration(
                                           hintText: "Enter Mobile Number"),
-                                          onSaved: (val) => _newNo = val,
+                                      onSaved: (val) => _newNo = val,
                                     ),
                                   ),
                                 ],
@@ -182,7 +178,7 @@ class MapScreenState extends State<EditProfileInfoPage>
                                       child: new TextFormField(
                                         decoration: const InputDecoration(
                                             hintText: "Enter City"),
-                                            onSaved: (val) => _newCity = val,
+                                        onSaved: (val) => _newCity = val,
                                       ),
                                     ),
                                     flex: 2,
@@ -191,7 +187,7 @@ class MapScreenState extends State<EditProfileInfoPage>
                                     child: new TextFormField(
                                       decoration: const InputDecoration(
                                           hintText: "Enter State"),
-                                          onSaved: (val) => _newState = val,
+                                      onSaved: (val) => _newState = val,
                                     ),
                                     flex: 2,
                                   ),

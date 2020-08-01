@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../utils/theme/theme_data.dart';
-import '../helpers/locale/app_localization.dart';
+
+import '../../utils/theme/theme_data.dart';
+import '../../helpers/locale/app_localization.dart';
 
 class SupportPage extends StatelessWidget {
   @override
