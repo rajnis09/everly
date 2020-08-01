@@ -10,6 +10,23 @@ class ShopDetailsPage extends StatefulWidget {
 
 class _ShopDetailsPageState extends State<ShopDetailsPage> {
   String dropdownValue = '1';
+  double curPrice = 1;
+
+  update(newValue, index) {
+    setState(() {
+      curPrice = shopItem.shopItems[index]["price"];
+      double preQty = double.parse(shopItem.shopItems[index]["quantity"]);
+      shopItem.shopItems[index]["quantity"] = newValue;
+      if (preQty < double.parse(newValue)) {
+        curPrice = curPrice * double.parse(newValue);
+        shopItem.shopItems[index]["price"] = curPrice;
+      } else {
+        curPrice /= preQty;
+        curPrice *= double.parse(newValue);
+        shopItem.shopItems[index]["price"] = curPrice;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,10 +106,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                                             color: CustomThemeData
                                                 .blueColorShade1),
                                         onChanged: (String newValue) {
-                                          setState(() {
-                                            shopItem.shopItems[index]
-                                                ["quantity"] = newValue;
-                                          });
+                                          update(newValue, index);
                                         },
                                         items: <String>[
                                           '1',
