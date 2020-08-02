@@ -116,7 +116,7 @@ class _MyAppState extends State<MyApp> {
         "/cartPage": (context) => CartPage(),
         '/notificationPage': (context) => NotificationPage(),
         '/supportPage': (context) => SupportPage(),
-        '/shopDetailsPage': (context) => ShopDetailsPage(),
+        '/shop': (context) => ShopDetailsPage(),
       },
       onUnknownRoute: (settings) =>
           MaterialPageRoute(builder: (context) => ErrorPage()),
