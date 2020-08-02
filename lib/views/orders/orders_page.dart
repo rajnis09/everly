@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../utils/theme/theme_data.dart';
+
+import '../../utils/theme/theme_data.dart';
 
 class OrdersPage extends StatelessWidget {
   final _divider = Divider(
@@ -8,36 +9,44 @@ class OrdersPage extends StatelessWidget {
     indent: 8,
     endIndent: 8,
   );
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, position) {
         return Padding(
-          padding: EdgeInsets.fromLTRB(10,2,10,2),
-          child:Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10), // if you need this
-            side: BorderSide(
-              color: CustomThemeData.greyColorShade.withOpacity(.2),
-              width: 1,
+          padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
+          child: GestureDetector(
+            // The functionality is to be changed as same page is opening everytime
+            onTap: () {
+              Navigator.pushNamed(context, '/orderDetailsPage');
+            },
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10), // if you need this
+                side: BorderSide(
+                  color: CustomThemeData.greyColorShade.withOpacity(.2),
+                  width: 1,
+                ),
+              ),
+              child: Container(
+                width: 400,
+                height: 240,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    _cardTop(),
+                    _divider,
+                    _cardMiddle(),
+                    _divider,
+                    _cardBottom(),
+                  ],
+                ),
+              ),
+              elevation: 2,
             ),
           ),
-          child: Container(
-            width: 400,
-            height: 240,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _cardTop(),
-                _divider,
-                _cardMiddle(),
-                _divider,
-                _cardBottom(),
-              ],
-            ),
-          ),
-          elevation: 2,
-        ),);
+        );
       },
       itemCount: 8,
     );
@@ -148,11 +157,10 @@ Widget _cardBottom() {
   return Container(
     child: Padding(
       padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
-      child: 
-          Text(
-            'Delivered',
-            style: TextStyle(color: CustomThemeData.greyColorShade),
-          ),
+      child: Text(
+        'Delivered',
+        style: TextStyle(color: CustomThemeData.greyColorShade),
+      ),
     ),
   );
 }

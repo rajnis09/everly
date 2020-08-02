@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../utils/theme/theme_data.dart';
-import '../helpers/locale/app_localization.dart';
+import '../../utils/theme/theme_data.dart';
+import '../../widgets/build_list_items.dart';
+import '../../helpers/locale/app_localization.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage({
@@ -36,12 +37,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
   bool _lang = true;
   bool _isSwitched = true;
-  final _divider = Divider(
-    color: CustomThemeData.greyColorShade,
-    thickness: .5,
-    indent: 8,
-    endIndent: 8,
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +47,7 @@ class _SettingsPageState extends State<SettingsPage> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: <Widget>[
-              _buildListItem(
+              buildListItem(
                   context,
                   locale.notification,
                   Icons.notifications_active,
@@ -69,8 +64,8 @@ class _SettingsPageState extends State<SettingsPage> {
                     activeColor: CustomThemeData.blueColorShade1,
                   ),
                   null),
-              _divider,
-              _buildListItem(
+              divider,
+              buildListItem(
                   context,
                   locale.changeLanguage,
                   Icons.language,
@@ -86,54 +81,36 @@ class _SettingsPageState extends State<SettingsPage> {
                 });
                 _lang ? widget.changeToEnglish() : widget.changeToHindi();
               }),
-              _divider,
-              _buildListItem(context, locale.help, Icons.help, null, () {
-                // TODO: Remove this route
-                // this routing is for testing purpose only
+              divider,
+              buildListItem(context, locale.help, Icons.help, null, () {
                 Navigator.pushNamed(context, '/supportPage');
               }),
-              _divider,
-              _buildListItem(
+              divider,
+              buildListItem(
                   context, locale.rate, Icons.rate_review, null, () {}),
-              _divider,
-              _buildListItem(context, locale.invite, Icons.share, null, () {
+              divider,
+              buildListItem(context, locale.invite, Icons.share, null, () {
                 _invite();
               }),
-              _divider,
-              _buildListItem(
+              divider,
+              buildListItem(
                   context, locale.tnc, Icons.collections_bookmark, null, () {
                 print('Terms and Conditions');
               }),
-              _divider,
-              _buildListItem(context, locale.privacy, Icons.library_books, null,
+              divider,
+              buildListItem(context, locale.privacy, Icons.library_books, null,
                   () {
                 print('Privacy and Policies');
               }),
-              _divider,
+              divider,
+              buildListItem(context, 'About', Icons.info, null, () {
+                Navigator.pushNamed(context, '/aboutPage');
+              }),
+              divider,
             ],
           ),
         ),
       ),
     );
   }
-}
-
-Widget _buildListItem(BuildContext context, String title, IconData iconData,
-    Widget trailing, Function onPressed) {
-  return Theme(
-    data: ThemeData(
-        splashColor: Colors.transparent, highlightColor: Colors.transparent),
-    child: ListTile(
-      leading: Icon(iconData, color: CustomThemeData.blackColorShade2),
-      title: Text(
-        title,
-        style: CustomThemeData.latoFont.copyWith(
-          color: CustomThemeData.blackColorShade2,
-          fontSize: 18,
-        ),
-      ),
-      trailing: trailing,
-      onTap: onPressed,
-    ),
-  );
 }
