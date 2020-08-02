@@ -133,37 +133,37 @@ class LoginPage extends StatelessWidget {
                     height: size.height * 0.02,
                   ),
                   // Below code will be removed once the need of direct login is finished
-                  // Container(
-                  //   child: CustomButton(
-                  //     // backgroundColor: Color(0xFF3D5AFE),
-                  //     height: size.height * 0.055,
-                  //     width: size.width * 0.7,
-                  //     onPressed: () =>
-                  //         Navigator.pushReplacementNamed(context, '/homePage'),
-                  //     child: Row(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: <Widget>[
-                  //         Icon(
-                  //           Icons.forward,
-                  //           size: size.height * 0.038,
-                  //           color: CustomThemeData.whiteColor,
-                  //         ),
-                  //         SizedBox(
-                  //           width: size.width * 0.01,
-                  //         ),
-                  //         Text(
-                  //           'Direct Login',
-                  //           style: CustomThemeData.robotoFont.copyWith(
-                  //               fontSize: size.width * 0.038,
-                  //               color: CustomThemeData.whiteColor),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: size.height * 0.02,
-                  // ),
+                  Container(
+                    child: CustomButton(
+                      // backgroundColor: Color(0xFF3D5AFE),
+                      height: size.height * 0.055,
+                      width: size.width * 0.7,
+                      onPressed: () =>
+                          Navigator.pushReplacementNamed(context, '/homePage'),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.forward,
+                            size: size.height * 0.038,
+                            color: CustomThemeData.whiteColor,
+                          ),
+                          SizedBox(
+                            width: size.width * 0.01,
+                          ),
+                          Text(
+                            'Direct Login',
+                            style: CustomThemeData.robotoFont.copyWith(
+                                fontSize: size.width * 0.038,
+                                color: CustomThemeData.whiteColor),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
                   // End of code to be deleted
                 ],
               ),
