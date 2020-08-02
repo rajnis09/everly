@@ -24,7 +24,6 @@ dependencies:
   flutter_speed_dial:
   qrscan:
   image_picker:
-  
 
   cupertino_icons: ^0.1.3
 

@@ -1,12 +1,13 @@
-import 'package:everly/utils/auth/auth_handler.dart';
 import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import '../../utils/forms/sign_up_phonenumber_form.dart';
-import '../../model/list_profile_section.dart';
 
-import '../../helpers/locale/app_localization.dart';
+import 'package:flutter/material.dart';
+
+import 'package:image_picker/image_picker.dart';
+
+import '../../utils/auth/auth_handler.dart';
 import '../../utils/theme/theme_data.dart';
+import '../../model/list_profile_section.dart';
+import '../../helpers/locale/app_localization.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -42,11 +43,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
   File _image;
   bool selected = false;
-  
+
   final picker = ImagePicker();
 
   Future getImagefromCamera() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
+    Navigator.of(context).pop();
 
     setState(() {
       _image = File(pickedFile.path);
@@ -56,6 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future getImagefromGallery() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    Navigator.of(context).pop();
 
     setState(() {
       _image = File(pickedFile.path);
@@ -89,6 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
               setState(() {
                 selected = false;
               });
+              Navigator.of(context).pop();
             },
           ),
         ],
