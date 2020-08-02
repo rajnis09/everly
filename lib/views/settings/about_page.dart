@@ -20,14 +20,19 @@ class AboutPage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: <Widget>[
-                    buildListItem(
-                        context, 'Greviance', Icons.description, null, () {}),
-                    divider,
-                    buildListItem(context, 'Open Source Licenses',
-                        Icons.perm_device_information, null, () {}),
+                    buildListItem(context, 'Greviance', Icons.description, null,
+                        () {}, size.height * 0.025),
                     divider,
                     buildListItem(
-                        context, 'About us', Icons.group, null, () {}),
+                        context,
+                        'Open Source Licenses',
+                        Icons.perm_device_information,
+                        null,
+                        () {},
+                        size.height * 0.025),
+                    divider,
+                    buildListItem(context, 'About us', Icons.group, null, () {},
+                        size.height * 0.025),
                     divider,
                   ],
                 )),

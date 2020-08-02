@@ -41,6 +41,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     var locale = AppLocalization.of(context);
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -63,7 +64,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         CustomThemeData.blueColorShade1.withOpacity(0.4),
                     activeColor: CustomThemeData.blueColorShade1,
                   ),
-                  null),
+                  null,
+                  size.height * 0.025),
               divider,
               buildListItem(
                   context,
@@ -73,39 +75,39 @@ class _SettingsPageState extends State<SettingsPage> {
                     locale.lang,
                     style: CustomThemeData.latoFont.copyWith(
                       color: CustomThemeData.blackColorShade2,
-                      fontSize: 18,
+                      fontSize: size.height * 0.025,
                     ),
                   ), () {
                 setState(() {
                   _lang = !_lang;
                 });
                 _lang ? widget.changeToEnglish() : widget.changeToHindi();
-              }),
+              }, size.height * 0.025),
               divider,
               buildListItem(context, locale.help, Icons.help, null, () {
                 Navigator.pushNamed(context, '/supportPage');
-              }),
+              }, size.height * 0.025),
               divider,
-              buildListItem(
-                  context, locale.rate, Icons.rate_review, null, () {}),
+              buildListItem(context, locale.rate, Icons.rate_review, null,
+                  () {}, size.height * 0.025),
               divider,
               buildListItem(context, locale.invite, Icons.share, null, () {
                 _invite();
-              }),
+              }, size.height * 0.025),
               divider,
               buildListItem(
                   context, locale.tnc, Icons.collections_bookmark, null, () {
                 print('Terms and Conditions');
-              }),
+              }, size.height * 0.025),
               divider,
               buildListItem(context, locale.privacy, Icons.library_books, null,
                   () {
                 print('Privacy and Policies');
-              }),
+              }, size.height * 0.025),
               divider,
               buildListItem(context, 'About', Icons.info, null, () {
                 Navigator.pushNamed(context, '/aboutPage');
-              }),
+              }, size.height * 0.025),
               divider,
             ],
           ),
