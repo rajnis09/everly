@@ -23,8 +23,8 @@ dependencies:
   flutter_swiper:
   flutter_speed_dial:
   qrscan:
-  # image_picker:
-  # image_cropper:
+  image_picker:
+  
 
   cupertino_icons: ^0.1.3
 
