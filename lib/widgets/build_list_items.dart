@@ -6,9 +6,14 @@ Widget buildListItem(BuildContext context, String title, IconData iconData,
     Widget trailing, Function onPressed, double fontSize) {
   return Theme(
     data: ThemeData(
-        splashColor: Colors.transparent, highlightColor: Colors.transparent),
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+    ),
     child: ListTile(
-      leading: Icon(iconData, color: CustomThemeData.blackColorShade2),
+      leading: Icon(
+        iconData,
+        color: CustomThemeData.blackColorShade2,
+      ),
       title: Text(
         title,
         style: CustomThemeData.latoFont.copyWith(

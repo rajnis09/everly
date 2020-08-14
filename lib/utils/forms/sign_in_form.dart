@@ -7,7 +7,6 @@ import '../auth/auth_handler.dart';
 import '../../widgets/all_Alert_Dialogs.dart';
 import '../../widgets/custom_button.dart';
 import '../../utils/theme/theme_data.dart';
-import '../../helpers/locale/app_localization.dart';
 
 class SignInForm extends StatefulWidget {
   @override
@@ -25,219 +24,222 @@ class _SignInFormState extends State<SignInForm> {
   FocusNode focusNode6 = FocusNode();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  void phoneNumberLogin(BuildContext context, final size, final locale) async {
+  void phoneNumberLogin(BuildContext context, final size) async {
     int response = 0;
     await authHandler.auth.verifyPhoneNumber(
-        phoneNumber: _phoneNumber,
-        timeout: Duration(seconds: 60),
-        verificationCompleted: (AuthCredential credential) async {
-          print('verified');
-          Navigator.of(context).pop();
-          response = await authHandler.phoneUserLoginOrRegister(credential);
-          print('Response is in verification completed $response');
-          _code = '';
-          switch (response) {
-            case 0:
-              Navigator.pushReplacementNamed(context, '/homePage');
-              break;
-            case 1:
-              Navigator.pushReplacementNamed(context, '/introPage');
-              break;
-            case 2:
-              notificationDialog(context, locale.error,
-                  'The Account exists with different credentials');
-              break;
-            case 3:
-              notificationDialog(context, locale.error, 'Invalid Credentials');
-              break;
-            case 4:
-              notificationDialog(context, locale.error,
-                  'The Account is disabled\nContact support team');
-              break;
-            case 5:
-              notificationDialog(
-                  context, locale.error, 'This operation is not allowed');
-              break;
-            case 6:
-              notificationDialog(
-                  context, locale.error, 'The operation code is invalid');
-              break;
-            case 8:
-              notificationDialog(context, locale.error,
-                  'Phone Number verification failed, Try later');
-              break;
-            default:
-              notificationDialog(context, locale.error, 'Contact support team');
-              break;
-          }
-          setState(() {
-            _isNetworkCall = false;
-          });
-        },
-        verificationFailed: (AuthException exception) async {
-          print(
-              'Phone Number Verification failed with ${exception.code} and ${exception.message}');
-          notificationDialog(context, locale.error,
-              'Phone Number verification failed \n${exception.message}');
-          setState(() {
-            _isNetworkCall = false;
-          });
-        },
-        codeSent: (String verificationId, [int forceResendingToken]) async {
-          print('code sent');
+      phoneNumber: _phoneNumber,
+      timeout: Duration(seconds: 60),
+      verificationCompleted: (AuthCredential credential) async {
+        print('verified');
+        Navigator.of(context).pop();
+        response = await authHandler.phoneUserLoginOrRegister(credential);
+        print('Response is in verification completed $response');
+        _code = '';
+        switch (response) {
+          case 0:
+            Navigator.pushReplacementNamed(context, '/homePage');
+            break;
+          case 1:
+            Navigator.pushReplacementNamed(context, '/introPage');
+            break;
+          case 2:
+            notificationDialog(context, 'Error',
+                'The Account exists with different credentials');
+            break;
+          case 3:
+            notificationDialog(context, 'Error', 'Invalid Credentials');
+            break;
+          case 4:
+            notificationDialog(context, 'Error',
+                'The Account is disabled\nContact support team');
+            break;
+          case 5:
+            notificationDialog(
+                context, 'Error', 'This operation is not allowed');
+            break;
+          case 6:
+            notificationDialog(
+                context, 'Error', 'The operation code is invalid');
+            break;
+          case 8:
+            notificationDialog(context, 'Error',
+                'Phone Number verification failed, Try later');
+            break;
+          default:
+            notificationDialog(context, 'Error', 'Contact support team');
+            break;
+        }
+        setState(() {
+          _isNetworkCall = false;
+        });
+      },
+      verificationFailed: (AuthException exception) async {
+        print(
+            'Phone Number Verification failed with ${exception.code} and ${exception.message}');
+        notificationDialog(context, 'Error',
+            'Phone Number verification failed \n${exception.message}');
+        setState(() {
+          _isNetworkCall = false;
+        });
+      },
+      codeSent: (String verificationId, [int forceResendingToken]) async {
+        print('code sent');
 
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) {
-              return Dialog(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                child: Container(
-                  height: size.height * 0.3,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            SizedBox(width: 16.0),
-                            Expanded(
-                              child: RichText(
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                        text: 'Please enter the ',
-                                        style: CustomThemeData.latoFont
-                                            .copyWith(
-                                                color: CustomThemeData
-                                                    .blackColorShade2,
-                                                fontWeight: FontWeight.w400)),
-                                    TextSpan(
-                                        text: 'One Time Password',
-                                        style: CustomThemeData.latoFont
-                                            .copyWith(
-                                                color: CustomThemeData
-                                                    .blackColorShade2,
-                                                fontSize: 16.0,
-                                                fontWeight: FontWeight.bold)),
-                                    TextSpan(
-                                      text: ' sent to your mobile',
-                                      style: CustomThemeData.latoFont.copyWith(
-                                          color:
-                                              CustomThemeData.blackColorShade2,
-                                          fontWeight: FontWeight.w400),
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) {
+            return Dialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: Container(
+                height: size.height * 0.3,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          SizedBox(width: 16.0),
+                          Expanded(
+                            child: RichText(
+                              text: TextSpan(
+                                children: <InlineSpan>[
+                                  TextSpan(
+                                    text: 'Please enter the ',
+                                    style: CustomThemeData.latoFont.copyWith(
+                                      color: CustomThemeData.blackColorShade2,
+                                      fontWeight: FontWeight.w400,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  TextSpan(
+                                    text: 'One Time Password',
+                                    style: CustomThemeData.latoFont.copyWith(
+                                      color: CustomThemeData.blackColorShade2,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: ' sent to your mobile',
+                                    style: CustomThemeData.latoFont.copyWith(
+                                      color: CustomThemeData.blackColorShade2,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            SizedBox(width: 16.0),
-                          ],
-                        ),
-                        SizedBox(height: 16.0),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            otpField(context, "1", focusNode1),
-                            SizedBox(width: 5.0),
-                            otpField(context, "2", focusNode2),
-                            SizedBox(width: 5.0),
-                            otpField(context, "3", focusNode3),
-                            SizedBox(width: 5.0),
-                            otpField(context, "4", focusNode4),
-                            SizedBox(width: 5.0),
-                            otpField(context, "5", focusNode5),
-                            SizedBox(width: 5.0),
-                            otpField(context, "6", focusNode6),
-                            SizedBox(width: 5.0),
-                          ],
-                        ),
-                        SizedBox(height: size.height * 0.04 * 1.5),
-                        Container(
-                          child: CustomButton(
-                            height: size.height * 0.055,
-                            width: size.width * 0.7,
-                            onPressed: () async {
-                              FocusScope.of(context).unfocus();
-                              print('In verification');
-                              print('code is $_code');
-                              AuthCredential credential =
-                                  PhoneAuthProvider.getCredential(
-                                      verificationId: verificationId,
-                                      smsCode: _code);
-                              response = await authHandler
-                                  .phoneUserLoginOrRegister(credential);
-                              Navigator.of(context).pop();
-                              print('Response is $response');
-                              switch (response) {
-                                case 0:
-                                  Navigator.pushReplacementNamed(
-                                      context, '/homePage');
-                                  break;
-                                case 1:
-                                  Navigator.pushReplacementNamed(
-                                      context, '/introPage');
-                                  break;
-                                case 2:
-                                  notificationDialog(context, locale.error,
-                                      'The Account exists with different credentials');
-                                  break;
-                                case 3:
-                                  notificationDialog(context, locale.error,
-                                      'Invalid Credentials');
-                                  break;
-                                case 4:
-                                  notificationDialog(context, locale.error,
-                                      'The Account is disabled\nContact support team');
-                                  break;
-                                case 5:
-                                  notificationDialog(context, locale.error,
-                                      'This operation is not allowed');
-                                  break;
-                                case 6:
-                                  notificationDialog(context, locale.error,
-                                      'The operation code is invalid');
-                                  break;
-                                case 8:
-                                  notificationDialog(context, locale.error,
-                                      'Phone Number verification failed, Try later');
-                                  break;
-                                default:
-                                  notificationDialog(context, locale.error,
-                                      'Contact support team');
-                                  break;
-                              }
-                              setState(() {
-                                _isNetworkCall = false;
-                              });
-                            },
-                            child: Center(
-                              child: Text(
-                                'VERIFY',
-                                style: CustomThemeData.robotoFont.copyWith(
-                                    fontSize: size.width * 0.038,
-                                    color: CustomThemeData.whiteColor),
+                          ),
+                          SizedBox(width: 16.0),
+                        ],
+                      ),
+                      SizedBox(height: 16.0),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          otpField(context, "1", focusNode1),
+                          SizedBox(width: 5.0),
+                          otpField(context, "2", focusNode2),
+                          SizedBox(width: 5.0),
+                          otpField(context, "3", focusNode3),
+                          SizedBox(width: 5.0),
+                          otpField(context, "4", focusNode4),
+                          SizedBox(width: 5.0),
+                          otpField(context, "5", focusNode5),
+                          SizedBox(width: 5.0),
+                          otpField(context, "6", focusNode6),
+                          SizedBox(width: 5.0),
+                        ],
+                      ),
+                      SizedBox(height: size.height * 0.04 * 1.5),
+                      Container(
+                        child: CustomButton(
+                          height: size.height * 0.055,
+                          width: size.width * 0.7,
+                          onPressed: () async {
+                            FocusScope.of(context).unfocus();
+                            print('In verification');
+                            print('code is $_code');
+                            AuthCredential credential =
+                                PhoneAuthProvider.getCredential(
+                              verificationId: verificationId,
+                              smsCode: _code,
+                            );
+                            response = await authHandler
+                                .phoneUserLoginOrRegister(credential);
+                            Navigator.of(context).pop();
+                            print('Response is $response');
+                            switch (response) {
+                              case 0:
+                                Navigator.pushReplacementNamed(
+                                    context, '/homePage');
+                                break;
+                              case 1:
+                                Navigator.pushReplacementNamed(
+                                    context, '/introPage');
+                                break;
+                              case 2:
+                                notificationDialog(context, 'Error',
+                                    'The Account exists with different credentials');
+                                break;
+                              case 3:
+                                notificationDialog(
+                                    context, 'Error', 'Invalid Credentials');
+                                break;
+                              case 4:
+                                notificationDialog(context, 'Error',
+                                    'The Account is disabled\nContact support team');
+                                break;
+                              case 5:
+                                notificationDialog(context, 'Error',
+                                    'This operation is not allowed');
+                                break;
+                              case 6:
+                                notificationDialog(context, 'Error',
+                                    'The operation code is invalid');
+                                break;
+                              case 8:
+                                notificationDialog(context, 'Error',
+                                    'Phone Number verification failed, Try later');
+                                break;
+                              default:
+                                notificationDialog(
+                                    context, 'Error', 'Contact support team');
+                                break;
+                            }
+                            setState(() {
+                              _isNetworkCall = false;
+                            });
+                          },
+                          child: Center(
+                            child: Text(
+                              'VERIFY',
+                              style: CustomThemeData.robotoFont.copyWith(
+                                fontSize: size.width * 0.038,
+                                color: CustomThemeData.whiteColor,
                               ),
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-              );
-            },
-          );
-        },
-        codeAutoRetrievalTimeout: null);
+              ),
+            );
+          },
+        );
+      },
+      codeAutoRetrievalTimeout: null,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final locale = AppLocalization.of(context);
 
     return Container(
       child: Form(
@@ -268,28 +270,40 @@ class _SignInFormState extends State<SignInForm> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   SizedBox(width: size.height * 0.025),
-                  Icon(Icons.info, color: Colors.white, size: 20.0),
+                  Icon(
+                    Icons.info,
+                    color: Colors.white,
+                    size: 20.0,
+                  ),
                   SizedBox(width: 10.0),
                   Expanded(
                     child: RichText(
-                      text: TextSpan(children: [
-                        TextSpan(
+                      text: TextSpan(
+                        children: <InlineSpan>[
+                          TextSpan(
                             text: 'We will send ',
                             style: CustomThemeData.latoFont.copyWith(
-                                color: CustomThemeData.blackColorShade2,
-                                fontWeight: FontWeight.w400)),
-                        TextSpan(
+                              color: CustomThemeData.blackColorShade2,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          TextSpan(
                             text: 'One Time Password',
                             style: CustomThemeData.latoFont.copyWith(
-                                color: CustomThemeData.blackColorShade2,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold)),
-                        TextSpan(
+                              color: CustomThemeData.blackColorShade2,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          TextSpan(
                             text: ' to this mobile number',
                             style: CustomThemeData.latoFont.copyWith(
-                                color: CustomThemeData.blackColorShade2,
-                                fontWeight: FontWeight.w400)),
-                      ]),
+                              color: CustomThemeData.blackColorShade2,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(width: size.height * 0.025),
@@ -314,7 +328,7 @@ class _SignInFormState extends State<SignInForm> {
                             });
                             _formKey.currentState.save();
                             _phoneNumber = '+91$_phoneNumber';
-                            phoneNumberLogin(context, size, locale);
+                            phoneNumberLogin(context, size);
                           } else {
                             setState(() {
                               _autoValidate = true;
@@ -335,8 +349,9 @@ class _SignInFormState extends State<SignInForm> {
                             Text(
                               'SEND OTP',
                               style: CustomThemeData.robotoFont.copyWith(
-                                  fontSize: size.width * 0.038,
-                                  color: CustomThemeData.whiteColor),
+                                fontSize: size.width * 0.038,
+                                color: CustomThemeData.whiteColor,
+                              ),
                             ),
                           ],
                         ),
@@ -389,18 +404,27 @@ class _SignInFormState extends State<SignInForm> {
         cursorColor: Colors.white,
         keyboardType: TextInputType.number,
         style: CustomThemeData.montserratFont.copyWith(
-            fontSize: 20.0,
-            fontWeight: FontWeight.w600,
-            color: CustomThemeData.blueColorShade2),
+          fontSize: 20.0,
+          fontWeight: FontWeight.w600,
+          color: CustomThemeData.blueColorShade2,
+        ),
         decoration: InputDecoration(
-            contentPadding: const EdgeInsets.only(
-                bottom: 10.0, top: 10.0, left: 4.0, right: 4.0),
-            focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.0),
-                borderSide: BorderSide(color: Colors.blueAccent, width: 2.25)),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.0),
-                borderSide: BorderSide(color: Colors.white))),
+          contentPadding: const EdgeInsets.symmetric(
+            vertical: 10.0,
+            horizontal: 4.0,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5.0),
+            borderSide: BorderSide(
+              color: Colors.blueAccent,
+              width: 2.25,
+            ),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5.0),
+            borderSide: BorderSide(color: Colors.white),
+          ),
+        ),
       ),
     );
   }

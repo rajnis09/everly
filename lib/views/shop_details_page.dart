@@ -43,10 +43,10 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
               elevation: 2,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: <Widget>[
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: <Widget>[
                       Container(
                         padding: EdgeInsets.only(top: 8),
                         child: Image.asset(
@@ -62,7 +62,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
+                          children: <Widget>[
                             FittedBox(
                               child: Text(
                                 shopItem.shopItems[index]["itemName"],
@@ -71,7 +71,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
+                              children: <Widget>[
                                 FittedBox(
                                   child: Text(
                                     shopItem.shopItems[index]["price"]
@@ -86,7 +86,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                                   padding: const EdgeInsets.only(right: 10),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
+                                    children: <Widget>[
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text('Qty'),
@@ -103,9 +103,10 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                                         ),
                                         elevation: 25,
                                         style: TextStyle(
-                                            color: CustomThemeData
-                                                .blueColorShade1),
-                                        onChanged: (String newValue) {
+                                          color:
+                                              CustomThemeData.blueColorShade1,
+                                        ),
+                                        onChanged: (newValue) {
                                           update(newValue, index);
                                         },
                                         items: <String>[
@@ -119,13 +120,15 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                                           '8',
                                           '9',
                                           '10'
-                                        ].map<DropdownMenuItem<String>>(
-                                            (String value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList(),
+                                        ]
+                                            .map<DropdownMenuItem<String>>(
+                                              (value) =>
+                                                  DropdownMenuItem<String>(
+                                                value: value,
+                                                child: Text(value),
+                                              ),
+                                            )
+                                            .toList(),
                                       ),
                                     ],
                                   ),

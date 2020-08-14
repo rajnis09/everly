@@ -32,7 +32,9 @@ class NetworkBuilder extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: size.height * 0.03),
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
                 Text(
                   'Oops!!\nNo Internet Connection\nPlease connect to internet',
                   textScaleFactor: 1.5,
@@ -41,7 +43,9 @@ class NetworkBuilder extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: size.height * 0.035),
+                SizedBox(
+                  height: size.height * 0.035,
+                ),
                 CircularProgressIndicator(),
               ],
             ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../utils/theme/theme_data.dart';
 import '../model/notification_manager.dart';
-import '../helpers/locale/app_localization.dart';
 import '../widgets/network_builder.dart';
 
 class NotificationPage extends StatefulWidget {
@@ -22,10 +21,9 @@ class _NotificationPageState extends State<NotificationPage> {
 
   @override
   Widget build(BuildContext context) {
-    var locale = AppLocalization.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(locale.notification),
+        title: Text('Notification'),
       ),
       body: NetworkBuilder(
         child: tempMessage.length > 0
@@ -38,37 +36,47 @@ class _NotificationPageState extends State<NotificationPage> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Removed',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     key: Key(keyItem),
                     onDismissed: (direction) {
                       removeMsg(index);
                       // Show a snackbar. This snackbar could also contain "Undo" actions.
-                      Scaffold.of(context).showSnackBar(SnackBar(
-                        content: Text('Notification removed successfully'),
-                      ));
+                      Scaffold.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Notification removed successfully'),
+                        ),
+                      );
                     },
                     child: Container(
                       height: 90,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 5,
+                      ),
                       child: Card(
                         elevation: 3,
                         margin: EdgeInsets.all(0),
                         child: Center(
-                            child: Text(
-                          tempMessage[index],
-                          style:
-                              TextStyle(color: CustomThemeData.blueColorShade1),
-                        )),
+                          child: Text(
+                            tempMessage[index],
+                            style: TextStyle(
+                              color: CustomThemeData.blueColorShade1,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   );
                 },
                 itemCount: tempMessage.length,
               )
-            : Center(child: Text('No notifications yet :)')),
+            : Center(
+                child: Text('No notifications yet :)'),
+              ),
       ),
     );
   }

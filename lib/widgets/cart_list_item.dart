@@ -81,7 +81,10 @@ class _CartListItemState extends State<CartListItem> {
                           width: 20,
                           height: 20,
                           alignment: Alignment.center,
-                          margin: EdgeInsets.only(right: 8, top: 8),
+                          margin: EdgeInsets.only(
+                            right: 8,
+                            top: 8,
+                          ),
                           child: Icon(
                             Icons.close,
                             color: Colors.white,
