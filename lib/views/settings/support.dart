@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/theme/theme_data.dart';
-import '../../helpers/locale/app_localization.dart';
 
 class SupportPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var locale = AppLocalization.of(context);
     var _appbar = AppBar(
       title: const Text('Help & Support'),
     );
@@ -15,82 +13,82 @@ class SupportPage extends StatelessWidget {
     var statusBarHeight = MediaQuery.of(context).padding.top;
     final List<Query> data = <Query>[
       Query(
-        locale.q1,
+        'Where is my order?',
         <Query>[
           Query(
-            locale.a1,
+            'You can track your order in my order section.',
           ),
         ],
       ),
       Query(
-        locale.q2,
+        'Did your app provide delivery services?',
         <Query>[
           Query(
-            locale.q2,
+            'No , this app only provides you the platform to place the order from your own place , We does not provide any such facility.',
           ),
         ],
       ),
       Query(
-        locale.q3,
+        'How can I cancel my order?',
         <Query>[
           Query(
-            locale.q3,
+            'Everly provides easy and hassel-free cancellation. You can can the order via app before it is packed.',
           ),
         ],
       ),
       Query(
-        locale.q4,
+        'What if I want to return something?',
         <Query>[
           Query(
-            locale.q4,
+            'If you are disatisfied with the products deliverd,please contanct to the seller as soon as possible , the app does not provide any such service.',
           ),
         ],
       ),
       Query(
-        locale.q5,
+        'What is minimum order value?',
         <Query>[
           Query(
-            locale.q5,
+            'There is no minimum order value. However each store can have some minimum order value.',
           ),
         ],
       ),
       Query(
-        locale.q6,
+        'Can I schedule an order to my convinence?',
         <Query>[
           Query(
-            locale.q6,
+            'Sure, Its seller and customer mutual understanding.',
           ),
         ],
       ),
       Query(
-        locale.q7,
+        'Where is my order?',
         <Query>[
           Query(
-            locale.q7,
+            'You can track your order in my order section.',
           ),
         ],
       ),
       Query(
-        locale.q8,
+        'Where is my order?',
         <Query>[
           Query(
-            locale.q8,
+            'You can track your order in my order section.',
           ),
         ],
       ),
       Query(
-        locale.q9,
+        'Where is my order?',
         <Query>[
           Query(
-            locale.q9,
+            'You can track your order in my order section.',
           ),
         ],
       ),
       Query(
-        locale.q10,
+        'Where is my order?',
         <Query>[
           Query(
-            locale.q10,
+            'You can track your order in my order section.',
           ),
         ],
       ),
@@ -102,8 +100,7 @@ class SupportPage extends StatelessWidget {
           Container(
             height: (size - statusBarHeight - bar) * .9,
             child: ListView.builder(
-              itemBuilder: (BuildContext context, int index) =>
-                  QueryItem(data[index]),
+              itemBuilder: (context, index) => QueryItem(data[index]),
               itemCount: data.length,
             ),
           ),
@@ -127,9 +124,11 @@ class SupportPage extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      locale.stillNeedHelp,
+                      'Still need help? Write to us',
                       style: CustomThemeData.robotoFont.copyWith(
-                          fontSize: 18, color: CustomThemeData.whiteColor),
+                        fontSize: 18,
+                        color: CustomThemeData.whiteColor,
+                      ),
                     ),
                   ],
                 ),

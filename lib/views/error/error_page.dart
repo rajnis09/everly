@@ -8,15 +8,16 @@ class ErrorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // var locale = AppLocalization.of(context);
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Go back'),
+      appBar: AppBar(
+        title: Text('Go back'),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/images/404-page.png"),
+              fit: BoxFit.contain),
         ),
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/images/404-page.png"),
-                fit: BoxFit.contain),
-          ),
-        ));
+      ),
+    );
   }
 }

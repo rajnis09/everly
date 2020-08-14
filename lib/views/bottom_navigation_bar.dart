@@ -7,19 +7,10 @@ import '../views/home_page.dart';
 import './profile/profile_page.dart';
 import './orders/orders_page.dart';
 import './settings/settings_page.dart';
-import '../helpers/locale/app_localization.dart';
 import '../model/notification_manager.dart';
 import '../widgets/network_builder.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  CustomBottomNavigationBar({
-    this.changeToHindi,
-    this.changeToEnglish,
-  });
-
-  final Function changeToHindi;
-  final Function changeToEnglish;
-
   @override
   _CustomBottomNavigationBarState createState() =>
       _CustomBottomNavigationBarState();
@@ -54,22 +45,18 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
-    final locale = AppLocalization.of(context);
     final List<String> _titles = [
-      locale.home,
-      locale.profile,
-      locale.myOrders,
-      locale.settings,
+      'Home',
+      'Profile',
+      'My Orders',
+      'Settings',
       // 'Add Shop'
     ];
     final List<Widget> _pages = [
       HomePage(),
       ProfilePage(),
       OrdersPage(),
-      SettingsPage(
-        changeToHindi: widget.changeToHindi,
-        changeToEnglish: widget.changeToEnglish,
-      ),
+      SettingsPage(),
     ];
 
     return Scaffold(
@@ -78,31 +65,32 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               title: Text(_titles[_selectedPageIndex]),
               actions: <Widget>[
                 Padding(
-                    padding: EdgeInsets.only(right: 10.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/notificationPage');
-                      },
-                      child: Icon(
-                        Icons.notifications_none,
-                        size: 25,
-                      ),
-                    )),
+                  padding: EdgeInsets.only(right: 10.0),
+                  child: GestureDetector(
+                    onTap: () =>
+                        Navigator.pushNamed(context, '/notificationPage'),
+                    child: Icon(
+                      Icons.notifications_none,
+                      size: 25,
+                    ),
+                  ),
+                ),
                 Padding(
-                    padding: EdgeInsets.only(right: 10.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/cartPage');
-                      },
-                      child: Icon(
-                        Icons.shopping_cart,
-                        size: 25,
-                      ),
-                    )),
+                  padding: EdgeInsets.only(right: 10.0),
+                  child: GestureDetector(
+                    onTap: () => Navigator.pushNamed(context, '/cartPage'),
+                    child: Icon(
+                      Icons.shopping_cart,
+                      size: 25,
+                    ),
+                  ),
+                ),
               ],
             )
           : null,
-      body: NetworkBuilder(child: _pages[_selectedPageIndex]),
+      body: NetworkBuilder(
+        child: _pages[_selectedPageIndex],
+      ),
       bottomNavigationBar: _FABBottomAppBar(
         selectedColor:
             _selectedPageIndex == 4 ? null : CustomThemeData.blueColorShade1,
@@ -114,19 +102,19 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         items: [
           _FABBottomAppBarItem(
             iconData: Icons.home,
-            text: locale.home,
+            text: 'Home',
           ),
           _FABBottomAppBarItem(
             iconData: Icons.person,
-            text: locale.profile,
+            text: 'Profile',
           ),
           _FABBottomAppBarItem(
             iconData: Icons.account_balance_wallet,
-            text: locale.myOrders,
+            text: 'My Orders',
           ),
           _FABBottomAppBarItem(
             iconData: Icons.settings,
-            text: locale.settings,
+            text: 'Settings',
           ),
         ],
       ),

@@ -21,12 +21,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void initializingApplication() {
     Future.delayed(Duration(seconds: 1), () async {
-       var user = await authHandler.getCurrentUser();
-       if (user != null) {
-         Navigator.pushReplacementNamed(context, '/homePage');
-       } else {
-         Navigator.pushReplacementNamed(context, '/logInPage');
-       }
+      var user = await authHandler.getCurrentUser();
+      if (user != null) {
+        Navigator.pushReplacementNamed(context, '/homePage');
+      } else {
+        Navigator.pushReplacementNamed(context, '/logInPage');
+      }
     });
   }
 
@@ -54,14 +54,16 @@ class _SplashScreenState extends State<SplashScreen> {
                     width: size * 0.5,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage(
-                              'assets/icon/logoWithoutBackground.png')),
+                        image:
+                            AssetImage('assets/icon/logoWithoutBackground.png'),
+                      ),
                     ),
                   ),
                 ),
                 CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                      CustomThemeData.blueColorShade1),
+                    CustomThemeData.blueColorShade1,
+                  ),
                 ),
               ],
             ),

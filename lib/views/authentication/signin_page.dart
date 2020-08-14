@@ -4,14 +4,12 @@ import '../../utils/theme/theme_data.dart';
 import '../../widgets/custom_button.dart';
 import '../../utils/forms/sign_in_form.dart';
 import '../../widgets/logo_widget.dart';
-import '../../helpers/locale/app_localization.dart';
 import '../../widgets/network_builder.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final locale = AppLocalization.of(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -60,7 +58,7 @@ class LoginPage extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     height: size.height * 0.06,
                     child: Text(
-                      locale.login,
+                      'Login',
                       textAlign: TextAlign.start,
                       style: CustomThemeData.robotoFont.copyWith(
                         fontSize: size.height * 0.045,
@@ -80,21 +78,26 @@ class LoginPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Expanded(
-                          child: Divider(color: Colors.grey, thickness: 1),
+                          child: Divider(
+                            color: Colors.grey,
+                            thickness: 1,
+                          ),
                         ),
                         SizedBox(width: 5),
                         Text(
                           'OR',
                           style: CustomThemeData.robotoFont.copyWith(
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                              color: CustomThemeData.blackColorShade2),
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color: CustomThemeData.blackColorShade2,
+                          ),
                         ),
                         SizedBox(width: 5),
                         Expanded(
                           child: Divider(
-                              color: CustomThemeData.greyColorShade,
-                              thickness: 1),
+                            color: CustomThemeData.greyColorShade,
+                            thickness: 1,
+                          ),
                         ),
                       ],
                     ),
@@ -120,10 +123,11 @@ class LoginPage extends StatelessWidget {
                             width: size.width * 0.01,
                           ),
                           Text(
-                            locale.signUpPhone,
+                            'Sign up with phone',
                             style: CustomThemeData.robotoFont.copyWith(
-                                fontSize: size.width * 0.038,
-                                color: CustomThemeData.whiteColor),
+                              fontSize: size.width * 0.038,
+                              color: CustomThemeData.whiteColor,
+                            ),
                           ),
                         ],
                       ),
@@ -154,8 +158,9 @@ class LoginPage extends StatelessWidget {
                           Text(
                             'Direct Login',
                             style: CustomThemeData.robotoFont.copyWith(
-                                fontSize: size.width * 0.038,
-                                color: CustomThemeData.whiteColor),
+                              fontSize: size.width * 0.038,
+                              color: CustomThemeData.whiteColor,
+                            ),
                           ),
                         ],
                       ),
