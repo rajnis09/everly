@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'package:qrscan/qrscan.dart' as scanner;
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../utils/theme/theme_data.dart';
 import '../helpers/locale/app_localization.dart';
+import '../presentation/custom_icons.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,6 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final String assetName = 'assets/icon/Capture.svg';
+
   final List<Map<String, String>> dummyData = [
     {
       "image": "assets/images/load.jpg",
@@ -44,7 +49,7 @@ class _HomePageState extends State<HomePage> {
       "category": "Daily Needs",
     },
   ];
-
+  ScrollController scrollController;
   bool dialVisible = true;
 
   Future _scan() async {
@@ -55,10 +60,29 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    scrollController = ScrollController();
+    scrollController.addListener(() {
+      if (scrollController.position.userScrollDirection ==
+          ScrollDirection.forward) {
+        setState(() {
+          dialVisible = true;
+        });
+      } else {
+        setState(() {
+          dialVisible = false;
+        });
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     var locale = AppLocalization.of(context);
     return Scaffold(
       body: ListView.builder(
+        controller: scrollController,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () => Navigator.of(context).pushNamed('/shopDetailsPage'),
@@ -141,7 +165,11 @@ class _HomePageState extends State<HomePage> {
         overlayOpacity: 0.5,
         children: [
           SpeedDialChild(
-            child: Icon(Icons.camera_alt, color: Colors.white),
+            // child: SvgPicture.asset(
+            //   assetName,
+            //   color: Colors.white,
+            // ),
+            child: Icon(CustomIcons.qrcode),
             backgroundColor: CustomThemeData.greyColorShade,
             onTap: _scan,
             label: locale.scanText,

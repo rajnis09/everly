@@ -65,7 +65,6 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                   Expanded(
                     child: Container(
                       padding: EdgeInsets.only(left: 8, top: 10, right: 10),
-                      // width: MediaQuery.of(context).size.width * (1 - 0.22),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
