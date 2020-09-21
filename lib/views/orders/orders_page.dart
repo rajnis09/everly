@@ -89,7 +89,9 @@ Widget _cardTop() {
             ),
             Text(
               'Budh Vihar, Alwar',
-              style: TextStyle(color: CustomThemeData.greyColorShade),
+              style: TextStyle(
+                color: CustomThemeData.greyColorShade,
+              ),
             ),
           ],
         ),
@@ -107,7 +109,9 @@ Widget _cardMiddle() {
         children: <Widget>[
           Text(
             'ITEMS',
-            style: TextStyle(color: CustomThemeData.greyColorShade),
+            style: TextStyle(
+              color: CustomThemeData.greyColorShade,
+            ),
           ),
           Text(
             '5 x Items',
@@ -122,7 +126,9 @@ Widget _cardMiddle() {
           ),
           Text(
             'ORDERED ON',
-            style: TextStyle(color: CustomThemeData.greyColorShade),
+            style: TextStyle(
+              color: CustomThemeData.greyColorShade,
+            ),
           ),
           Text(
             '28 Feb 2020 at 1:36 PM',
@@ -137,7 +143,9 @@ Widget _cardMiddle() {
           ),
           Text(
             'TOTAL AMOUNT',
-            style: TextStyle(color: CustomThemeData.greyColorShade),
+            style: TextStyle(
+              color: CustomThemeData.greyColorShade,
+            ),
           ),
           Text(
             '\u20B9480.00',
@@ -159,7 +167,9 @@ Widget _cardBottom() {
       padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
       child: Text(
         'Delivered',
-        style: TextStyle(color: CustomThemeData.greyColorShade),
+        style: TextStyle(
+          color: CustomThemeData.greyColorShade,
+        ),
       ),
     ),
   );

@@ -84,7 +84,9 @@ class _CartPageState extends State<CartPage> {
                 price: _items[idx]['price'],
                 imageURL: _items[idx]['image'],
                 delete: () => _deleteCartItem(
-                    _items[idx]['itemName'], _items[idx]['price']),
+                  _items[idx]['itemName'],
+                  _items[idx]['price'],
+                ),
               ),
               itemCount: _items.length,
             ),

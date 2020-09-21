@@ -37,10 +37,11 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   width: double.infinity,
                   height: size.height * 0.06,
                   padding: EdgeInsets.fromLTRB(
-                      size.height * 0.058 * 0.28,
-                      size.height * 0.058 * 0.39,
-                      size.height * 0.058 * 0.28,
-                      size.height * 0.058 * 0.28 * 0.5),
+                    size.height * 0.058 * 0.28,
+                    size.height * 0.058 * 0.39,
+                    size.height * 0.058 * 0.28,
+                    size.height * 0.058 * 0.28 * 0.5,
+                  ),
                   child: Text(
                     'Order ID: $_orderID',
                     style: CustomThemeData.latoFont.copyWith(
@@ -58,11 +59,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                     children: <Widget>[
                       Container(
                         height: size.height * 0.4 * 0.17,
-                        padding: EdgeInsets.fromLTRB(
-                            size.height * 0.4 * 0.05,
-                            size.height * 0.4 * 0.05,
-                            size.height * 0.4 * 0.05,
-                            size.height * 0.4 * 0.05),
+                        padding: EdgeInsets.all(size.height * 0.4 * 0.05),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -70,16 +67,18 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                               child: Text(
                                 'Total ${_dummyData.length} items',
                                 style: CustomThemeData.latoFont.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: size.height * 0.4 * 0.17 * 0.36),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: size.height * 0.4 * 0.17 * 0.36,
+                                ),
                               ),
                             ),
                             FittedBox(
                               child: Text(
                                 'Price : Rs. 400',
                                 style: CustomThemeData.latoFont.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: size.height * 0.4 * 0.17 * 0.36),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: size.height * 0.4 * 0.17 * 0.36,
+                                ),
                               ),
                             ),
                           ],
@@ -87,67 +86,67 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                       ),
                       Expanded(
                         child: ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: _dummyData.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Card(
-                                  elevation: 3.0,
-                                  clipBehavior: Clip.antiAlias,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8.0)),
-                                  child: LayoutBuilder(
-                                      builder: (context, constraints) {
-                                    return Container(
-                                      width: size.width * 0.4,
-                                      alignment: Alignment.bottomCenter,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                                'assets/images/${_dummyData[index]}'),
-                                            fit: BoxFit.cover),
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: _dummyData.length,
+                          itemBuilder: (context, index) => Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Card(
+                              elevation: 3.0,
+                              clipBehavior: Clip.antiAlias,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: LayoutBuilder(
+                                builder: (context, constraints) => Container(
+                                  width: size.width * 0.4,
+                                  alignment: Alignment.bottomCenter,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        'assets/images/${_dummyData[index]}',
                                       ),
-                                      child: Container(
-                                        padding: const EdgeInsets.all(8.0),
-                                        alignment: Alignment.bottomCenter,
-                                        height: constraints.maxHeight * 0.3,
-                                        width: double.infinity,
-                                        color: Colors.white,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            // This is to be filled by the data
-                                            Text(
-                                              'Name',
-                                              style: CustomThemeData.latoFont
-                                                  .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: constraints
-                                                              .maxHeight *
-                                                          0.25 *
-                                                          0.3),
-                                            ),
-                                            Text(
-                                              'Price',
-                                              style: CustomThemeData.latoFont
-                                                  .copyWith(
-                                                      fontSize: constraints
-                                                              .maxHeight *
-                                                          0.25 *
-                                                          0.25),
-                                            ),
-                                          ],
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(8.0),
+                                    alignment: Alignment.bottomCenter,
+                                    height: constraints.maxHeight * 0.3,
+                                    width: double.infinity,
+                                    color: Colors.white,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        // This is to be filled by the data
+                                        Text(
+                                          'Name',
+                                          style:
+                                              CustomThemeData.latoFont.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: constraints.maxHeight *
+                                                0.25 *
+                                                0.3,
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  }),
+                                        Text(
+                                          'Price',
+                                          style:
+                                              CustomThemeData.latoFont.copyWith(
+                                            fontSize: constraints.maxHeight *
+                                                0.25 *
+                                                0.25,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                              );
-                            }),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                       divider,
                     ],
@@ -156,10 +155,11 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 Container(
                   width: double.infinity,
                   padding: EdgeInsets.fromLTRB(
-                      size.height * 0.058 * 0.28,
-                      size.height * 0.03 * 0.39,
-                      size.height * 0.058 * 0.28,
-                      size.height * 0.03 * 0.28 * 0.5),
+                    size.height * 0.058 * 0.28,
+                    size.height * 0.03 * 0.39,
+                    size.height * 0.058 * 0.28,
+                    size.height * 0.03 * 0.28 * 0.5,
+                  ),
                   child: Text(
                     'Order Updates',
                     style: CustomThemeData.latoFont.copyWith(
@@ -169,7 +169,11 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 ),
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.only(left: 20.0, top: 8.0, bottom: 8.0),
+                  padding: EdgeInsets.only(
+                    left: 20.0,
+                    top: 8.0,
+                    bottom: 8.0,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -192,17 +196,25 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   ),
                 ),
                 divider,
-                buildListItem(context, 'Need help', Icons.help, null, () {
-                  Navigator.pushNamed(context, '/supportPage');
-                }, size.height * 0.025),
+                buildListItem(
+                  context,
+                  'Need help',
+                  Icons.help,
+                  null,
+                  () {
+                    Navigator.pushNamed(context, '/supportPage');
+                  },
+                  size.height * 0.025,
+                ),
                 divider,
                 Container(
                   width: double.infinity,
                   padding: EdgeInsets.fromLTRB(
-                      size.height * 0.058 * 0.28,
-                      size.height * 0.03 * 0.39,
-                      size.height * 0.058 * 0.28,
-                      size.height * 0.03 * 0.28 * 0.5),
+                    size.height * 0.058 * 0.28,
+                    size.height * 0.03 * 0.39,
+                    size.height * 0.058 * 0.28,
+                    size.height * 0.03 * 0.28 * 0.5,
+                  ),
                   child: Text(
                     'Shipping Details',
                     style: CustomThemeData.latoFont.copyWith(
@@ -211,26 +223,32 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 20.0, top: 8.0, bottom: 8.0),
+                  padding: EdgeInsets.only(
+                    left: 20.0,
+                    top: 8.0,
+                    bottom: 8.0,
+                  ),
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       FittedBox(
-                          child: Text(
-                        'Tony Shark',
-                        textScaleFactor: 1.2,
-                        style: CustomThemeData.latoFont.copyWith(
-                          fontWeight: FontWeight.bold,
+                        child: Text(
+                          'Tony Shark',
+                          textScaleFactor: 1.2,
+                          style: CustomThemeData.latoFont.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      )),
+                      ),
                       SizedBox(height: 10),
                       FittedBox(
-                          child: Text(
-                        'Avengers Tower, NY',
-                        textScaleFactor: 1.2,
-                        style: CustomThemeData.latoFont.copyWith(),
-                      )),
+                        child: Text(
+                          'Avengers Tower, NY',
+                          textScaleFactor: 1.2,
+                          style: CustomThemeData.latoFont.copyWith(),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -238,10 +256,11 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 Container(
                   width: double.infinity,
                   padding: EdgeInsets.fromLTRB(
-                      size.height * 0.058 * 0.28,
-                      size.height * 0.03 * 0.39,
-                      size.height * 0.058 * 0.28,
-                      size.height * 0.03 * 0.28 * 0.5),
+                    size.height * 0.058 * 0.28,
+                    size.height * 0.03 * 0.39,
+                    size.height * 0.058 * 0.28,
+                    size.height * 0.03 * 0.28 * 0.5,
+                  ),
                   child: Text(
                     'Price Details',
                     style: CustomThemeData.latoFont.copyWith(
@@ -251,7 +270,11 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 ),
                 // Change it later to listview if required
                 Container(
-                  padding: EdgeInsets.only(left: 20.0, top: 8.0, bottom: 8.0),
+                  padding: EdgeInsets.only(
+                    left: 20.0,
+                    top: 8.0,
+                    bottom: 8.0,
+                  ),
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

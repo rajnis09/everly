@@ -44,6 +44,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16)),
               elevation: 2,
+<<<<<<< HEAD
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -104,10 +105,62 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                                       underline: Container(
                                         height: 2,
                                         color: CustomThemeData.blueColorShade1,
+=======
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.only(top: 8),
+                        child: Image.asset(
+                          shopItem.shopItems[index]["image"],
+                          fit: BoxFit.contain,
+                          height: 60,
+                          width: MediaQuery.of(context).size.width * 0.16,
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 8, top: 10),
+                        width: MediaQuery.of(context).size.width * (1 - 0.22),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            FittedBox(
+                              child: Text(
+                                shopItem.shopItems[index]["itemName"],
+                                style: Theme.of(context).textTheme.headline4,
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                FittedBox(
+                                  child: Text(
+                                    shopItem.shopItems[index]["price"]
+                                            .toString() +
+                                        ' / ' +
+                                        shopItem.shopItems[index]["amount"],
+                                    style:
+                                        Theme.of(context).textTheme.headline6,
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.only(right: 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text('Qty'),
+>>>>>>> 613f310b1d1f1496c2202f61d5eee45f65aa31f7
                                       ),
                                       elevation: 25,
                                       style: TextStyle(
                                           color:
+<<<<<<< HEAD
                                               CustomThemeData.blueColorShade1),
                                       onChanged: (String newValue) {
                                         update(newValue, index);
@@ -132,6 +185,41 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                                       }).toList(),
                                     ),
                                   ],
+=======
+                                              CustomThemeData.blueColorShade1,
+                                        ),
+                                        elevation: 25,
+                                        style: TextStyle(
+                                          color:
+                                              CustomThemeData.blueColorShade1,
+                                        ),
+                                        onChanged: (newValue) {
+                                          update(newValue, index);
+                                        },
+                                        items: <String>[
+                                          '1',
+                                          '2',
+                                          '3',
+                                          '4',
+                                          '5',
+                                          '6',
+                                          '7',
+                                          '8',
+                                          '9',
+                                          '10'
+                                        ]
+                                            .map<DropdownMenuItem<String>>(
+                                              (value) =>
+                                                  DropdownMenuItem<String>(
+                                                value: value,
+                                                child: Text(value),
+                                              ),
+                                            )
+                                            .toList(),
+                                      ),
+                                    ],
+                                  ),
+>>>>>>> 613f310b1d1f1496c2202f61d5eee45f65aa31f7
                                 ),
                               ),
                             ],

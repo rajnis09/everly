@@ -65,12 +65,12 @@ class _IntroScreenState extends State<IntroScreen> {
                 child: Text(
                   "Skip",
                   style: CustomThemeData.latoFont.copyWith(
-                      color: CustomThemeData.whiteColor,
-                      fontWeight: FontWeight.bold),
+                    color: CustomThemeData.whiteColor,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/homePage');
-                },
+                onTap: () =>
+                    Navigator.of(context).pushReplacementNamed('/homePage'),
                 // shape: RoundedRectangleBorder(
                 //   borderRadius: new BorderRadius.circular(30.0),
                 // ),
@@ -81,8 +81,9 @@ class _IntroScreenState extends State<IntroScreen> {
             alignment: Alignment.bottomRight,
             child: IconButton(
               color: Colors.white,
-              icon:
-                  Icon(_currentIndex == 2 ? Icons.check : Icons.arrow_forward),
+              icon: Icon(
+                _currentIndex == 2 ? Icons.check : Icons.arrow_forward,
+              ),
               onPressed: () {
                 _currentIndex != 2
                     ? _controller.next()
@@ -102,9 +103,13 @@ class IntroItem extends StatelessWidget {
   final Color bg;
   final String imageUrl;
 
-  const IntroItem(
-      {Key key, @required this.title, this.subtitle, this.bg, this.imageUrl})
-      : super(key: key);
+  const IntroItem({
+    Key key,
+    @required this.title,
+    this.subtitle,
+    this.bg,
+    this.imageUrl,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +118,7 @@ class IntroItem extends StatelessWidget {
       color: bg ?? CustomThemeData.blueColorShade1,
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
               // const SizedBox(height: 40.0),
@@ -139,19 +144,23 @@ class IntroItem extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Text(title,
-                  style: CustomThemeData.latoFont.copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 35.0,
-                      color: CustomThemeData.whiteColor)),
+              Text(
+                title,
+                style: CustomThemeData.latoFont.copyWith(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 35.0,
+                  color: CustomThemeData.whiteColor,
+                ),
+              ),
               if (subtitle != null) ...[
                 const SizedBox(height: 10.0),
                 Text(
                   subtitle,
                   style: CustomThemeData.latoFont.copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24.0,
-                      color: CustomThemeData.whiteColor),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24.0,
+                    color: CustomThemeData.whiteColor,
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ],

@@ -7,7 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import '../../utils/auth/auth_handler.dart';
 import '../../utils/theme/theme_data.dart';
 import '../../model/list_profile_section.dart';
-import '../../helpers/locale/app_localization.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -16,25 +15,35 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   List<ListProfileSection> listSection = new List();
-  AppLocalization locale;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    locale = AppLocalization.of(context);
     createListItem();
   }
 
   void createListItem() {
-    listSection.add(createSection(locale.addressMan, Icons.mode_edit, () {
-      print('Address Mangement');
-    }));
-    listSection.add(createSection(locale.logout, Icons.exit_to_app, () async {
-      if (await authHandler.getCurrentUser() != null) {
-        authHandler.signOut();
-      }
-      Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-    }));
+    listSection.add(
+      createSection(
+        'Address Management',
+        Icons.mode_edit,
+        () {
+          print('Address Mangement');
+        },
+      ),
+    );
+    listSection.add(
+      createSection(
+        'Logout',
+        Icons.exit_to_app,
+        () async {
+          if (await authHandler.getCurrentUser() != null) {
+            authHandler.signOut();
+          }
+          Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+        },
+      ),
+    );
   }
 
   createSection(String title, IconData icon, Function onpressed) {
@@ -128,8 +137,8 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       body: SingleChildScrollView(
-        child: Builder(builder: (context) {
-          return Container(
+        child: Builder(
+          builder: (context) => Container(
             height: 440,
             child: Stack(
               children: <Widget>[
@@ -137,18 +146,22 @@ class _ProfilePageState extends State<ProfilePage> {
                   height: 250,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
+                    gradient: LinearGradient(
+                      colors: <Color>[
                         Color(0xff0F2027),
                         Color(0xff203A43),
                         Color(0xff2C5364)
-                      ]),
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10))),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
                   child: Container(
                     padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                     child: Text(
-                      locale.profile,
+                      'Profile',
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         color: Colors.white,
@@ -156,7 +169,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    margin: EdgeInsets.only(top: 85, left: 24),
+                    margin: EdgeInsets.only(
+                      top: 85,
+                      left: 24,
+                    ),
                   ),
                 ),
                 Container(
@@ -168,17 +184,21 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: <Widget>[
                       Container(
                         child: Card(
-                          margin: EdgeInsets.only(top: 50, left: 16, right: 16),
+                          margin: EdgeInsets.only(
+                            top: 50,
+                            left: 16,
+                            right: 16,
+                          ),
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                            Radius.circular(14),
-                          )),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(14),
+                            ),
+                          ),
                           child: Column(
                             children: <Widget>[
                               Container(
-                                margin: EdgeInsets.only(
-                                    left: 8, top: 8, right: 8, bottom: 8),
+                                margin: EdgeInsets.all(8.0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: <Widget>[
@@ -186,10 +206,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                       icon: Icon(Icons.edit),
                                       color: Colors.black,
                                       iconSize: 24,
-                                      onPressed: () {
-                                        Navigator.pushNamed(
-                                            context, '/editprofileinfo');
-                                      },
+                                      onPressed: () => Navigator.pushNamed(
+                                        context,
+                                        '/editprofileinfo',
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -197,21 +217,25 @@ class _ProfilePageState extends State<ProfilePage> {
                               Text(
                                 "Yash Khandelwal",
                                 style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w900),
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w900,
+                                ),
                               ),
                               Text(
                                 "9876543210",
                                 style: TextStyle(
-                                    color: Colors.grey.shade700,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w900),
+                                  color: Colors.grey.shade700,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w900,
+                                ),
                               ),
                               Text(
                                 "khandelwalyashykc@gmail.com",
                                 style: TextStyle(
-                                    color: Colors.grey.shade700, fontSize: 14),
+                                  color: Colors.grey.shade700,
+                                  fontSize: 14,
+                                ),
                               ),
                               SizedBox(
                                 height: 16,
@@ -223,40 +247,38 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                               ListView.builder(
                                 shrinkWrap: true,
-                                itemBuilder: (context, index) {
-                                  return Builder(builder: (context) {
-                                    return InkWell(
-                                      splashColor: Colors.grey.shade200,
-                                      onTap: listSection[index].onpressed,
-                                      child: Container(
-                                        margin: EdgeInsets.only(
-                                            left: 16, right: 12),
-                                        padding: EdgeInsets.only(
-                                            top: 12, bottom: 12),
-                                        child: Row(
-                                          children: <Widget>[
-                                            Icon(listSection[index].icon),
-                                            SizedBox(
-                                              width: 12,
-                                            ),
-                                            Text(
-                                              listSection[index].title,
-                                              style: TextStyle(
-                                                  color: Colors.grey.shade500),
-                                            ),
-                                            Spacer(
-                                              flex: 1,
-                                            ),
-                                            Icon(
-                                              Icons.navigate_next,
-                                              color: Colors.grey.shade500,
-                                            ),
-                                          ],
+                                itemBuilder: (context, index) => InkWell(
+                                  splashColor: Colors.grey.shade200,
+                                  onTap: listSection[index].onpressed,
+                                  child: Container(
+                                    margin: EdgeInsets.only(
+                                      left: 16,
+                                      right: 12,
+                                    ),
+                                    padding: EdgeInsets.symmetric(vertical: 12),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Icon(listSection[index].icon),
+                                        SizedBox(
+                                          width: 12,
                                         ),
-                                      ),
-                                    );
-                                  });
-                                },
+                                        Text(
+                                          listSection[index].title,
+                                          style: TextStyle(
+                                            color: Colors.grey.shade500,
+                                          ),
+                                        ),
+                                        Spacer(
+                                          flex: 1,
+                                        ),
+                                        Icon(
+                                          Icons.navigate_next,
+                                          color: Colors.grey.shade500,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                                 itemCount: listSection.length,
                               ),
                             ],
@@ -274,16 +296,18 @@ class _ProfilePageState extends State<ProfilePage> {
                               children: <Widget>[
                                 Container(
                                   decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Colors.grey.shade400,
-                                          width: 2),
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                          image: selected == false
-                                              ? AssetImage(
-                                                  "assets/images/1.png")
-                                              : FileImage(_image),
-                                          fit: BoxFit.cover)),
+                                    border: Border.all(
+                                      color: Colors.grey.shade400,
+                                      width: 2,
+                                    ),
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image: selected == false
+                                          ? AssetImage("assets/images/1.png")
+                                          : FileImage(_image),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                   width: 100,
                                   height: 100,
                                 ),
@@ -299,9 +323,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         color: Colors.white,
                                       ),
                                     ),
-                                    onTap: () => {
-                                      _presentBottomSheet(context),
-                                    },
+                                    onTap: () => _presentBottomSheet(context),
                                   ),
                                 ),
                               ],
@@ -314,8 +336,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ],
             ),
-          );
-        }),
+          ),
+        ),
       ),
     );
   }

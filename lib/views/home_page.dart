@@ -6,8 +6,6 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../utils/theme/theme_data.dart';
-import '../helpers/locale/app_localization.dart';
-import '../presentation/custom_icons.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -79,7 +77,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var locale = AppLocalization.of(context);
     return Scaffold(
       body: ListView.builder(
         controller: scrollController,
@@ -93,7 +90,8 @@ class _HomePageState extends State<HomePage> {
                 clipBehavior: Clip.antiAlias,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
-                      MediaQuery.of(context).size.height * 0.02),
+                    MediaQuery.of(context).size.height * 0.02,
+                  ),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -109,40 +107,44 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Container(
                       padding: EdgeInsets.all(
-                          MediaQuery.of(context).size.width * 0.02),
+                        MediaQuery.of(context).size.width * 0.02,
+                      ),
                       width: MediaQuery.of(context).size.width * (1 - (0.46)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: <Widget>[
                           FittedBox(
-                            child: Text(dummyData[index % 4]['shopName'],
-                                style: CustomThemeData.robotoFont.copyWith(
-                                  color: CustomThemeData.blackColorShade1,
-                                  fontSize:
-                                      MediaQuery.of(context).size.height * 0.03,
-                                  fontWeight: FontWeight.bold,
-                                )),
+                            child: Text(
+                              dummyData[index % 4]['shopName'],
+                              style: CustomThemeData.robotoFont.copyWith(
+                                color: CustomThemeData.blackColorShade1,
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.03,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                           FittedBox(
-                            child: Text(dummyData[index % 4]['sellerName'],
-                                style: CustomThemeData.latoFont.copyWith(
-                                    fontSize:
-                                        MediaQuery.of(context).size.height *
-                                            0.02,
-                                    color: CustomThemeData.blackColorShade2
-                                    // fontWeight: FontWeight.bold,
-                                    )),
+                            child: Text(
+                              dummyData[index % 4]['sellerName'],
+                              style: CustomThemeData.latoFont.copyWith(
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.02,
+                                color: CustomThemeData.blackColorShade2,
+                                // fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                           FittedBox(
                             child: Text(
                               dummyData[index % 4]['category'],
                               style: CustomThemeData.montserratFont.copyWith(
-                                  fontSize: MediaQuery.of(context).size.height *
-                                      0.018,
-                                  color: CustomThemeData.blackColorShade3
-                                  // fontWeight: FontWeight.bold,
-                                  ),
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.018,
+                                color: CustomThemeData.blackColorShade3,
+                                // fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ],
@@ -158,31 +160,37 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: SpeedDial(
         animatedIcon: AnimatedIcons.menu_close,
-        animatedIconTheme: IconThemeData(size: 25.0, color: Colors.white),
+        animatedIconTheme: IconThemeData(
+          size: 25.0,
+          color: Colors.white,
+        ),
         visible: dialVisible,
         curve: Curves.easeIn,
         animationSpeed: 50,
         overlayOpacity: 0.5,
-        children: [
+        children: <SpeedDialChild>[
           SpeedDialChild(
-            // child: SvgPicture.asset(
-            //   assetName,
-            //   color: Colors.white,
-            // ),
-            child: Icon(CustomIcons.qrcode),
+            child: Icon(
+              Icons.camera_alt,
+              color: Colors.white,
+            ),
             backgroundColor: CustomThemeData.greyColorShade,
             onTap: _scan,
-            label: locale.scanText,
+            label: 'Scan',
             labelStyle: CustomThemeData.latoFont.copyWith(
-                color: CustomThemeData.blackColorShade1,
-                fontWeight: FontWeight.bold),
+              color: CustomThemeData.blackColorShade1,
+              fontWeight: FontWeight.bold,
+            ),
             labelBackgroundColor: Colors.white,
           ),
           SpeedDialChild(
-            child: Icon(Icons.phone, color: Colors.white),
+            child: Icon(
+              Icons.phone,
+              color: Colors.white,
+            ),
             backgroundColor: CustomThemeData.greyColorShade,
             onTap: () => Navigator.of(context).pushNamed('/addShopPage'),
-            label: locale.viaPhone,
+            label: 'Via Phone',
             labelStyle: CustomThemeData.latoFont.copyWith(
               color: CustomThemeData.blackColorShade1,
               fontWeight: FontWeight.bold,
