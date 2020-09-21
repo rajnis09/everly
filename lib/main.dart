@@ -1,3 +1,4 @@
+import 'package:everly/views/bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -87,6 +88,7 @@ class _MyAppState extends State<MyApp> {
           '/': (context) => SplashScreen(),
           '/logInPage': (context) => LoginPage(),
           '/signUpPhonePage': (context) => SignUpPhonePage(),
+          '/bottomNavigation':(context)=>CustomBottomNavigationBar(),
           '/introPage': (context) => IntroScreen(),
           '/addShopPage': (context) => AddShopPage(),
           "/cartPage": (context) => CartPage(),
