@@ -143,7 +143,7 @@ class LoginPage extends StatelessWidget {
                       height: size.height * 0.055,
                       width: size.width * 0.7,
                       onPressed: () =>
-                          Navigator.pushReplacementNamed(context, '/homePage'),
+                          Navigator.pushReplacementNamed(context, '/bottomNavigation'),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
