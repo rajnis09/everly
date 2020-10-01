@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../presentation/custom_icons.dart' as customIcons;
 
 import '../utils/theme/theme_data.dart';
 
@@ -171,7 +172,7 @@ class _HomePageState extends State<HomePage> {
         children: <SpeedDialChild>[
           SpeedDialChild(
             child: Icon(
-              Icons.camera_alt,
+              customIcons.CustomIcons.qrcode,
               color: Colors.white,
             ),
             backgroundColor: CustomThemeData.greyColorShade,

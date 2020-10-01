@@ -1,9 +1,11 @@
+import 'package:everly/views/bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:provider/provider.dart';
 
 import './utils/theme/theme_data.dart';
+import './views/home_page.dart';
 import './views/splash_Screen.dart';
 import './views/authentication/signin_page.dart';
 import './views/add_shop_page.dart';
@@ -86,6 +88,7 @@ class _MyAppState extends State<MyApp> {
         routes: <String, WidgetBuilder>{
           '/': (context) => SplashScreen(),
           '/logInPage': (context) => LoginPage(),
+          '/homePage': (context) => CustomBottomNavigationBar(),
           '/signUpPhonePage': (context) => SignUpPhonePage(),
           '/introPage': (context) => IntroScreen(),
           '/addShopPage': (context) => AddShopPage(),
