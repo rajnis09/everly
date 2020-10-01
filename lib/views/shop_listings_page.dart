@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:qrscan/qrscan.dart' as scanner;
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import '../presentation/custom_icons.dart';
 
 import '../utils/theme/theme_data.dart';
 
@@ -208,7 +209,7 @@ class _ShopListingPageState extends State<ShopListingPage> {
         children: <SpeedDialChild>[
           SpeedDialChild(
             child: Icon(
-              Icons.camera_alt,
+              CustomIcons.qrcode,
               color: Colors.white,
             ),
             backgroundColor: CustomThemeData.greyColorShade,
