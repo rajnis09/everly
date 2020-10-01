@@ -20,8 +20,8 @@ class SignUpPhonePage extends StatelessWidget {
                 height: size.height * 0.20,
                 alignment: Alignment.center,
                 child: LogoWidget(
-                  size: size.width * 0.4,
-                ),
+                    // size: size.width * 0.4,
+                    ),
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.06,

@@ -1,241 +1,224 @@
 import 'package:flutter/material.dart';
 
-import 'package:qrscan/qrscan.dart' as scanner;
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../utils/theme/theme_data.dart';
+import './shop_listings_page.dart';
+import './profile/profile_page.dart';
+import './orders/orders_page.dart';
+import './settings/settings_page.dart';
+import '../model/notification_manager.dart';
+import '../widgets/network_builder.dart';
 
 class HomePage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomePageState createState() =>
+      _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Map<String, String>> dummyData = [
-    {
-      "image": "assets/images/load.jpg",
-      "shopName": "Desserts",
-      "sellerName": "The Sweetman",
-      "category": "Sweets",
-    },
-    {
-      "image": "assets/images/load.jpg",
-      "shopName": "Fresh'O Juicy",
-      "sellerName": "The Freshman",
-      "category": "Grocery",
-    },
-    {
-      "image": "assets/images/load.jpg",
-      "shopName": "Food Mart",
-      "sellerName": "The Foodman",
-      "category": "Supermart",
-    },
-    {
-      "image": "assets/images/load.jpg",
-      "shopName": "Essestianls",
-      "sellerName": "The Needman",
-      "category": "Daily Needs",
-    },
-    {
-      "image": "assets/images/load.jpg",
-      "shopName": "Essestianls",
-      "sellerName": "The Needman",
-      "category": "Daily Needs",
-    },
-  ];
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
-  bool dialVisible = true;
+  @override
+  void initState() {
+    super.initState();
+    getMessage();
+  }
 
-  Future _scan() async {
-    String scanResult = await scanner.scan();
-    if (scanResult != null) {
-      print(scanResult);
-    }
+  void getMessage() {
+    _firebaseMessaging.configure(
+        onMessage: (Map<String, dynamic> message) async {
+      notify.addMessage(message['data']['title']);
+    }, onResume: (Map<String, dynamic> message) async {
+      if (message != null) {
+        notify.addMessage(message['data']['title']);
+        Navigator.of(context).pushNamed(
+          '/notificationPage',
+        );
+      }
+    }, onLaunch: (Map<String, dynamic> message) async {
+      notify.addMessage(message['data']['title']);
+    });
+  }
+
+  var _selectedPageIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final List<String> _titles = [
+      'Home',
+      'Profile',
+      'My Orders',
+      'Settings',
+    ];
+    final List<Widget> _pages = [
+      ShopListingPage(),
+      ProfilePage(),
+      OrdersPage(),
+      SettingsPage(),
+    ];
+
+    return Scaffold(
+      appBar: _selectedPageIndex != 1
+          ? AppBar(
+              title: Text(_titles[_selectedPageIndex]),
+              actions: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(right: 10.0),
+                  child: GestureDetector(
+                    onTap: () =>
+                        Navigator.pushNamed(context, '/notificationPage'),
+                    child: Icon(
+                      Icons.notifications_none,
+                      size: 25,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(right: 10.0),
+                  child: GestureDetector(
+                    onTap: () => Navigator.pushNamed(context, '/cartPage'),
+                    child: Icon(
+                      Icons.shopping_cart,
+                      size: 25,
+                    ),
+                  ),
+                ),
+              ],
+            )
+          : null,
+      body: NetworkBuilder(
+        child: _pages[_selectedPageIndex],
+      ),
+      bottomNavigationBar: _FABBottomAppBar(
+        selectedColor:
+            _selectedPageIndex == 4 ? null : CustomThemeData.blueColorShade1,
+        onTabSelected: (index) {
+          setState(() {
+            _selectedPageIndex = index;
+          });
+        },
+        items: [
+          _FABBottomAppBarItem(
+            iconData: Icons.home,
+            text: 'Home',
+          ),
+          _FABBottomAppBarItem(
+            iconData: Icons.person,
+            text: 'Profile',
+          ),
+          _FABBottomAppBarItem(
+            iconData: Icons.account_balance_wallet,
+            text: 'My Orders',
+          ),
+          _FABBottomAppBarItem(
+            iconData: Icons.settings,
+            text: 'Settings',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _FABBottomAppBarItem {
+  _FABBottomAppBarItem({this.iconData, this.text});
+  IconData iconData;
+  String text;
+}
+
+class _FABBottomAppBar extends StatefulWidget {
+  _FABBottomAppBar({
+    this.items,
+    this.centerItemText,
+    this.height: 60.0,
+    this.iconSize: 24.0,
+    this.backgroundColor,
+    this.color,
+    this.selectedColor,
+    this.notchedShape,
+    this.onTabSelected,
+  }) {
+    assert(this.items.length == 2 || this.items.length == 4);
+  }
+  final List<_FABBottomAppBarItem> items;
+  final String centerItemText;
+  final double height;
+  final double iconSize;
+  final Color backgroundColor;
+  final Color color;
+  final Color selectedColor;
+  final NotchedShape notchedShape;
+  final ValueChanged<int> onTabSelected;
+
+  @override
+  State<StatefulWidget> createState() => _FABBottomAppBarState();
+}
+
+class _FABBottomAppBarState extends State<_FABBottomAppBar> {
+  int _selectedIndex = 0;
+
+  void _updateIndex(int index) {
+    widget.onTabSelected(index);
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: ListView.builder(
-        // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        // crossAxisCount: 2,
-        // childAspectRatio: 3 / 4,
-        // mainAxisSpacing: 10,
-        // crossAxisSpacing: 10),
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child:
-                GestureDetector(
-                  onTap: () =>
-                      Navigator.of(context).pushNamed('/shopDetailsPage'),
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      // border: Border.all(
-                      //   color: Colors.black,
-                      // ),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          bottomLeft: Radius.circular(10)),
-                      color: Colors.grey[100],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          bottomLeft: Radius.circular(10)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: size * .15,
-                            // width: double.infinity,
-                            child: Image.asset(
-                              dummyData[index % 4]['image'],
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(8),
-                            // width: double.infinity,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  dummyData[index % 4]['shopName'],
-                                  style: CustomThemeData.robotoFont.copyWith(
-                                    color: CustomThemeData.blackColorShade1,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text("Description"),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+    List<Widget> items = List.generate(widget.items.length, (int index) {
+      return _buildTabItem(
+        item: widget.items[index],
+        index: index,
+        onPressed: _updateIndex,
+      );
+    });
 
-                  // height: MediaQuery.of(context).size.height * 0.18,
-                  // padding: const EdgeInsets.all(8.0),
-                  // child: Card(
-                  //   clipBehavior: Clip.antiAlias,
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(
-                  //       MediaQuery.of(context).size.height * 0.02,
-                  //     ),
-                  //   ),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.start,
-                  //     children: [
-                  //       Container(
-                  //         width: MediaQuery.of(context).size.width * 0.35,
-                  //         child: Image.asset(
-                  //           dummyData[index % 4]['image'],
-                  //           fit: BoxFit.cover,
-                  //           height: MediaQuery.of(context).size.height *
-                  //               (0.18 - (0.01)),
-                  //         ),
-                  //       ),
-                  //       Container(
-                  //         padding: EdgeInsets.all(
-                  //           MediaQuery.of(context).size.width * 0.02,
-                  //         ),
-                  //         width: MediaQuery.of(context).size.width * (1 - (0.46)),
-                  //         child: Column(
-                  //           crossAxisAlignment: CrossAxisAlignment.start,
-                  //           mainAxisAlignment: MainAxisAlignment.start,
-                  //           children: <Widget>[
-                  //             FittedBox(
-                  //               child: Text(
-                  //                 dummyData[index % 4]['shopName'],
-                  //                 style: CustomThemeData.robotoFont.copyWith(
-                  //                   color: CustomThemeData.blackColorShade1,
-                  //                   fontSize:
-                  //                       MediaQuery.of(context).size.height * 0.03,
-                  //                   fontWeight: FontWeight.bold,
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //             FittedBox(
-                  //               child: Text(
-                  //                 dummyData[index % 4]['sellerName'],
-                  //                 style: CustomThemeData.latoFont.copyWith(
-                  //                   fontSize:
-                  //                       MediaQuery.of(context).size.height * 0.02,
-                  //                   color: CustomThemeData.blackColorShade2,
-                  //                   // fontWeight: FontWeight.bold,
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //             FittedBox(
-                  //               child: Text(
-                  //                 dummyData[index % 4]['category'],
-                  //                 style: CustomThemeData.montserratFont.copyWith(
-                  //                   fontSize:
-                  //                       MediaQuery.of(context).size.height * 0.018,
-                  //                   color: CustomThemeData.blackColorShade3,
-                  //                   // fontWeight: FontWeight.bold,
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                ),);
-                // SizedBox(
-                //   height: 10,
-                // ),
-        },
-        // itemCount: dummyData.length,
+    return BottomAppBar(
+      shape: widget.notchedShape,
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: items,
       ),
-      floatingActionButton: SpeedDial(
-        animatedIcon: AnimatedIcons.menu_close,
-        animatedIconTheme: IconThemeData(
-          size: 25.0,
-          color: Colors.white,
+      color: widget.backgroundColor,
+    );
+  }
+
+  Widget _buildTabItem({
+    _FABBottomAppBarItem item,
+    int index,
+    ValueChanged<int> onPressed,
+  }) {
+    Color color = _selectedIndex == index ? widget.selectedColor : widget.color;
+    return Expanded(
+      child: SizedBox(
+        height: widget.height,
+        child: Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+            onTap: () => onPressed(index),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(
+                  item.iconData,
+                  color: color,
+                  size: widget.iconSize,
+                ),
+                Text(
+                  item.text,
+                  style: CustomThemeData.robotoFont.copyWith(
+                    color: CustomThemeData.blackColorShade1,
+                  ),
+                  textScaleFactor: 1.01,
+                )
+              ],
+            ),
+          ),
         ),
-        visible: dialVisible,
-        curve: Curves.easeIn,
-        animationSpeed: 50,
-        overlayOpacity: 0.5,
-        children: <SpeedDialChild>[
-          SpeedDialChild(
-            child: Icon(
-              Icons.camera_alt,
-              color: Colors.white,
-            ),
-            backgroundColor: CustomThemeData.greyColorShade,
-            onTap: _scan,
-            label: 'Scan',
-            labelStyle: CustomThemeData.latoFont.copyWith(
-              color: CustomThemeData.blackColorShade1,
-              fontWeight: FontWeight.bold,
-            ),
-            labelBackgroundColor: Colors.white,
-          ),
-          SpeedDialChild(
-            child: Icon(
-              Icons.phone,
-              color: Colors.white,
-            ),
-            backgroundColor: CustomThemeData.greyColorShade,
-            onTap: () => Navigator.of(context).pushNamed('/addShopPage'),
-            label: 'Via Phone',
-            labelStyle: CustomThemeData.latoFont.copyWith(
-              color: CustomThemeData.blackColorShade1,
-              fontWeight: FontWeight.bold,
-            ),
-            labelBackgroundColor: Colors.white,
-          ),
-        ],
       ),
     );
   }
