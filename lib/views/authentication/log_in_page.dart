@@ -50,8 +50,8 @@ class LoginPage extends StatelessWidget {
                     height: size.height * 0.20,
                     alignment: Alignment.center,
                     child: LogoWidget(
-                      size: size.width * 0.4,
-                    ),
+                        // size: size.width * 0.4,
+                        ),
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
