@@ -58,143 +58,153 @@ class _ShopListingPageState extends State<ShopListingPage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: ListView.builder(
-        // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        // crossAxisCount: 2,
-        // childAspectRatio: 3 / 4,
-        // mainAxisSpacing: 10,
-        // crossAxisSpacing: 10),
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed('/shopDetailsPage'),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  // border: Border.all(
-                  //   color: Colors.black,
-                  // ),
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      bottomLeft: Radius.circular(10)),
-                  color: Colors.grey[100],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      bottomLeft: Radius.circular(10)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: size * .15,
-                        // width: double.infinity,
-                        child: Image.asset(
-                          dummyData[index % 4]['image'],
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(8),
-                        // width: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              dummyData[index % 4]['shopName'],
-                              style: CustomThemeData.robotoFont.copyWith(
-                                color: CustomThemeData.blackColorShade1,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+      body: Stack(
+        children: <Widget>[
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0,60,0,0),
+              child: ListView.builder(
+                
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () =>
+                          Navigator.of(context).pushNamed('/shopDetailsPage'),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          // border: Border.all(
+                          //   color: Colors.black,
+                          // ),
+                          borderRadius: BorderRadius.all(
+                             Radius.circular(10),
+                              // topLeft: Radius.circular(10),
+                              // bottomLeft: Radius.circular(10)
                               ),
-                            ),
-                            Text("Description"),
-                          ],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              bottomLeft: Radius.circular(10)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: size * .15,
+                                // width: double.infinity,
+                                child: Image.asset(
+                                  dummyData[index % 4]['image'],
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(8),
+                                // width: double.infinity,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      dummyData[index % 4]['shopName'],
+                                      style: CustomThemeData.robotoFont.copyWith(
+                                        color: CustomThemeData.blackColorShade1,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text("Description"),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
+                    ),
+                  );
+                  // SizedBox(
+                  //   height: 10,
+                  // ),
+                },
+                // itemCount: dummyData.length,
+              ),
+            ),
+          ),
+          Container(
+            height: 60,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    offset: Offset(0.0, 2.0), //(x,y)
+                    blurRadius: 6.0,
+                  ),
+                ],
+              gradient: LinearGradient(
+                colors: <Color>[
+                  Color(0xff0F2027),
+                  Color(0xff203A43),
+                  Color(0xff2C5364)
+                ],
+              ),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30),
+              ),
+            ),
+            child: Container(
+              padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Home',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 26,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                      padding: EdgeInsets.only(right: 10.0),
+                      child: GestureDetector(
+                        onTap: () =>
+                            Navigator.pushNamed(context, '/notificationPage'),
+                        child: Icon(
+                          Icons.notifications_none,
+                          color: Colors.white,
+                          size: 25,
+                        ),
+                      ),
+                ),
+                SizedBox(width: 10,),
+                Padding(
+                      padding: EdgeInsets.only(right: 10.0),
+                      child: GestureDetector(
+                        onTap: () => Navigator.pushNamed(context, '/cartPage'),
+                        child: Icon(
+                          Icons.shopping_cart,
+                          color: Colors.white,
+                          size: 25,
+                        ),
+                      ),
+                ),
                     ],
                   ),
-                ),
+                ],
               ),
-
-              // height: MediaQuery.of(context).size.height * 0.18,
-              // padding: const EdgeInsets.all(8.0),
-              // child: Card(
-              //   clipBehavior: Clip.antiAlias,
-              //   shape: RoundedRectangleBorder(
-              //     borderRadius: BorderRadius.circular(
-              //       MediaQuery.of(context).size.height * 0.02,
-              //     ),
-              //   ),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.start,
-              //     children: [
-              //       Container(
-              //         width: MediaQuery.of(context).size.width * 0.35,
-              //         child: Image.asset(
-              //           dummyData[index % 4]['image'],
-              //           fit: BoxFit.cover,
-              //           height: MediaQuery.of(context).size.height *
-              //               (0.18 - (0.01)),
-              //         ),
-              //       ),
-              //       Container(
-              //         padding: EdgeInsets.all(
-              //           MediaQuery.of(context).size.width * 0.02,
-              //         ),
-              //         width: MediaQuery.of(context).size.width * (1 - (0.46)),
-              //         child: Column(
-              //           crossAxisAlignment: CrossAxisAlignment.start,
-              //           mainAxisAlignment: MainAxisAlignment.start,
-              //           children: <Widget>[
-              //             FittedBox(
-              //               child: Text(
-              //                 dummyData[index % 4]['shopName'],
-              //                 style: CustomThemeData.robotoFont.copyWith(
-              //                   color: CustomThemeData.blackColorShade1,
-              //                   fontSize:
-              //                       MediaQuery.of(context).size.height * 0.03,
-              //                   fontWeight: FontWeight.bold,
-              //                 ),
-              //               ),
-              //             ),
-              //             FittedBox(
-              //               child: Text(
-              //                 dummyData[index % 4]['sellerName'],
-              //                 style: CustomThemeData.latoFont.copyWith(
-              //                   fontSize:
-              //                       MediaQuery.of(context).size.height * 0.02,
-              //                   color: CustomThemeData.blackColorShade2,
-              //                   // fontWeight: FontWeight.bold,
-              //                 ),
-              //               ),
-              //             ),
-              //             FittedBox(
-              //               child: Text(
-              //                 dummyData[index % 4]['category'],
-              //                 style: CustomThemeData.montserratFont.copyWith(
-              //                   fontSize:
-              //                       MediaQuery.of(context).size.height * 0.018,
-              //                   color: CustomThemeData.blackColorShade3,
-              //                   // fontWeight: FontWeight.bold,
-              //                 ),
-              //               ),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     ],
-              //   ),
+              // margin: EdgeInsets.only(
+              //   top: 5,
+              //   left: 24,
               // ),
             ),
-          );
-          // SizedBox(
-          //   height: 10,
-          // ),
-        },
-        // itemCount: dummyData.length,
+          ),
+        ],
       ),
       floatingActionButton: SpeedDial(
         animatedIcon: AnimatedIcons.menu_close,

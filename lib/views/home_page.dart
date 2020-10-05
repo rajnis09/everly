@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
     ];
 
     return Scaffold(
-      appBar: _selectedPageIndex != 1
+      appBar: _selectedPageIndex != 1 && _selectedPageIndex !=0
           ? AppBar(
               title: Text(_titles[_selectedPageIndex]),
               actions: <Widget>[
